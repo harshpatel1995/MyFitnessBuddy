@@ -35,6 +35,7 @@ public class Setup extends AppCompatActivity {
     SharedPreferences sharedPreference;
 
     public void saveSetUp(View view) {
+
         EditText[] editTextArray = {firstNameET, lastNameET, ageET, heightET, weightET};
 
         String[] errorMessages = {
@@ -61,11 +62,10 @@ public class Setup extends AppCompatActivity {
         if(maleRB.isChecked())  gender = "Male" ;
         else                    gender = "Female";
 
-
         sharedPreference.edit().putString("First Name", firstName).apply();
         sharedPreference.edit().putString("Last Name", lastName).apply();
         sharedPreference.edit().putInt("Age", age).apply();
-        sharedPreference.edit().putFloat("Height", (float)height).apply();
+        sharedPreference.edit().putFloat("Height", (float) height).apply();
         sharedPreference.edit().putFloat("Weight", (float) weight).apply();
         sharedPreference.edit().putString("Gender", gender).apply();
 
@@ -121,11 +121,11 @@ public class Setup extends AppCompatActivity {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-        Log.i("H", String.valueOf((double) sharedPreference.getFloat("Height",0)));
-        Log.i("W", String.valueOf((double) sharedPreference.getFloat("Weight",0)));
+     //   Log.i("H", String.valueOf((double) sharedPreference.getFloat("Height",0)));
+     //   Log.i("W", String.valueOf((double) sharedPreference.getFloat("Weight",0)));
 
         String tempFirstName = sharedPreference.getString("First Name", "");
-        if(tempFirstName != "") {
+        if(!tempFirstName.equals("")) {
            goToUserProfile();
         }
 
@@ -135,6 +135,7 @@ public class Setup extends AppCompatActivity {
     public void goToUserProfile() {
 
         Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+
         intent.putExtra("First Name", sharedPreference.getString("First Name", ""));
         intent.putExtra("Last Name",  sharedPreference.getString("Last Name", ""));
         intent.putExtra("Gender", sharedPreference.getString("Gender", ""));

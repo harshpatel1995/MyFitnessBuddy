@@ -53,7 +53,8 @@ public class UserProfile extends AppCompatActivity {
         heightTV.setText(String.valueOf(intent.getDoubleExtra("Height", 0)));
         weightTV.setText(String.valueOf(intent.getDoubleExtra("Weight", 0)));
 
-        sharedPreference.edit().clear().apply();
+        // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
+        // sharedPreference.edit().clear().apply();
 
     }
 
