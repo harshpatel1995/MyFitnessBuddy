@@ -130,7 +130,7 @@ public class Setup extends AppCompatActivity {
         if(!tempFirstName.equals("")) {
            goToUserProfile();
         }
-
+//
     }
 
     //Transfer to the user profile page
