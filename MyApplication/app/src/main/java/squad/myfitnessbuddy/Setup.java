@@ -45,7 +45,7 @@ public class Setup extends AppCompatActivity {
                 "Weight cannot be empty!"
         };
 
-        //craptest2
+        //craptest3
 
         if(isEmpty(editTextArray,errorMessages)) return;
 
