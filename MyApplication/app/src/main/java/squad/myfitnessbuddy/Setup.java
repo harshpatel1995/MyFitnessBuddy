@@ -46,6 +46,8 @@ public class Setup extends AppCompatActivity {
                 "Weight cannot be empty!"
         };
 
+        //craptest80
+
         if(isEmpty(editTextArray,errorMessages)) return;
 
         firstName  =  firstNameET.getText().toString();
