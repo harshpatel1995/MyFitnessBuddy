@@ -51,7 +51,8 @@
             android:layout_below="@+id/profileLastName"
             android:layout_toRightOf="@+id/profileSedentary"
             android:layout_toEndOf="@+id/profileSedentary"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,7 +63,8 @@
             android:layout_below="@+id/profileLastName"
             android:layout_alignLeft="@+id/profileHeight"
             android:layout_alignStart="@+id/profileHeight"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
@@ -82,7 +84,8 @@
             android:id="@+id/profileHeight"
             android:textSize="25sp"
             android:text="Height"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,7 +93,8 @@
             android:id="@+id/profileWeight"
             android:textSize="25sp"
             android:text="Weight"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <TextView
