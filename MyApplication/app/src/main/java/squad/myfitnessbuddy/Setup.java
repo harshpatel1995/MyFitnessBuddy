@@ -46,8 +46,6 @@ public class Setup extends AppCompatActivity {
                 "Weight cannot be empty!"
         };
 
-        //craptest900
-
         if(isEmpty(editTextArray,errorMessages)) return;
 
         firstName  =  firstNameET.getText().toString();
@@ -95,14 +93,15 @@ public class Setup extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //Code for super cute floating pink message icon
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();

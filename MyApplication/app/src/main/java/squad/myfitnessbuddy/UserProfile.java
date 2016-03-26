@@ -25,7 +25,8 @@ public class UserProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //Code for super cute floating pink message icon
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,7 +34,7 @@ public class UserProfile extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+        */
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         firstNameTV  = (TextView) findViewById(R.id.profileFirstName);

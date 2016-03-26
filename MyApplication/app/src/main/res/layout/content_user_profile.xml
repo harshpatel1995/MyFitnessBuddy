@@ -12,61 +12,131 @@
     tools:context="squad.myfitnessbuddy.UserProfile">
 
     <TextView
+        android:id="@+id/nameStatus"
+        android:text="@string/full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileFirstName"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="25sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileLastName"
-        android:layout_below="@+id/profileFirstName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp"
-        android:textSize="25sp" />
 
     <TextView
+        android:id="@id/profileFirstName"
+        android:text="@string/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileAge"
-        android:layout_below="@+id/profileLastName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp"
-        android:textSize="25sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="100dp"
+        android:paddingRight="5dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@id/profileLastName"
+        android:text="@string/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileGender"
-        android:layout_below="@+id/profileAge"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp"
-        android:textSize="25sp" />
+        android:layout_toEndOf="@id/profileFirstName"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/ageStatus"
+        android:text="@string/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileHeight"
-        android:layout_below="@+id/profileGender"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="55dp"
-        android:textSize="25sp" />
+        android:layout_below="@id/nameStatus"
+        android:textSize="25sp"        />
 
     <TextView
+        android:id="@id/profileAge"
+        android:text="@string/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileWeight"
-        android:layout_marginTop="61dp"
-        android:layout_below="@+id/profileHeight"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="25sp" />
+        android:layout_below="@id/nameStatus"
+        android:layout_marginStart="100dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/genderStatus"
+        android:text="@string/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ageStatus"
+        android:textSize="25sp"
+        />
+
+    <TextView
+        android:id="@id/profileGender"
+        android:text="@string/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileAge"
+        android:layout_marginStart="100dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/heightStatus"
+        android:text="@string/height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/genderStatus"
+        android:textSize="25sp"
+        />
+
+    <TextView
+        android:id="@id/profileHeight"
+        android:text="@string/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/genderStatus"
+        android:layout_marginStart="100dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/heightNotation"
+        android:text="@string/height_type_short"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/genderStatus"
+        android:layout_toEndOf="@id/profileHeight"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/weightStatus"
+        android:text="@string/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightStatus"
+        android:textSize="25sp"
+        />
+
+    <TextView
+        android:id="@id/profileWeight"
+        android:text="@string/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightStatus"
+        android:layout_marginStart="100dp"
+        android:paddingRight="5dp"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/weightNotation"
+        android:text="@string/weight_type_short"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightStatus"
+        android:layout_toEndOf="@id/profileWeight"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
