@@ -45,11 +45,11 @@
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/profileGender"
-        android:textSize="25sp"
-        android:text="Gender"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/profileGender"
+            android:textSize="25sp"
+            android:text="Gender"
             android:layout_below="@+id/profileLastName"
             android:layout_toRightOf="@+id/profileSedentary"
             android:layout_toEndOf="@+id/profileSedentary"
