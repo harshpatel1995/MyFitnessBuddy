@@ -69,6 +69,7 @@ public class UserProfile extends AppCompatActivity {
         {
             heightStr = ("Height: " + String.format("%.2f",heightFlt) + " in.");
         }
+        //To delete
         if (weightFlt == Math.floor(weightFlt))
         {
             weightStr = ("Weight: " + String.format("%.0f",weightFlt) + " lb.");
