@@ -11,62 +11,170 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="squad.myfitnessbuddy.UserProfile">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profileFirstName"
+        android:textSize="25sp"
+        android:text="First"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="25sp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profileLastName"
+        android:layout_marginTop="16dp"
+        android:textSize="25sp"
+        android:text="Last"
         android:layout_below="@+id/profileFirstName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp"
-        android:textSize="25sp" />
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profileAge"
+        android:weightSum="2"
+        android:id="@+id/linearLayout"
         android:layout_below="@+id/profileLastName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp"
-        android:textSize="25sp" />
+        android:layout_marginTop="27dp">
 
-    <TextView
+
+        <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/profileGender"
-        android:layout_below="@+id/profileAge"
+        android:textSize="25sp"
+        android:text="Gender"
+            android:layout_below="@+id/profileLastName"
+            android:layout_toRightOf="@+id/profileSedentary"
+            android:layout_toEndOf="@+id/profileSedentary"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/profileAge"
+            android:textSize="25sp"
+            android:text="Age"
+            android:layout_below="@+id/profileLastName"
+            android:layout_alignLeft="@+id/profileHeight"
+            android:layout_alignStart="@+id/profileHeight"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:id="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp"
-        android:textSize="25sp" />
+        android:layout_marginTop="23dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/profileHeight"
+            android:textSize="25sp"
+            android:text="Height"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/profileWeight"
+            android:textSize="25sp"
+            android:text="Weight"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileBMI"
+        android:textSize="25sp"
+        android:text="BMI"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileHeight"
-        android:layout_below="@+id/profileGender"
+        android:id="@+id/profileSedentary"
+        android:textSize="25sp"
+        android:text="sedentary"
+        android:layout_above="@+id/profileLightlyActive"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="55dp"
-        android:textSize="25sp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileWeight"
-        android:layout_marginTop="61dp"
-        android:layout_below="@+id/profileHeight"
+        android:id="@+id/profileLightlyActive"
+        android:textSize="25sp"
+        android:text="light"
+        android:layout_above="@+id/profileModeratelyActive"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="25sp" />
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileModeratelyActive"
+        android:textSize="25sp"
+        android:text="mod"
+        android:layout_above="@+id/profileVeryActive"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileVeryActive"
+        android:textSize="25sp"
+        android:text="very"
+        android:layout_above="@+id/profileExtremelyActive"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileExtremelyActive"
+        android:textSize="25sp"
+        android:text="extreme"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileMetabolicRates"
+        android:textSize="30sp"
+        android:text="Metabolic Rates"
+        android:layout_gravity="center|left"
+        android:layout_above="@+id/profileCalories"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileCalories"
+        android:textSize="20sp"
+        android:text="(In Calories)"
+        android:layout_marginBottom="24dp"
+        android:layout_above="@+id/profileSedentary"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
 </RelativeLayout>
