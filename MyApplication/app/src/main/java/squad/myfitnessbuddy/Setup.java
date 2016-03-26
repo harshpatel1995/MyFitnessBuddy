@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +29,8 @@ public class Setup extends AppCompatActivity {
 
     String firstName, lastName, gender;
     int age;
-    double height, weight;
+    float[] metabolicRates;
+    float height, weight, bmi,sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive;
 
     SharedPreferences sharedPreference;
 
@@ -48,29 +48,80 @@ public class Setup extends AppCompatActivity {
 
         if(isEmpty(editTextArray,errorMessages)) return;
 
-        firstName  =  firstNameET.getText().toString();
-        lastName   =  lastNameET.getText().toString();
-        age        =  Integer.parseInt(ageET.getText().toString());
-        height     =  Double.parseDouble(heightET.getText().toString());
-        weight     =  Double.parseDouble(weightET.getText().toString());
-
         if (genderRG.getCheckedRadioButtonId() == -1) {
             Toast.makeText(getApplicationContext(), "You must select a gender!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(maleRB.isChecked())  gender = "Male" ;
+        if(maleRB.isChecked()) gender = "Male";
         else                    gender = "Female";
+
+        firstName  =  firstNameET.getText().toString();
+        lastName = lastNameET.getText().toString();
+        age        =  Integer.parseInt(ageET.getText().toString());
+        height     =  Float.parseFloat(heightET.getText().toString());
+        weight     =  Float.parseFloat(weightET.getText().toString());
+        bmi        =  calculateBMI(height, weight);
+        metabolicRates = calculateMetabolicRates(gender, (float) age, height, weight);
+        sedentary =  metabolicRates[0];
+        lightlyActive = metabolicRates[1];
+        moderatelyActive = metabolicRates[2];
+        veryActive = metabolicRates[3];
+        extremelyActive = metabolicRates[4];
+
 
         sharedPreference.edit().putString("First Name", firstName).apply();
         sharedPreference.edit().putString("Last Name", lastName).apply();
         sharedPreference.edit().putInt("Age", age).apply();
-        sharedPreference.edit().putFloat("Height", (float) height).apply();
-        sharedPreference.edit().putFloat("Weight", (float) weight).apply();
+        sharedPreference.edit().putFloat("Height", height).apply();
+        sharedPreference.edit().putFloat("Weight",  weight).apply();
         sharedPreference.edit().putString("Gender", gender).apply();
+        sharedPreference.edit().putFloat("BMI", bmi).apply();
+        sharedPreference.edit().putFloat("Sedentary", sedentary).apply();
+        sharedPreference.edit().putFloat("Lightly Active", lightlyActive).apply();
+        sharedPreference.edit().putFloat("Moderately Active", moderatelyActive).apply();
+        sharedPreference.edit().putFloat("Very Active", moderatelyActive).apply();
+        sharedPreference.edit().putFloat("Extremely Active", extremelyActive).apply();
 
         goToUserProfile();
 
+    }
+
+    //Calculates BMI based on height and weight
+    private float calculateBMI (float height, float weight)
+    {
+        return Math.round((703*(weight/ (float) Math.pow((double)height,2)))*100.0f)/100.0f;
+    }
+
+    //Calculates the metabolic rates of the user for different activity level and return in an array of floats
+    private float[] calculateMetabolicRates(String gender, float age, float height, float weight)
+    {
+
+        float sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive, base;
+
+        if (gender.equals("Male"))
+        {
+             base = 66+(6.23f * weight)+(12.7f * height)-(6.8f * age);
+
+        }
+        else if (gender.equals("Female"))
+        {
+            base = 655+(4.35f * weight)+(4.7f * height)-(4.7f * age);
+
+        }
+        //if gender isn't male or female, we have a software problem, return 0's so developer knows to fix
+        else
+        {
+            base = 0;
+        }
+
+        sedentary = Math.round(base * 1.1f);
+        lightlyActive = Math.round(base * 1.275f);
+        moderatelyActive = Math.round(base * 1.35f);
+        veryActive = Math.round(base * 1.525f);
+        extremelyActive = Math.round(base * 1.75f);
+        float[] rates = {sedentary,lightlyActive,moderatelyActive,moderatelyActive,veryActive,extremelyActive};
+        return rates;
     }
 
     private boolean isEmpty(EditText[] editTextArray, String[] errorMessages) {
@@ -92,16 +143,6 @@ public class Setup extends AppCompatActivity {
         setContentView(R.layout.setup);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //Code for super cute floating pink message icon
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -129,24 +170,32 @@ public class Setup extends AppCompatActivity {
         if(!tempFirstName.equals("")) {
            goToUserProfile();
         }
-//
+
     }
 
     //Transfer to the user profile page
     public void goToUserProfile() {
 
-        Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+        Intent profile = new Intent(getApplicationContext(), UserProfile.class);
 
-        intent.putExtra("First Name", sharedPreference.getString("First Name", ""));
-        intent.putExtra("Last Name",  sharedPreference.getString("Last Name", ""));
-        intent.putExtra("Gender", sharedPreference.getString("Gender", ""));
-        intent.putExtra("Age", sharedPreference.getInt("Age", 0));
-        intent.putExtra("Height", (double) sharedPreference.getFloat("Height", 0));
-        Log.i("Height", BigDecimal.valueOf((double) sharedPreference.getFloat("Height", 0)).toPlainString());
-        intent.putExtra("Weight", (double) sharedPreference.getFloat("Weight", 0));
-        Log.i("Weight", String.valueOf((double) sharedPreference.getFloat("Weight", 0)));
+        profile.putExtra("First Name", sharedPreference.getString("First Name", ""));
+        profile.putExtra("Last Name", sharedPreference.getString("Last Name", ""));
+        profile.putExtra("Gender", sharedPreference.getString("Gender", ""));
+        profile.putExtra("Age", sharedPreference.getInt("Age", 0));
+        profile.putExtra("Height", sharedPreference.getFloat("Height", 0));
 
-        startActivity(intent);
+        //Why are we logging weight and height here? @@@@Brandon
+        Log.i("Height", BigDecimal.valueOf( sharedPreference.getFloat("Height", 0)).toPlainString());
+        profile.putExtra("Weight", sharedPreference.getFloat("Weight", 0));
+        Log.i("Weight", String.valueOf(sharedPreference.getFloat("Weight", 0)));
+        profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));
+        profile.putExtra("Sedentary",  sharedPreference.getFloat("Sedentary", 0));
+        profile.putExtra("Lightly Active",  sharedPreference.getFloat("Lightly Active", 0));
+        profile.putExtra("Moderately Active",  sharedPreference.getFloat("Moderately Active", 0));
+        profile.putExtra("Very Active",  sharedPreference.getFloat("Very Active", 0));
+        profile.putExtra("Extremely Active",  sharedPreference.getFloat("Extremely Active", 0));
+
+        startActivity(profile);
     }
 
     @Override
