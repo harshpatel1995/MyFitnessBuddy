@@ -94,7 +94,7 @@ public class UserProfile extends AppCompatActivity {
         extremelyActiveTV.setText(extremelyActiveStr);
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
-         sharedPreference.edit().clear().apply();
+         //sharedPreference.edit().clear().apply();
 
     }
 
