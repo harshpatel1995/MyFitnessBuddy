@@ -30,7 +30,7 @@ public class Setup extends AppCompatActivity {
     String firstName, lastName, gender;
     int age;
     float[] metabolicRates;
-    float height, weight, bmi,sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive;
+    float height, weight, bmi, sedentary, lightlyActive, moderatelyActive, veryActive, extremelyActive;
 
     SharedPreferences sharedPreference;
 
@@ -69,7 +69,6 @@ public class Setup extends AppCompatActivity {
         veryActive = metabolicRates[3];
         extremelyActive = metabolicRates[4];
 
-
         sharedPreference.edit().putString("First Name", firstName).apply();
         sharedPreference.edit().putString("Last Name", lastName).apply();
         sharedPreference.edit().putInt("Age", age).apply();
@@ -84,7 +83,6 @@ public class Setup extends AppCompatActivity {
         sharedPreference.edit().putFloat("Extremely Active", extremelyActive).apply();
 
         goToUserProfile();
-
     }
 
     //Calculates BMI based on height and weight
@@ -136,7 +134,6 @@ public class Setup extends AppCompatActivity {
         return false;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,14 +160,10 @@ public class Setup extends AppCompatActivity {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-     //   Log.i("H", String.valueOf((double) sharedPreference.getFloat("Height",0)));
-     //   Log.i("W", String.valueOf((double) sharedPreference.getFloat("Weight",0)));
-
         String tempFirstName = sharedPreference.getString("First Name", "");
         if(!tempFirstName.equals("")) {
            goToUserProfile();
         }
-
     }
 
     //Transfer to the user profile page
