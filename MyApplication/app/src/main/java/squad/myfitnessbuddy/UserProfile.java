@@ -86,7 +86,7 @@ public class UserProfile extends AppCompatActivity {
         extremelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
-        // sharedPreference.edit().clear().apply();
+         sharedPreference.edit().clear().apply();
 
     }
 
