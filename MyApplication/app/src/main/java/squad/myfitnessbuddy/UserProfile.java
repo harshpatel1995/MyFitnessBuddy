@@ -28,7 +28,7 @@ public class UserProfile extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        String heightStr, weightStr;
+        String heightStr, weightStr, bmiStr, ageStr;
 
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -70,15 +70,17 @@ public class UserProfile extends AppCompatActivity {
             weightStr = (String.format("%.2f",weightFlt) + " lbs");
         }
 
+        bmiStr = "BMI: " + String.valueOf(intent.getFloatExtra("BMI", 0));
+        ageStr = "Age: " + String.valueOf(intent.getIntExtra("Age", 0));
 
         firstNameTV.setText(intent.getStringExtra("First Name"));
         lastNameTV.setText(intent.getStringExtra("Last Name"));
         genderTV.setText(intent.getStringExtra("Gender"));
 
-        ageTV.setText(String.valueOf(intent.getIntExtra("Age", 0)));
+        ageTV.setText(ageStr);
         heightTV.setText(heightStr);
         weightTV.setText(weightStr);
-        bmiTV.setText(String.valueOf(intent.getFloatExtra("BMI", 0)));
+        bmiTV.setText(bmiStr);
         sedentaryTV.setText(String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
         lightlyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
         moderatelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
@@ -86,7 +88,7 @@ public class UserProfile extends AppCompatActivity {
         extremelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
-         sharedPreference.edit().clear().apply();
+         //sharedPreference.edit().clear().apply();
 
     }
 
