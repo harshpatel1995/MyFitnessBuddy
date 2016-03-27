@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout"
+        android:id="@+id/bioLayout"
         android:layout_below="@id/nameLayout"
         android:layout_marginTop="25dp">
 
@@ -91,8 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout2"
-        android:layout_below="@id/linearLayout"
+        android:id="@+id/measurementLayout"
+        android:layout_below="@id/bioLayout"
         android:layout_marginTop="25dp">
 
         <TextView
@@ -159,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bmiLayout"
-        android:layout_below="@id/linearLayout2"
+        android:layout_below="@id/measurementLayout"
         android:layout_centerHorizontal="true">
 
     <TextView
