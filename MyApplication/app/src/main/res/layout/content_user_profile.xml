@@ -24,7 +24,8 @@
         android:textSize="25sp"
         android:text="@string/first_name"
         android:paddingRight="5dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:id="@+id/profileLastName"
         android:textSize="25sp"
         android:text="@string/last_name"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     </LinearLayout>
 
@@ -51,7 +53,8 @@
             android:textSize="25sp"
             android:text="@string/gender_with_col"
             android:paddingRight="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +63,8 @@
             android:textSize="25sp"
             android:text="@string/test"
             android:paddingRight="30dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +73,8 @@
             android:textSize="25sp"
             android:text="@string/age_with_col"
             android:paddingRight="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +82,8 @@
             android:id="@+id/profileAge"
             android:textSize="25sp"
             android:text="@string/test"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
     </LinearLayout>
 
@@ -96,7 +102,8 @@
             android:textSize="25sp"
             android:text="@string/height_with_col"
             android:paddingRight="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,7 +111,8 @@
             android:id="@+id/profileHeight"
             android:textSize="25sp"
             android:text="@string/test"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,7 +121,8 @@
             android:textSize="25sp"
             android:text="@string/height_unit"
             android:paddingRight="30dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,7 +131,8 @@
             android:textSize="25sp"
             android:text="@string/weight_with_col"
             android:paddingRight="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,7 +141,8 @@
             android:textSize="25sp"
             android:text="@string/test"
             android:paddingRight="5dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -139,7 +150,8 @@
             android:id="@+id/weightUnit"
             android:textSize="25sp"
             android:text="@string/weight_unit"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:typeface="sans" />
 
     </LinearLayout>
 
@@ -184,7 +196,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="21dp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="match_parent"
@@ -197,7 +210,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#000000"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:typeface="sans" />
 
 <!-- Lifestyles -->
     <TextView
@@ -207,7 +221,8 @@
         android:textSize="25sp"
         android:text="@string/sedentary"
         android:layout_below="@id/profileCalories"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -217,7 +232,8 @@
         android:textSize="25sp"
         android:textColor="#000000"
         android:layout_below="@id/profileCalories"
-        android:layout_toRightOf="@id/sedentaryText"/>
+        android:layout_toRightOf="@id/sedentaryText"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="240dp"
@@ -226,7 +242,8 @@
         android:textSize="25sp"
         android:text="@string/lightly_active"
         android:layout_below="@id/sedentaryText"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -236,7 +253,8 @@
         android:text="@string/test"
         android:textColor="#000000"
         android:layout_below="@id/profileSedentary"
-        android:layout_toRightOf="@id/lightlyActiveText" />
+        android:layout_toRightOf="@id/lightlyActiveText"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="240dp"
@@ -245,7 +263,8 @@
         android:textSize="25sp"
         android:text="@string/moderately_active"
         android:textColor="#000000"
-        android:layout_below="@id/lightlyActiveText"/>
+        android:layout_below="@id/lightlyActiveText"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -255,7 +274,8 @@
         android:text="@string/test"
         android:textColor="#000000"
         android:layout_below="@id/profileLightlyActive"
-        android:layout_toRightOf="@id/moderatelyActiveText"/>
+        android:layout_toRightOf="@id/moderatelyActiveText"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="240dp"
@@ -264,7 +284,8 @@
         android:textSize="25sp"
         android:text="@string/very_active"
         android:textColor="#000000"
-        android:layout_below="@id/moderatelyActiveText"/>
+        android:layout_below="@id/moderatelyActiveText"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -275,7 +296,7 @@
         android:layout_below="@id/profileModeratelyActive"
         android:layout_toRightOf="@id/veryActiveText"
         android:textColor="#000000"
-        />
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="240dp"
@@ -284,7 +305,8 @@
         android:textSize="25sp"
         android:text="@string/extremely_active"
         android:layout_below="@id/veryActiveText"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:typeface="sans" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -295,6 +317,6 @@
         android:layout_below="@id/profileVeryActive"
         android:layout_toRightOf="@id/extremelyActiveText"
         android:textColor="#000000"
-        />
+        android:typeface="sans" />
 
 </RelativeLayout>
