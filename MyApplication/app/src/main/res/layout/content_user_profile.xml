@@ -32,7 +32,6 @@
         android:id="@+id/profileLastName"
         android:textSize="25sp"
         android:text="@string/last_name"
-        android:layout_toRightOf="@id/profileFirstName"
         android:textColor="#000000" />
 
     </LinearLayout>
@@ -168,7 +167,6 @@
         android:textSize="25sp"
         android:text="@string/test"
         android:layout_marginTop="40dp"
-        android:layout_toRightOf="@id/bmiColText"
         android:textColor="#000000" />
 
     </LinearLayout>

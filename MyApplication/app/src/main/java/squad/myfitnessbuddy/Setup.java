@@ -81,9 +81,9 @@ public class Setup extends AppCompatActivity {
         editor.putFloat("Sedentary", sedentary);
         editor.putFloat("Lightly Active", lightlyActive);
         editor.putFloat("Moderately Active", moderatelyActive);
-        editor.putFloat("Very Active", moderatelyActive);
+        editor.putFloat("Very Active", veryActive);
         editor.putFloat("Extremely Active", extremelyActive);
-        editor.commit();
+        editor.apply();
 
         goToUserProfile();
     }
@@ -121,7 +121,7 @@ public class Setup extends AppCompatActivity {
         moderatelyActive = Math.round(base * 1.35f);
         veryActive = Math.round(base * 1.525f);
         extremelyActive = Math.round(base * 1.75f);
-        float[] rates = {sedentary,lightlyActive,moderatelyActive,moderatelyActive,veryActive,extremelyActive};
+        float[] rates = {sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive};
         return rates;
     }
 
@@ -181,7 +181,7 @@ public class Setup extends AppCompatActivity {
         profile.putExtra("Height", sharedPreference.getFloat("Height", 0));
 
         //Why are we logging weight and height here? @@@@Brandon
-        Log.i("Height", BigDecimal.valueOf( sharedPreference.getFloat("Height", 0)).toPlainString());
+        Log.i("Height", BigDecimal.valueOf(sharedPreference.getFloat("Height", 0)).toPlainString());
         profile.putExtra("Weight", sharedPreference.getFloat("Weight", 0));
         Log.i("Weight", String.valueOf(sharedPreference.getFloat("Weight", 0)));
         profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));

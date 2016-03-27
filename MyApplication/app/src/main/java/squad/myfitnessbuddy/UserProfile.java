@@ -89,7 +89,4 @@ public class UserProfile extends AppCompatActivity {
         // sharedPreference.edit().clear().apply();
 
     }
-
-
-
 }
