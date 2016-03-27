@@ -54,14 +54,14 @@ public class Setup extends AppCompatActivity {
         }
 
         if(maleRB.isChecked()) gender = "Male";
-        else                    gender = "Female";
+        else                   gender = "Female";
 
-        firstName  =  firstNameET.getText().toString();
-        lastName = lastNameET.getText().toString();
-        age        =  Integer.parseInt(ageET.getText().toString());
-        height     =  Float.parseFloat(heightET.getText().toString());
-        weight     =  Float.parseFloat(weightET.getText().toString());
-        bmi        =  calculateBMI(height, weight);
+        firstName  = firstNameET.getText().toString();
+        lastName   = lastNameET.getText().toString();
+        age        = Integer.parseInt(ageET.getText().toString());
+        height     = Float.parseFloat(heightET.getText().toString());
+        weight     = Float.parseFloat(weightET.getText().toString());
+        bmi        = calculateBMI(height, weight);
         metabolicRates = calculateMetabolicRates(gender, (float) age, height, weight);
         sedentary =  metabolicRates[0];
         lightlyActive = metabolicRates[1];
@@ -69,18 +69,21 @@ public class Setup extends AppCompatActivity {
         veryActive = metabolicRates[3];
         extremelyActive = metabolicRates[4];
 
-        sharedPreference.edit().putString("First Name", firstName).apply();
-        sharedPreference.edit().putString("Last Name", lastName).apply();
-        sharedPreference.edit().putInt("Age", age).apply();
-        sharedPreference.edit().putFloat("Height", height).apply();
-        sharedPreference.edit().putFloat("Weight",  weight).apply();
-        sharedPreference.edit().putString("Gender", gender).apply();
-        sharedPreference.edit().putFloat("BMI", bmi).apply();
-        sharedPreference.edit().putFloat("Sedentary", sedentary).apply();
-        sharedPreference.edit().putFloat("Lightly Active", lightlyActive).apply();
-        sharedPreference.edit().putFloat("Moderately Active", moderatelyActive).apply();
-        sharedPreference.edit().putFloat("Very Active", moderatelyActive).apply();
-        sharedPreference.edit().putFloat("Extremely Active", extremelyActive).apply();
+        SharedPreferences.Editor editor = sharedPreference.edit();
+
+        editor.putString("First Name", firstName);
+        editor.putString("Last Name", lastName);
+        editor.putInt("Age", age);
+        editor.putFloat("Height", height);
+        editor.putFloat("Weight", weight);
+        editor.putString("Gender", gender);
+        editor.putFloat("BMI", bmi);
+        editor.putFloat("Sedentary", sedentary);
+        editor.putFloat("Lightly Active", lightlyActive);
+        editor.putFloat("Moderately Active", moderatelyActive);
+        editor.putFloat("Very Active", moderatelyActive);
+        editor.putFloat("Extremely Active", extremelyActive);
+        editor.commit();
 
         goToUserProfile();
     }
@@ -95,7 +98,7 @@ public class Setup extends AppCompatActivity {
     private float[] calculateMetabolicRates(String gender, float age, float height, float weight)
     {
 
-        float sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive, base;
+        float sedentary, lightlyActive, moderatelyActive, veryActive, extremelyActive, base;
 
         if (gender.equals("Male"))
         {
@@ -153,10 +156,10 @@ public class Setup extends AppCompatActivity {
         heightET    = (EditText) findViewById(R.id.userHeight);
         weightET    = (EditText) findViewById(R.id.userWeight);
 
-        genderRG  = (RadioGroup) findViewById(R.id.genderRadioGroup);
+        genderRG    = (RadioGroup) findViewById(R.id.genderRadioGroup);
 
-        maleRB   = (RadioButton) findViewById(R.id.male);
-        femaleRB = (RadioButton) findViewById(R.id.female);
+        maleRB      = (RadioButton) findViewById(R.id.male);
+        femaleRB    = (RadioButton) findViewById(R.id.female);
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
@@ -184,9 +187,9 @@ public class Setup extends AppCompatActivity {
         profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));
         profile.putExtra("Sedentary",  sharedPreference.getFloat("Sedentary", 0));
         profile.putExtra("Lightly Active",  sharedPreference.getFloat("Lightly Active", 0));
-        profile.putExtra("Moderately Active",  sharedPreference.getFloat("Moderately Active", 0));
+        profile.putExtra("Moderately Active", sharedPreference.getFloat("Moderately Active", 0));
         profile.putExtra("Very Active",  sharedPreference.getFloat("Very Active", 0));
-        profile.putExtra("Extremely Active",  sharedPreference.getFloat("Extremely Active", 0));
+        profile.putExtra("Extremely Active", sharedPreference.getFloat("Extremely Active", 0));
 
         startActivity(profile);
     }

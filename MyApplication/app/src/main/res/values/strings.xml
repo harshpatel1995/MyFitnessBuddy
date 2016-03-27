@@ -3,7 +3,7 @@
     <!-- Avoid searching through code for strings! -->
     <!--///////////////////////////////////////////-->
 
-    <string name="test">TEST</string>
+    <string name="test">-</string>
 
     <!-- Layout Strings -->
     <string name="app_name">MyFitnessBuddy</string>
@@ -24,9 +24,14 @@
     <string name="height_type">Inches</string>
     <string name="weight_type">Pounds</string>
 
-    <!-- Profile Strings -->
-    <string name="full_name">Name</string>
-    <string name="height_type_short">\"</string>
-    <string name="weight_type_short">lbs</string>
+    <!-- Profile Rate Strings -->
+    <string name="bmi">BMI</string>
+    <string name="metabolic_rates">Metabolic Rates</string>
+    <string name="calorie_note">(In Calories)</string>
+    <string name="sedentary">Sedentary:</string>
+    <string name="lightly_active">Lightly Active:</string>
+    <string name="moderately_active">Moderately Active:</string>
+    <string name="very_active">Very Active:</string>
+    <string name="extremely_active">Extremely Active:</string>
 
 </resources>

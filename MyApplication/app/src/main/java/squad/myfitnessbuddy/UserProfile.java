@@ -28,8 +28,7 @@ public class UserProfile extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        String ageStr, genderStr, heightStr, weightStr, bmiStr,
-                sedentaryStr, lightlyActiveStr, moderatelyActiveStr, veryActiveStr, extremelyActiveStr;
+        String heightStr, weightStr;
 
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -49,34 +48,26 @@ public class UserProfile extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        ageStr = ("Age: " + String.valueOf(intent.getIntExtra("Age", 0)));
-        bmiStr = ("BMI: " + String.valueOf(intent.getFloatExtra("BMI", 0)));
-        sedentaryStr = ("Sedentary:                    " + String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
-        lightlyActiveStr = ("Lightly Active:              " + String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
-        moderatelyActiveStr = ("Moderately Active:      " + String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
-        veryActiveStr = ("Very Active:                  " + String.format("%.0f", intent.getFloatExtra("Very Active", 0)));
-        extremelyActiveStr = ("Extremely Active:         " + String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
-
         float heightFlt = intent.getFloatExtra("Height", 0);
         float weightFlt = intent.getFloatExtra("Weight", 0);
 
         //format height and weight to show appropriate precision per user input
         if (heightFlt == Math.floor(heightFlt))
         {
-            heightStr = ("Height: " + String.format("%.0f",heightFlt) + " in.");
+            heightStr = (String.format("%.0f",heightFlt) + "\"");
         }
         else
         {
-            heightStr = ("Height: " + String.format("%.2f",heightFlt) + " in.");
+            heightStr = (String.format("%.2f",heightFlt) + "\"");
         }
         //To delete
         if (weightFlt == Math.floor(weightFlt))
         {
-            weightStr = ("Weight: " + String.format("%.0f",weightFlt) + " lb.");
+            weightStr = (String.format("%.0f",weightFlt) + " lbs");
         }
         else
         {
-            weightStr = ("Weight: " + String.format("%.2f",weightFlt) + " lb.");
+            weightStr = (String.format("%.2f",weightFlt) + " lbs");
         }
 
 
@@ -84,15 +75,15 @@ public class UserProfile extends AppCompatActivity {
         lastNameTV.setText(intent.getStringExtra("Last Name"));
         genderTV.setText(intent.getStringExtra("Gender"));
 
-        ageTV.setText(ageStr);
+        ageTV.setText(String.valueOf(intent.getIntExtra("Age", 0)));
         heightTV.setText(heightStr);
         weightTV.setText(weightStr);
-        bmiTV.setText(bmiStr);
-        sedentaryTV.setText(sedentaryStr);
-        lightlyActiveTV.setText(lightlyActiveStr);
-        moderatelyActiveTV.setText(moderatelyActiveStr);
-        veryActiveTV.setText(veryActiveStr);
-        extremelyActiveTV.setText(extremelyActiveStr);
+        bmiTV.setText(String.valueOf(intent.getFloatExtra("BMI", 0)));
+        sedentaryTV.setText(String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
+        lightlyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
+        moderatelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
+        veryActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Very Active", 0)));
+        extremelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
