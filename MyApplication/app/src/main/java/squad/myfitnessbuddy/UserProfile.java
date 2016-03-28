@@ -17,23 +17,24 @@ import org.w3c.dom.Text;
 
 public class UserProfile extends AppCompatActivity {
 
-    TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV,
-        sedentaryTV, lightlyActiveTV, moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
+    TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV, moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
     SharedPreferences sharedPreference;
-
     LinearLayout linearLayout, popUpLayout;
 
 
+    //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view){
         Intent intent = new Intent(getApplicationContext(), Setup.class);
         intent.putExtra("fromUserProfile", true);
         startActivity(intent);
     }
 
+    //The user clicked the back button on the popup -> Hide the popup
     public void backOnClick(View view) {
         hidePopUp();
     }
 
+    //The user clicked 'Menu' button -> If popup is showing, hide it & vice-versa
     public void menuOnClick(View view) {
         if(popUpLayout.getVisibility() == View.INVISIBLE) {
            showPopUp();
@@ -43,12 +44,14 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
+    //Method that adjusts the visibility of the background layouts to show the popup
     public void showPopUp() {
         linearLayout.setVisibility(View.INVISIBLE);
         fullNameTV.setVisibility(View.INVISIBLE);
         popUpLayout.setVisibility(View.VISIBLE);
     }
 
+    //Method that adjusts the visibility of the background layouts to hide the popup
     public void hidePopUp() {
         popUpLayout.setVisibility(View.INVISIBLE);
         fullNameTV.setVisibility(View.VISIBLE);
@@ -125,6 +128,7 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
+    //Represent a string in 'length' spaces 
     public static String fixedLengthString(String string, int length) {
         return String.format("%1$" + (0-length) + "s", string);
     }

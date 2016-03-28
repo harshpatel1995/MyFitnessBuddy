@@ -27,13 +27,14 @@ public class Setup extends AppCompatActivity {
     RadioGroup genderRG;
     RadioButton maleRB,femaleRB;
 
-    String firstName, lastName, gender;
     int age;
     float[] metabolicRates;
+    String firstName, lastName, gender;
     float height, weight, bmi, sedentary, lightlyActive, moderatelyActive, veryActive, extremelyActive;
 
     SharedPreferences sharedPreference;
 
+    //Function that retrieves user information and save it to the package's shared preference
     public void saveSetUp(View view) {
 
         EditText[] editTextArray = {firstNameET, lastNameET, ageET, heightET, weightET};
@@ -48,6 +49,7 @@ public class Setup extends AppCompatActivity {
 
         if(isEmpty(editTextArray,errorMessages)) return;
 
+        //Checks whether user has left both 'Male' and 'Female' empty
         if (genderRG.getCheckedRadioButtonId() == -1) {
             Toast.makeText(getApplicationContext(), "You must select a gender!", Toast.LENGTH_SHORT).show();
             return;
@@ -56,21 +58,28 @@ public class Setup extends AppCompatActivity {
         if(maleRB.isChecked()) gender = "Male";
         else                   gender = "Female";
 
+        //Retrieve user first name, last name, age, height, weight and store them into appropriate types
         firstName  = firstNameET.getText().toString();
         lastName   = lastNameET.getText().toString();
         age        = Integer.parseInt(ageET.getText().toString());
         height     = Float.parseFloat(heightET.getText().toString());
         weight     = Float.parseFloat(weightET.getText().toString());
-        bmi        = calculateBMI(height, weight);
-        metabolicRates = calculateMetabolicRates(gender, (float) age, height, weight);
-        sedentary =  metabolicRates[0];
-        lightlyActive = metabolicRates[1];
-        moderatelyActive = metabolicRates[2];
-        veryActive = metabolicRates[3];
-        extremelyActive = metabolicRates[4];
 
+        //Call the functions to calculate BMI and Metabolic Rates
+        bmi             = calculateBMI(height, weight);
+        metabolicRates  = calculateMetabolicRates(gender, (float) age, height, weight);
+
+        //Stores the metabolic rates in respective variables
+        sedentary            = metabolicRates[0];
+        lightlyActive        = metabolicRates[1];
+        moderatelyActive     = metabolicRates[2];
+        veryActive           = metabolicRates[3];
+        extremelyActive      = metabolicRates[4];
+
+        //Create a sharedPreference editor
         SharedPreferences.Editor editor = sharedPreference.edit();
 
+        //Use the editor to store all the values in the SharedPreference
         editor.putString("First Name", firstName);
         editor.putString("Last Name", lastName);
         editor.putInt("Age", age);
@@ -85,6 +94,7 @@ public class Setup extends AppCompatActivity {
         editor.putFloat("Extremely Active", extremelyActive);
         editor.apply();
 
+        //After saving the data, we are ready to go to the user profile
         goToUserProfile();
     }
 
@@ -150,21 +160,27 @@ public class Setup extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // set your desired color
         actionBar.setTitle("Setup Page");
 
+        //Matches each of the textfields, edittexts, radiobuttons and radiogroup to the respective local variables
         firstNameET = (EditText) findViewById(R.id.userFirstName);
         lastNameET  = (EditText) findViewById(R.id.userLastName);
         ageET       = (EditText) findViewById(R.id.userAge);
         heightET    = (EditText) findViewById(R.id.userHeight);
         weightET    = (EditText) findViewById(R.id.userWeight);
-
         genderRG    = (RadioGroup) findViewById(R.id.genderRadioGroup);
-
         maleRB      = (RadioButton) findViewById(R.id.male);
         femaleRB    = (RadioButton) findViewById(R.id.female);
 
+        //Here we instantiate the sharedPreference by giving it the package name
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
+        //Checks whether  if we came from another class
         Intent intent = getIntent();
+
+        //If intent.getExtras() is not null,  we got called from another class
+
         if(intent.getExtras() != null) {
+
+            //We came from another class -> User wants to edit the information -> Let's preload the information in the boxes for the user to edit
             firstNameET.setText(sharedPreference.getString("First Name", ""));
             lastNameET.setText(sharedPreference.getString("Last Name", ""));
             ageET.setText(Integer.toString(sharedPreference.getInt("Age", 0)));
@@ -179,7 +195,9 @@ public class Setup extends AppCompatActivity {
 
         }
 
+        //We did not get called from another class -> User didn't select to edit the information -> Check whether user has set the info before -> If so go to the user profile -> Otherwise, stay on the page
         else {
+
             String tempFirstName = sharedPreference.getString("First Name", "");
             if (!tempFirstName.equals("")) {
                 goToUserProfile();
@@ -190,8 +208,10 @@ public class Setup extends AppCompatActivity {
     //Transfer to the user profile page
     public void goToUserProfile() {
 
+        //Create an intent to transfer to UserProfile class
         Intent profile = new Intent(getApplicationContext(), UserProfile.class);
 
+        //Transfer all the info
         profile.putExtra("First Name", sharedPreference.getString("First Name", ""));
         profile.putExtra("Last Name", sharedPreference.getString("Last Name", ""));
         profile.putExtra("Gender", sharedPreference.getString("Gender", ""));
@@ -206,6 +226,7 @@ public class Setup extends AppCompatActivity {
         profile.putExtra("Very Active",  sharedPreference.getFloat("Very Active", 0));
         profile.putExtra("Extremely Active", sharedPreference.getFloat("Extremely Active", 0));
 
+        //Perform the intent
         startActivity(profile);
     }
 
