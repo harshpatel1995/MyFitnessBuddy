@@ -33,11 +33,11 @@
     <string name="gender_with_col">Gender:</string>
     <string name="bmi">BMI:</string>
     <string name="metabolic_rates">Metabolic Rates</string>
-    <string name="calorie_note">(In Calories)</string>
-    <string name="sedentary">Sedentary:</string>
-    <string name="lightly_active">Lightly Active:</string>
-    <string name="moderately_active">Moderately Active:</string>
-    <string name="very_active">Very Active:</string>
-    <string name="extremely_active">Extremely Active:</string>
+    <string name="calorie_note">(calories)</string>
+    <string name="sedentary">Sedentary</string>
+    <string name="lightly_active">Lightly Active</string>
+    <string name="moderately_active">Moderately Active</string>
+    <string name="very_active">Very Active</string>
+    <string name="extremely_active">Extremely Active</string>
 
 </resources>

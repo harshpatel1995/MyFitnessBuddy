@@ -163,9 +163,27 @@ public class Setup extends AppCompatActivity {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-        String tempFirstName = sharedPreference.getString("First Name", "");
-        if(!tempFirstName.equals("")) {
-           goToUserProfile();
+        Intent intent = getIntent();
+        if(intent.getExtras() != null) {
+            firstNameET.setText(sharedPreference.getString("First Name", ""));
+            lastNameET.setText(sharedPreference.getString("Last Name", ""));
+            ageET.setText(Integer.toString(sharedPreference.getInt("Age", 0)));
+            heightET.setText(Float.toString(sharedPreference.getFloat("Height", 0)));
+            weightET.setText(Float.toString(sharedPreference.getFloat("Weight", 0)));
+            if(sharedPreference.getString("Gender", "").equals("Male")){
+                genderRG.check(R.id.male);
+            }
+            else {
+                genderRG.check(R.id.female);
+            }
+
+        }
+
+        else {
+            String tempFirstName = sharedPreference.getString("First Name", "");
+            if (!tempFirstName.equals("")) {
+                goToUserProfile();
+            }
         }
     }
 
@@ -180,10 +198,7 @@ public class Setup extends AppCompatActivity {
         profile.putExtra("Age", sharedPreference.getInt("Age", 0));
         profile.putExtra("Height", sharedPreference.getFloat("Height", 0));
 
-        //Why are we logging weight and height here? @@@@Brandon
-        Log.i("Height", BigDecimal.valueOf(sharedPreference.getFloat("Height", 0)).toPlainString());
         profile.putExtra("Weight", sharedPreference.getFloat("Weight", 0));
-        Log.i("Weight", String.valueOf(sharedPreference.getFloat("Weight", 0)));
         profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));
         profile.putExtra("Sedentary",  sharedPreference.getFloat("Sedentary", 0));
         profile.putExtra("Lightly Active",  sharedPreference.getFloat("Lightly Active", 0));

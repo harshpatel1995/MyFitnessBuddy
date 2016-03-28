@@ -9,314 +9,219 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="squad.myfitnessbuddy.UserProfile">
+    tools:context="squad.myfitnessbuddy.UserProfile"
+    android:textAlignment="textStart">
+
+
+    <!-- Lifestyles -->
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameLayout"
-        android:layout_centerHorizontal="true">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileFirstName"
-        android:textSize="25sp"
-        android:text="@string/first_name"
-        android:paddingRight="5dp"
-        android:textColor="#000000"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileLastName"
-        android:textSize="25sp"
-        android:text="@string/last_name"
-        android:textColor="#000000"
-        android:typeface="sans" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/bioLayout"
-        android:layout_below="@id/nameLayout"
-        android:layout_marginTop="25dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/genderColText"
-            android:textSize="25sp"
-            android:text="@string/gender_with_col"
-            android:paddingRight="5dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileGender"
-            android:textSize="25sp"
-            android:text="@string/test"
-            android:paddingRight="30dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ageText"
-            android:textSize="25sp"
-            android:text="@string/age_with_col"
-            android:paddingRight="5dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileAge"
-            android:textSize="25sp"
-            android:text="@string/test"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/measurementLayout"
-        android:layout_below="@id/bioLayout"
-        android:layout_marginTop="25dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/heightColText"
-            android:textSize="25sp"
-            android:text="@string/height_with_col"
-            android:paddingRight="5dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileHeight"
-            android:textSize="25sp"
-            android:text="@string/test"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/heightUnit"
-            android:textSize="25sp"
-            android:text="@string/height_unit"
-            android:paddingRight="30dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/weightColText"
-            android:textSize="25sp"
-            android:text="@string/weight_with_col"
-            android:paddingRight="5dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/profileWeight"
-            android:textSize="25sp"
-            android:text="@string/test"
-            android:paddingRight="5dp"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/weightUnit"
-            android:textSize="25sp"
-            android:text="@string/weight_unit"
-            android:textColor="#000000"
-            android:typeface="sans" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bmiLayout"
-        android:layout_below="@id/measurementLayout"
-        android:layout_centerHorizontal="true">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bmiColText"
-        android:textSize="25sp"
-        android:text="@string/bmi"
-        android:layout_marginTop="40dp"
-        android:paddingRight="5dp"
-        android:textColor="#000000" />
-
-    <TextView
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileBMI"
-        android:textSize="25sp"
-        android:text="@string/test"
-        android:layout_marginTop="40dp"
-        android:textColor="#000000" />
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="80dp"
+        android:visibility="visible">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:id="@+id/ageTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:id="@+id/genderTV"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            android:id="@+id/heightTV"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:id="@+id/weightTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BMI"
+            android:id="@+id/bmiTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metabolic Rates"
+            android:id="@+id/metabolicRatesTV"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textSize="30sp"
+            android:textColor="#bc1717"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(calories)"
+            android:id="@+id/caloriesTV"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sedentary"
+            android:id="@+id/sedentaryTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lightly Active"
+            android:id="@+id/lightlyActiveTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderately Active"
+            android:id="@+id/moderatelyActiveTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Very Active"
+            android:id="@+id/veryActiveTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extremely Active"
+            android:id="@+id/extremelyActiveTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:textSize="25sp" />
     </LinearLayout>
 
-
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/profileMetabolicRates"
+        android:text="Full Name"
+        android:id="@+id/fullNameTV"
+        android:textAlignment="center"
+        android:textColor="#bc1717"
         android:textSize="30sp"
-        android:text="@string/metabolic_rates"
-        android:layout_gravity="center|left"
-        android:textAlignment="center"
-        android:layout_below="@id/bmiLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:textColor="#000000"
-        android:typeface="sans" />
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
-    <TextView
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MENU"
+        android:id="@+id/menuButton"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:minWidth="100dp"
+        android:onClick="menuOnClick" />
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileCalories"
-        android:textSize="20sp"
-        android:text="@string/calorie_note"
-        android:textAlignment="center"
-        android:layout_below="@+id/profileMetabolicRates"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:layout_marginBottom="30dp"
-        android:typeface="sans" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fullNameTV"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="250dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:id="@+id/popUpLayout"
+        android:visibility="invisible">
 
-<!-- Lifestyles -->
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/sedentaryText"
-        android:textSize="25sp"
-        android:text="@string/sedentary"
-        android:layout_below="@id/profileCalories"
-        android:textColor="#000000"
-        android:typeface="sans" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE A NEW WORKOUT"
+            android:id="@+id/createWorkoutButton" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileSedentary"
-        android:text="@string/test"
-        android:textSize="25sp"
-        android:textColor="#000000"
-        android:layout_below="@id/profileCalories"
-        android:layout_toRightOf="@id/sedentaryText"
-        android:typeface="sans" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MY SAVED WORKOUTS"
+            android:id="@+id/savedWorkoutsButton" />
 
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/lightlyActiveText"
-        android:textSize="25sp"
-        android:text="@string/lightly_active"
-        android:layout_below="@id/sedentaryText"
-        android:textColor="#000000"
-        android:typeface="sans" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VIEW WORKOUT LOGS"
+            android:id="@+id/workoutLogsButton" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileLightlyActive"
-        android:textSize="25sp"
-        android:text="@string/test"
-        android:textColor="#000000"
-        android:layout_below="@id/profileSedentary"
-        android:layout_toRightOf="@id/lightlyActiveText"
-        android:typeface="sans" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EDIT USER PROFILE"
+            android:id="@+id/editProfileButton"
+            android:onClick="editProfileOnClick" />
 
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/moderatelyActiveText"
-        android:textSize="25sp"
-        android:text="@string/moderately_active"
-        android:textColor="#000000"
-        android:layout_below="@id/lightlyActiveText"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileModeratelyActive"
-        android:textSize="25sp"
-        android:text="@string/test"
-        android:textColor="#000000"
-        android:layout_below="@id/profileLightlyActive"
-        android:layout_toRightOf="@id/moderatelyActiveText"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/veryActiveText"
-        android:textSize="25sp"
-        android:text="@string/very_active"
-        android:textColor="#000000"
-        android:layout_below="@id/moderatelyActiveText"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileVeryActive"
-        android:textSize="25sp"
-        android:text="@string/test"
-        android:layout_below="@id/profileModeratelyActive"
-        android:layout_toRightOf="@id/veryActiveText"
-        android:textColor="#000000"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/extremelyActiveText"
-        android:textSize="25sp"
-        android:text="@string/extremely_active"
-        android:layout_below="@id/veryActiveText"
-        android:textColor="#000000"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/profileExtremelyActive"
-        android:textSize="25sp"
-        android:text="@string/test"
-        android:layout_below="@id/profileVeryActive"
-        android:layout_toRightOf="@id/extremelyActiveText"
-        android:textColor="#000000"
-        android:typeface="sans" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:id="@+id/backButton"
+            android:layout_gravity="center_horizontal"
+            android:minWidth="150dp"
+            android:onClick="backOnClick" />
+    </LinearLayout>
 
 </RelativeLayout>
