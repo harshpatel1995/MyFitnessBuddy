@@ -128,7 +128,7 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
-    //Represent a string in 'length' spaces 
+    //Represent a string in 'length' spaces
     public static String fixedLengthString(String string, int length) {
         return String.format("%1$" + (0-length) + "s", string);
     }

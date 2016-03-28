@@ -174,7 +174,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:minWidth="100dp"
-        android:onClick="menuOnClick" />
+        android:onClick="menuOnClick"
+        android:background="#d5eae8"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -183,7 +185,7 @@
         android:layout_below="@+id/fullNameTV"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="225dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:id="@+id/popUpLayout"
@@ -193,26 +195,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CREATE A NEW WORKOUT"
-            android:id="@+id/createWorkoutButton" />
+            android:id="@+id/createWorkoutButton"
+            android:background="#d5eae8"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="MY SAVED WORKOUTS"
-            android:id="@+id/savedWorkoutsButton" />
+            android:id="@+id/savedWorkoutsButton"
+            android:background="#d5eae8"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="VIEW WORKOUT LOGS"
-            android:id="@+id/workoutLogsButton" />
+            android:id="@+id/workoutLogsButton"
+            android:background="#d5eae8"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EDIT USER PROFILE"
             android:id="@+id/editProfileButton"
-            android:onClick="editProfileOnClick" />
+            android:onClick="editProfileOnClick"
+            android:background="#d5eae8"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -221,7 +239,12 @@
             android:id="@+id/backButton"
             android:layout_gravity="center_horizontal"
             android:minWidth="150dp"
-            android:onClick="backOnClick" />
+            android:onClick="backOnClick"
+            android:background="#d5eae8"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>
