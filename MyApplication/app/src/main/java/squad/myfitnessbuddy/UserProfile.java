@@ -24,7 +24,7 @@ public class UserProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //The user clicked the back button on the popup -> Hide the popup
+    //The user clicked the back button on the popup -> Hide the popup. test
     public void backOnClick(View view) {
         hidePopUp();
     }
