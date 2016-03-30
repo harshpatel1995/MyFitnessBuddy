@@ -185,11 +185,12 @@
         android:layout_below="@+id/fullNameTV"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="225dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:id="@+id/popUpLayout"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:layout_marginTop="75dp">
 
         <Button
             android:layout_width="match_parent"
@@ -199,7 +200,8 @@
             android:background="#d5eae8"
             android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick="createWorkoutOnClick" />
 
         <Button
             android:layout_width="match_parent"
@@ -243,8 +245,51 @@
             android:background="#d5eae8"
             android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/createWorkoutLayout"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Predefined Workout"
+            android:id="@+id/predefinedWorkoutButton"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:background="#d5eae8" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customized Workout"
+            android:id="@+id/customizedWorkoutButton"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:background="#d5eae8"
+            android:layout_marginTop="5dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:id="@+id/createWorkoutBackButton"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:background="#d5eae8"
+            android:layout_marginTop="10dp"
+            android:onClick="createWorkoutBackButton" />
     </LinearLayout>
 
 </RelativeLayout>

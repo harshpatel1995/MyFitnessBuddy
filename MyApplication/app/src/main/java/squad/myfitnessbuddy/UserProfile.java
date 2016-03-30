@@ -4,22 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class UserProfile extends AppCompatActivity {
 
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV, moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
     SharedPreferences sharedPreference;
-    LinearLayout linearLayout, popUpLayout;
+    LinearLayout linearLayout, menuPopup, createWorkoutPopup;
 
 
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
@@ -36,7 +31,7 @@ public class UserProfile extends AppCompatActivity {
 
     //The user clicked 'Menu' button -> If popup is showing, hide it & vice-versa
     public void menuOnClick(View view) {
-        if(popUpLayout.getVisibility() == View.INVISIBLE) {
+        if(menuPopup.getVisibility() == View.INVISIBLE) {
            showPopUp();
         }
         else {
@@ -44,16 +39,29 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
+    //The user clicked on 'Create a workout' -> Show them the option between predefined and customized
+    public void createWorkoutOnClick(View view){
+        showPopUp();
+        menuPopup.setVisibility(View.INVISIBLE);
+        createWorkoutPopup.setVisibility(View.VISIBLE);
+    }
+
+    //The user clicked 'Back' on the predefined vs customized popup
+    public void createWorkoutBackButton(View view){
+        createWorkoutPopup.setVisibility(View.INVISIBLE);
+        showPopUp();
+    }
+
     //Method that adjusts the visibility of the background layouts to show the popup
     public void showPopUp() {
         linearLayout.setVisibility(View.INVISIBLE);
         fullNameTV.setVisibility(View.INVISIBLE);
-        popUpLayout.setVisibility(View.VISIBLE);
+        menuPopup.setVisibility(View.VISIBLE);
     }
 
     //Method that adjusts the visibility of the background layouts to hide the popup
     public void hidePopUp() {
-        popUpLayout.setVisibility(View.INVISIBLE);
+        menuPopup.setVisibility(View.INVISIBLE);
         fullNameTV.setVisibility(View.VISIBLE);
         linearLayout.setVisibility(View.VISIBLE);
     }
@@ -68,7 +76,8 @@ public class UserProfile extends AppCompatActivity {
         String heightStr, weightStr;
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        popUpLayout = (LinearLayout) findViewById(R.id.popUpLayout);
+        menuPopup = (LinearLayout) findViewById(R.id.popUpLayout);
+        createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
