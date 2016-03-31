@@ -9,13 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-//Test Push
+
 public class UserProfile extends AppCompatActivity {
 
-    TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV, moderatelyActiveTV, veryActiveTV, extremelyActiveTV, myLogsTV;
+    TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV,
+            moderatelyActiveTV, veryActiveTV, extremelyActiveTV, myLogsTV;
+
     SharedPreferences sharedPreference;
     LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup, viewLogsPopup, exerciseListPopup;
-
 
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view) {
@@ -69,7 +70,6 @@ public class UserProfile extends AppCompatActivity {
         myLogsTV.setVisibility(View.VISIBLE);
     }
 
-
     //The user clicked on 'My Saved Workouts' from the menu options
     public void mySavedWorkoutsOnClick(View view) {
         showPopUp();
@@ -121,8 +121,6 @@ public class UserProfile extends AppCompatActivity {
         viewLogsPopup = (LinearLayout) findViewById(R.id.viewLogsLayout);
         exerciseListPopup = (LinearLayout) findViewById(R.id.exerciseListLayout);
 
-        sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-
         fullNameTV = (TextView) findViewById(R.id.fullNameTV);
         ageTV = (TextView) findViewById(R.id.ageTV);
         genderTV = (TextView) findViewById(R.id.genderTV);
@@ -136,6 +134,7 @@ public class UserProfile extends AppCompatActivity {
         extremelyActiveTV = (TextView) findViewById(R.id.extremelyActiveTV);
         myLogsTV = (TextView) findViewById(R.id.myLogsTV);
 
+        sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         Intent intent = getIntent();
 
         float heightFlt = intent.getFloatExtra("Height", 0);
@@ -169,7 +168,6 @@ public class UserProfile extends AppCompatActivity {
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
-
     }
 
     //Represent a string in 'length' spaces
