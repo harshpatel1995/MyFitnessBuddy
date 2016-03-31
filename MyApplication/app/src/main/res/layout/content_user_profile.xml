@@ -211,7 +211,8 @@
             android:background="#d5eae8"
             android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick="mySavedWorkoutsOnClick"/>
 
         <Button
             android:layout_width="match_parent"
@@ -221,7 +222,8 @@
             android:background="#d5eae8"
             android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick= "viewLogsOnClick"/>
 
         <Button
             android:layout_width="match_parent"
@@ -277,7 +279,8 @@
             android:padding="10dp"
             android:textStyle="bold"
             android:background="#d5eae8"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick= "customizedWorkoutButtonOnClick"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -291,5 +294,66 @@
             android:layout_marginTop="10dp"
             android:onClick="createWorkoutBackButton" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/mySavedWorkoutsLayout"
+        android:visibility="invisible">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/viewLogsLayout"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Logs"
+            android:id="@+id/myLogsTV"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:typeface="sans" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/exerciseListLayout"
+        android:visibility="invisible">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text= "Create Workout"
+            android:id="@+id/button"
+            android:background="#d5eae8"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:minWidth="100dp"
+            android:layout_marginBottom="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"  />
+    </LinearLayout>
+
 
 </RelativeLayout>
