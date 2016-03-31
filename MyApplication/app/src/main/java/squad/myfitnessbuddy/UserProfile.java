@@ -39,18 +39,18 @@ public class UserProfile extends AppCompatActivity {
         }
     }
 
-    //user clicks on 'My Saved Workouts' from the menu options
-    public void mySavedWorkoutstOnClick(View view) {
-        showPopUp();
-        menuPopup.setVisibility(View.INVISIBLE);
-        myWorkoutsPopup.setVisibility(View.VISIBLE);
-    }
-
     //The user clicked on 'Create a workout' -> Show them the option between predefined and customized
     public void createWorkoutOnClick(View view){
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
         createWorkoutPopup.setVisibility(View.VISIBLE);
+    }
+
+    //user clicks on 'My Saved Workouts' from the menu options
+    public void mySavedWorkoutsOnClick(View view) {
+        showPopUp();
+        menuPopup.setVisibility(View.INVISIBLE);
+        myWorkoutsPopup.setVisibility(View.VISIBLE);
     }
 
     //The user clicked 'Back' on the predefined vs customized popup
@@ -84,7 +84,7 @@ public class UserProfile extends AppCompatActivity {
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         menuPopup = (LinearLayout) findViewById(R.id.popUpLayout);
-        myWorkoutsPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
+        myWorkoutsPopup = (LinearLayout) findViewById(R.id.popUpLayout);
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
