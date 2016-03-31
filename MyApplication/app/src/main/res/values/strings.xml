@@ -39,5 +39,6 @@
     <string name="moderately_active">Moderately Active</string>
     <string name="very_active">Very Active</string>
     <string name="extremely_active">Extremely Active</string>
+    <string name="title_activity_test">test</string>
 
 </resources>
