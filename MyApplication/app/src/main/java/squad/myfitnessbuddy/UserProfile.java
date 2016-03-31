@@ -51,12 +51,9 @@ public class UserProfile extends AppCompatActivity {
 
     //The user clicked on 'Customized Workout'
     public void customizedWorkoutButtonOnClick(View view) {
-        showPopUp();
-        menuPopup.setVisibility(View.INVISIBLE);
-        myWorkoutsPopup.setVisibility(View.INVISIBLE);
-        viewLogsPopup.setVisibility(View.INVISIBLE);
-        createWorkoutPopup.setVisibility(View.INVISIBLE);
-        exerciseListPopup.setVisibility(View.VISIBLE);
+
+        Intent createWorkout = new Intent(getApplicationContext(), CreateWorkout.class);
+        startActivity(createWorkout);
     }
 
     // The user clicked on 'ViewMy Logs' from the menu options
