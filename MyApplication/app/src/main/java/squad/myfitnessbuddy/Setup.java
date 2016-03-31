@@ -25,7 +25,7 @@ public class Setup extends AppCompatActivity {
 
     EditText firstNameET, lastNameET, ageET, heightET, weightET;
     RadioGroup genderRG;
-    RadioButton maleRB,femaleRB;
+    RadioButton maleRB, femaleRB;
 
     int age;
     float[] metabolicRates;
@@ -47,7 +47,7 @@ public class Setup extends AppCompatActivity {
                 "Weight cannot be empty!"
         };
 
-        if(isEmpty(editTextArray,errorMessages)) return;
+        if (isEmpty(editTextArray, errorMessages)) return;
 
         //Checks whether user has left both 'Male' and 'Female' empty
         if (genderRG.getCheckedRadioButtonId() == -1) {
@@ -55,26 +55,26 @@ public class Setup extends AppCompatActivity {
             return;
         }
 
-        if(maleRB.isChecked()) gender = "Male";
-        else                   gender = "Female";
+        if (maleRB.isChecked()) gender = "Male";
+        else gender = "Female";
 
         //Retrieve user first name, last name, age, height, weight and store them into appropriate types
-        firstName  = firstNameET.getText().toString();
-        lastName   = lastNameET.getText().toString();
-        age        = Integer.parseInt(ageET.getText().toString());
-        height     = Float.parseFloat(heightET.getText().toString());
-        weight     = Float.parseFloat(weightET.getText().toString());
+        firstName = firstNameET.getText().toString();
+        lastName = lastNameET.getText().toString();
+        age = Integer.parseInt(ageET.getText().toString());
+        height = Float.parseFloat(heightET.getText().toString());
+        weight = Float.parseFloat(weightET.getText().toString());
 
         //Call the functions to calculate BMI and Metabolic Rates
-        bmi             = calculateBMI(height, weight);
-        metabolicRates  = calculateMetabolicRates(gender, (float) age, height, weight);
+        bmi = calculateBMI(height, weight);
+        metabolicRates = calculateMetabolicRates(gender, (float) age, height, weight);
 
         //Stores the metabolic rates in respective variables
-        sedentary            = metabolicRates[0];
-        lightlyActive        = metabolicRates[1];
-        moderatelyActive     = metabolicRates[2];
-        veryActive           = metabolicRates[3];
-        extremelyActive      = metabolicRates[4];
+        sedentary = metabolicRates[0];
+        lightlyActive = metabolicRates[1];
+        moderatelyActive = metabolicRates[2];
+        veryActive = metabolicRates[3];
+        extremelyActive = metabolicRates[4];
 
         //Create a sharedPreference editor
         SharedPreferences.Editor editor = sharedPreference.edit();
@@ -99,30 +99,24 @@ public class Setup extends AppCompatActivity {
     }
 
     //Calculates BMI based on height and weight
-    private float calculateBMI (float height, float weight)
-    {
-        return Math.round((703*(weight/ (float) Math.pow((double)height,2)))*100.0f)/100.0f;
+    private float calculateBMI(float height, float weight) {
+        return Math.round((703 * (weight / (float) Math.pow((double) height, 2))) * 100.0f) / 100.0f;
     }
 
     //Calculates the metabolic rates of the user for different activity level and return in an array of floats
-    private float[] calculateMetabolicRates(String gender, float age, float height, float weight)
-    {
+    private float[] calculateMetabolicRates(String gender, float age, float height, float weight) {
 
         float sedentary, lightlyActive, moderatelyActive, veryActive, extremelyActive, base;
 
-        if (gender.equals("Male"))
-        {
-             base = 66+(6.23f * weight)+(12.7f * height)-(6.8f * age);
+        if (gender.equals("Male")) {
+            base = 66 + (6.23f * weight) + (12.7f * height) - (6.8f * age);
 
-        }
-        else if (gender.equals("Female"))
-        {
-            base = 655+(4.35f * weight)+(4.7f * height)-(4.7f * age);
+        } else if (gender.equals("Female")) {
+            base = 655 + (4.35f * weight) + (4.7f * height) - (4.7f * age);
 
         }
         //if gender isn't male or female, we have a software problem, return 0's so developer knows to fix
-        else
-        {
+        else {
             base = 0;
         }
 
@@ -131,15 +125,15 @@ public class Setup extends AppCompatActivity {
         moderatelyActive = Math.round(base * 1.35f);
         veryActive = Math.round(base * 1.525f);
         extremelyActive = Math.round(base * 1.75f);
-        float[] rates = {sedentary,lightlyActive,moderatelyActive,veryActive,extremelyActive};
+        float[] rates = {sedentary, lightlyActive, moderatelyActive, veryActive, extremelyActive};
         return rates;
     }
 
     private boolean isEmpty(EditText[] editTextArray, String[] errorMessages) {
 
-        for(int i = 0; i < editTextArray.length; i++) {
+        for (int i = 0; i < editTextArray.length; i++) {
             if (editTextArray[i].getText().toString().trim().length() == 0) {
-                Toast.makeText(getApplicationContext(), errorMessages[i] , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), errorMessages[i], Toast.LENGTH_SHORT).show();
                 return true;
             }
         }
@@ -162,13 +156,13 @@ public class Setup extends AppCompatActivity {
 
         //Matches each of the textfields, edittexts, radiobuttons and radiogroup to the respective local variables
         firstNameET = (EditText) findViewById(R.id.userFirstName);
-        lastNameET  = (EditText) findViewById(R.id.userLastName);
-        ageET       = (EditText) findViewById(R.id.userAge);
-        heightET    = (EditText) findViewById(R.id.userHeight);
-        weightET    = (EditText) findViewById(R.id.userWeight);
-        genderRG    = (RadioGroup) findViewById(R.id.genderRadioGroup);
-        maleRB      = (RadioButton) findViewById(R.id.male);
-        femaleRB    = (RadioButton) findViewById(R.id.female);
+        lastNameET = (EditText) findViewById(R.id.userLastName);
+        ageET = (EditText) findViewById(R.id.userAge);
+        heightET = (EditText) findViewById(R.id.userHeight);
+        weightET = (EditText) findViewById(R.id.userWeight);
+        genderRG = (RadioGroup) findViewById(R.id.genderRadioGroup);
+        maleRB = (RadioButton) findViewById(R.id.male);
+        femaleRB = (RadioButton) findViewById(R.id.female);
 
         //Here we instantiate the sharedPreference by giving it the package name
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -178,7 +172,7 @@ public class Setup extends AppCompatActivity {
 
         //If intent.getExtras() is not null,  we got called from another class
 
-        if(intent.getExtras() != null) {
+        if (intent.getExtras() != null) {
 
             //We came from another class -> User wants to edit the information -> Let's preload the information in the boxes for the user to edit
             firstNameET.setText(sharedPreference.getString("First Name", ""));
@@ -186,13 +180,11 @@ public class Setup extends AppCompatActivity {
             ageET.setText(Integer.toString(sharedPreference.getInt("Age", 0)));
             heightET.setText(Float.toString(sharedPreference.getFloat("Height", 0)));
             weightET.setText(Float.toString(sharedPreference.getFloat("Weight", 0)));
-            if(sharedPreference.getString("Gender", "").equals("Male")){
+            if (sharedPreference.getString("Gender", "").equals("Male")) {
                 genderRG.check(R.id.male);
-            }
-            else {
+            } else {
                 genderRG.check(R.id.female);
             }
-
         }
 
         //We did not get called from another class -> User didn't select to edit the information -> Check whether user has set the info before -> If so go to the user profile -> Otherwise, stay on the page
@@ -220,10 +212,10 @@ public class Setup extends AppCompatActivity {
 
         profile.putExtra("Weight", sharedPreference.getFloat("Weight", 0));
         profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));
-        profile.putExtra("Sedentary",  sharedPreference.getFloat("Sedentary", 0));
-        profile.putExtra("Lightly Active",  sharedPreference.getFloat("Lightly Active", 0));
+        profile.putExtra("Sedentary", sharedPreference.getFloat("Sedentary", 0));
+        profile.putExtra("Lightly Active", sharedPreference.getFloat("Lightly Active", 0));
         profile.putExtra("Moderately Active", sharedPreference.getFloat("Moderately Active", 0));
-        profile.putExtra("Very Active",  sharedPreference.getFloat("Very Active", 0));
+        profile.putExtra("Very Active", sharedPreference.getFloat("Very Active", 0));
         profile.putExtra("Extremely Active", sharedPreference.getFloat("Extremely Active", 0));
 
         //Perform the intent

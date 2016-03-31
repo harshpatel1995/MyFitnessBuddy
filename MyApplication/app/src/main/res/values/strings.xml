@@ -25,13 +25,9 @@
     <string name="weight_type">Pounds</string>
 
     <!-- Profile Rate Strings -->
-    <string name="age_with_col">Age:</string>
-    <string name="height_with_col">Height:</string>
     <string name="height_unit">"\""</string>
-    <string name="weight_with_col">Weight:</string>
     <string name="weight_unit">lbs</string>
-    <string name="gender_with_col">Gender:</string>
-    <string name="bmi">BMI:</string>
+    <string name="bmi">BMI</string>
     <string name="metabolic_rates">Metabolic Rates</string>
     <string name="calorie_note">(calories)</string>
     <string name="sedentary">Sedentary</string>

@@ -9,352 +9,421 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="squad.myfitnessbuddy.UserProfile"
-    android:textAlignment="textStart">
+    tools:context="squad.myfitnessbuddy.UserProfile">
 
-
-    <!-- Lifestyles -->
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TableLayout
         android:id="@+id/linearLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="80dp"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age"
-            android:id="@+id/ageTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="12dp"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:id="@+id/genderTV"
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Height"
-            android:id="@+id/heightTV"
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weight"
-            android:id="@+id/weightTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BMI"
-            android:id="@+id/bmiTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            android:typeface="sans" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Metabolic Rates"
-            android:id="@+id/metabolicRatesTV"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:textSize="30sp"
-            android:textColor="#bc1717"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="(calories)"
-            android:id="@+id/caloriesTV"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
-            android:textColor="#000000" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sedentary"
-            android:id="@+id/sedentaryTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="12dp"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lightly Active"
-            android:id="@+id/lightlyActiveTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moderately Active"
-            android:id="@+id/moderatelyActiveTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Very Active"
-            android:id="@+id/veryActiveTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Extremely Active"
-            android:id="@+id/extremelyActiveTV"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-    </LinearLayout>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Full Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="95dp"
+        android:stretchColumns="0">
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/ageLabel"
+                android:text="@string/age"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/ageTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/genderLabel"
+                android:text="@string/gender"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/genderTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/heightLabel"
+                android:text="@string/height"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/heightTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/weightLabel"
+                android:text="@string/weight"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/weightTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/bmiLabel"
+                android:text="@string/bmi"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/bmiTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:typeface="sans" />
+
+        </TableRow>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/metabolicRatesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="@string/metabolic_rates"
+                android:textColor="#bc1717"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/caloriesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/calorie_note"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TableRow
+            android:layout_gravity="right"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/sedentaryLabel"
+                android:text="@string/sedentary"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/sedentaryTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/lightlyActiveLabel"
+                android:text="@string/lightly_active"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/lightlyActiveTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/moderatelyActiveLabel"
+                android:text="@string/moderately_active"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/moderatelyActiveTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/veryActiveLabel"
+                android:text="@string/very_active"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/veryActiveTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+        </TableRow>
+
+        <TableRow android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/extremelyActiveLabel"
+                android:text="@string/extremely_active"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/extremelyActiveTV"
+                android:text="@string/test"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
         android:id="@+id/fullNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="Full Name"
         android:textAlignment="center"
         android:textColor="#bc1717"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
+        android:textStyle="bold" />
 
     <Button
+        android:id="@+id/menuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MENU"
-        android:id="@+id/menuButton"
-        android:padding="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#d5eae8"
         android:minWidth="100dp"
         android:onClick="menuOnClick"
-        android:background="#d5eae8"
+        android:padding="5dp"
+        android:text="MENU"
         android:textStyle="bold" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/popUpLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/fullNameTV"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/fullNameTV"
         android:layout_marginBottom="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:id="@+id/popUpLayout"
-        android:visibility="invisible"
-        android:layout_marginTop="75dp">
+        android:layout_marginTop="75dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CREATE A NEW WORKOUT"
             android:id="@+id/createWorkoutButton"
-            android:background="#d5eae8"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:onClick="createWorkoutOnClick" />
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MY SAVED WORKOUTS"
+            android:layout_marginTop="5dp"
+            android:background="#d5eae8"
+            android:onClick="createWorkoutOnClick"
+            android:padding="10dp"
+            android:text="CREATE A NEW WORKOUT"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/savedWorkoutsButton"
-            android:background="#d5eae8"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:onClick="mySavedWorkoutsOnClick"/>
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="VIEW WORKOUT LOGS"
+            android:layout_marginTop="5dp"
+            android:background="#d5eae8"
+            android:onClick="mySavedWorkoutsOnClick"
+            android:padding="10dp"
+            android:text="MY SAVED WORKOUTS"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/workoutLogsButton"
-            android:background="#d5eae8"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:onClick= "viewLogsOnClick"/>
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EDIT USER PROFILE"
-            android:id="@+id/editProfileButton"
-            android:onClick="editProfileOnClick"
+            android:layout_marginTop="5dp"
             android:background="#d5eae8"
-            android:textStyle="bold"
+            android:onClick="viewLogsOnClick"
             android:padding="10dp"
-            android:layout_marginTop="5dp" />
+            android:text="VIEW WORKOUT LOGS"
+            android:textStyle="bold" />
 
         <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#d5eae8"
+            android:onClick="editProfileOnClick"
+            android:padding="10dp"
+            android:text="EDIT USER PROFILE"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BACK"
-            android:id="@+id/backButton"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="#d5eae8"
             android:minWidth="150dp"
             android:onClick="backOnClick"
-            android:background="#d5eae8"
-            android:textStyle="bold"
             android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp" />
+            android:text="BACK"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/createWorkoutLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
         android:layout_marginBottom="200dp"
-        android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
-        android:id="@+id/createWorkoutLayout"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
         android:visibility="invisible">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Predefined Workout"
             android:id="@+id/predefinedWorkoutButton"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:background="#d5eae8" />
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Customized Workout"
-            android:id="@+id/customizedWorkoutButton"
-            android:padding="10dp"
-            android:textStyle="bold"
             android:background="#d5eae8"
-            android:layout_marginTop="5dp"
-            android:onClick= "customizedWorkoutButtonOnClick"/>
+            android:padding="10dp"
+            android:text="Predefined Workout"
+            android:textStyle="bold" />
 
         <Button
+            android:id="@+id/customizedWorkoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#d5eae8"
+            android:onClick="customizedWorkoutButtonOnClick"
+            android:padding="10dp"
+            android:text="Customized Workout"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/createWorkoutBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BACK"
-            android:id="@+id/createWorkoutBackButton"
             android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:background="#d5eae8"
             android:layout_marginTop="10dp"
-            android:onClick="createWorkoutBackButton" />
+            android:background="#d5eae8"
+            android:onClick="createWorkoutBackButton"
+            android:padding="10dp"
+            android:text="BACK"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="200dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
         android:id="@+id/mySavedWorkoutsLayout"
-        android:visibility="invisible">
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
         android:layout_marginBottom="200dp"
-        android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        android:visibility="invisible"></LinearLayout>
+
+    <LinearLayout
         android:id="@+id/viewLogsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
         android:visibility="invisible">
 
         <TextView
+            android:id="@+id/myLogsTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Logs"
-            android:id="@+id/myLogsTV"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="12dp"
+            android:text="My Logs"
             android:textColor="#000000"
             android:textSize="25sp"
             android:typeface="sans" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/exerciseListLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_gravity="center|bottom"
         android:layout_marginBottom="200dp"
-        android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
-        android:id="@+id/exerciseListLayout"
-        android:visibility="invisible"
-        android:layout_gravity= "center|bottom">
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text= "Create Workout"
-            android:id="@+id/button"
-            android:background="#d5eae8"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:minWidth="100dp"
-            android:layout_marginBottom="37dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity= "center_horizontal|center"/>
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="37dp"
+            android:background="#d5eae8"
+            android:minWidth="100dp"
+            android:text="Create Workout"
+            android:textSize="25sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

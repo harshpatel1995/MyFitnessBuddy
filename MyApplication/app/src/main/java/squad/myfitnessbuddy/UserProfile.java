@@ -18,7 +18,7 @@ public class UserProfile extends AppCompatActivity {
 
 
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
-    public void editProfileOnClick(View view){
+    public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
         intent.putExtra("fromUserProfile", true);
         startActivity(intent);
@@ -31,16 +31,15 @@ public class UserProfile extends AppCompatActivity {
 
     //The user clicked 'Menu' button -> If popup is showing, hide it & vice-versa
     public void menuOnClick(View view) {
-        if(menuPopup.getVisibility() == View.INVISIBLE) {
-           showPopUp();
-        }
-        else {
+        if (menuPopup.getVisibility() == View.INVISIBLE) {
+            showPopUp();
+        } else {
             hidePopUp();
         }
     }
 
     //The user clicked on 'Create a workout' -> Show them the option between predefined and customized
-    public void createWorkoutOnClick(View view){
+    public void createWorkoutOnClick(View view) {
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
         viewLogsPopup.setVisibility(View.INVISIBLE);
@@ -50,7 +49,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     //The user clicked on 'Customized Workout'
-    public void customizedWorkoutButtonOnClick(View view){
+    public void customizedWorkoutButtonOnClick(View view) {
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
         myWorkoutsPopup.setVisibility(View.INVISIBLE);
@@ -60,7 +59,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     // The user clicked on 'ViewMy Logs' from the menu options
-    public void viewLogsOnClick(View view){
+    public void viewLogsOnClick(View view) {
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
         createWorkoutPopup.setVisibility(View.INVISIBLE);
@@ -82,7 +81,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     //The user clicked 'Back' on the predefined vs customized popup
-    public void createWorkoutBackButton(View view){
+    public void createWorkoutBackButton(View view) {
         createWorkoutPopup.setVisibility(View.INVISIBLE);
         showPopUp();
     }
@@ -124,18 +123,18 @@ public class UserProfile extends AppCompatActivity {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-        fullNameTV          = (TextView) findViewById(R.id.fullNameTV);
-        ageTV               = (TextView) findViewById(R.id.ageTV);
-        genderTV            = (TextView) findViewById(R.id.genderTV);
-        heightTV            = (TextView) findViewById(R.id.heightTV);
-        weightTV            = (TextView) findViewById(R.id.weightTV);
-        bmiTV               = (TextView) findViewById(R.id.bmiTV);
-        sedentaryTV         = (TextView) findViewById(R.id.sedentaryTV);
-        lightlyActiveTV     = (TextView) findViewById(R.id.lightlyActiveTV);
-        moderatelyActiveTV  = (TextView) findViewById(R.id.moderatelyActiveTV);
-        veryActiveTV        = (TextView) findViewById(R.id.veryActiveTV);
-        extremelyActiveTV   = (TextView) findViewById(R.id.extremelyActiveTV);
-        myLogsTV            = (TextView) findViewById(R.id.myLogsTV);
+        fullNameTV = (TextView) findViewById(R.id.fullNameTV);
+        ageTV = (TextView) findViewById(R.id.ageTV);
+        genderTV = (TextView) findViewById(R.id.genderTV);
+        heightTV = (TextView) findViewById(R.id.heightTV);
+        weightTV = (TextView) findViewById(R.id.weightTV);
+        bmiTV = (TextView) findViewById(R.id.bmiTV);
+        sedentaryTV = (TextView) findViewById(R.id.sedentaryTV);
+        lightlyActiveTV = (TextView) findViewById(R.id.lightlyActiveTV);
+        moderatelyActiveTV = (TextView) findViewById(R.id.moderatelyActiveTV);
+        veryActiveTV = (TextView) findViewById(R.id.veryActiveTV);
+        extremelyActiveTV = (TextView) findViewById(R.id.extremelyActiveTV);
+        myLogsTV = (TextView) findViewById(R.id.myLogsTV);
 
         Intent intent = getIntent();
 
@@ -143,38 +142,30 @@ public class UserProfile extends AppCompatActivity {
         float weightFlt = intent.getFloatExtra("Weight", 0);
 
         //format height and weight to show appropriate precision per user input
-        if (heightFlt == Math.floor(heightFlt))
-        {
-            heightStr = (String.format("%.0f",heightFlt));
-        }
-        else
-        {
-            heightStr = (String.format("%.2f",heightFlt));
+        if (heightFlt == Math.floor(heightFlt)) {
+            heightStr = (String.format("%.0f", heightFlt));
+        } else {
+            heightStr = (String.format("%.2f", heightFlt));
         }
         //To delete
-        if (weightFlt == Math.floor(weightFlt))
-        {
-            weightStr = (String.format("%.0f",weightFlt));
-        }
-        else
-        {
-            weightStr = (String.format("%.2f",weightFlt));
+        if (weightFlt == Math.floor(weightFlt)) {
+            weightStr = (String.format("%.0f", weightFlt));
+        } else {
+            weightStr = (String.format("%.2f", weightFlt));
         }
 
+        fullNameTV.setText(intent.getStringExtra("First Name") + " " + intent.getStringExtra("Last Name"));
+        ageTV.setText(String.valueOf(intent.getIntExtra("Age", 0)));
+        genderTV.setText(intent.getStringExtra("Gender"));
+        heightTV.setText(heightStr + "\"");
+        weightTV.setText(weightStr + " lbs");
+        bmiTV.setText(String.valueOf(intent.getFloatExtra("BMI", 0)));
 
-        fullNameTV.setText(intent.getStringExtra("First Name") + " " +  intent.getStringExtra("Last Name"));
-        ageTV.setText(fixedLengthString("Age", 15) + String.valueOf(intent.getIntExtra("Age", 0)));
-        genderTV.setText(fixedLengthString("Gender", 12) + intent.getStringExtra("Gender"));
-        heightTV.setText(fixedLengthString("Height", 13) + heightStr + "\"");
-        weightTV.setText(fixedLengthString("Weight", 12)  + weightStr + " lb");
-        bmiTV.setText(fixedLengthString("BMI", 14) + String.valueOf(intent.getFloatExtra("BMI", 0)));
-
-        sedentaryTV.setText(fixedLengthString("Sedentary", 30) + String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
-        lightlyActiveTV.setText(fixedLengthString("Lightly Active",29) + String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
-        moderatelyActiveTV.setText(fixedLengthString("Moderately Active",24) + String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
-        veryActiveTV.setText("Very Active                   " + String.format("%.0f", intent.getFloatExtra("Very Active", 0)));
-        extremelyActiveTV.setText(fixedLengthString("Extremely Active", 25) + String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
-
+        sedentaryTV.setText(String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
+        lightlyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
+        moderatelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
+        veryActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Very Active", 0)));
+        extremelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
@@ -183,6 +174,6 @@ public class UserProfile extends AppCompatActivity {
 
     //Represent a string in 'length' spaces
     public static String fixedLengthString(String string, int length) {
-        return String.format("%1$" + (0-length) + "s", string);
+        return String.format("%1$" + (0 - length) + "s", string);
     }
 }
