@@ -14,7 +14,7 @@ public class UserProfile extends AppCompatActivity {
 
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV, moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
     SharedPreferences sharedPreference;
-    LinearLayout linearLayout, menuPopup, createWorkoutPopup;
+    LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup;
 
 
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
@@ -37,6 +37,13 @@ public class UserProfile extends AppCompatActivity {
         else {
             hidePopUp();
         }
+    }
+
+    //user clicks on 'My Saved Workouts' from the menu options
+    public void mySavedWorkoutstOnClick(View view) {
+        showPopUp();
+        menuPopup.setVisibility(View.INVISIBLE);
+        myWorkoutsPopup.setVisibility(View.VISIBLE);
     }
 
     //The user clicked on 'Create a workout' -> Show them the option between predefined and customized
@@ -77,6 +84,7 @@ public class UserProfile extends AppCompatActivity {
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         menuPopup = (LinearLayout) findViewById(R.id.popUpLayout);
+        myWorkoutsPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
