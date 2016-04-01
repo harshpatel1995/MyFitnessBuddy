@@ -22,7 +22,6 @@ public class MyLogs extends AppCompatActivity {
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // set your desired color
         actionBar.setTitle("My Logs");
 
     }

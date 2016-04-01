@@ -27,6 +27,7 @@ public class SavedWorkouts extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Saved Workouts");
         assert actionBar != null;
 
     }
