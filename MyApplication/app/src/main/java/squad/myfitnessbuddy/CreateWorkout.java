@@ -48,25 +48,6 @@ public class CreateWorkout extends AppCompatActivity {
 
     protected void populateExercises(){
 
-     /*   ListView lv = (ListView) findViewById(R.id.myListView);
-        final ArrayList<String> contacts = new ArrayList<>();
-
-        contacts.add("Harsh Patel");
-        contacts.add("COP 4331");
-        contacts.add("MyFitness Buddy");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 					android.R.layout.simple_list_item_1, contacts);
-        lv.setAdapter(adapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(contacts.get(position) + " : " + id);
-                Toast.makeText(getApplicationContext(), "Hey " + contacts.get(position), Toast.LENGTH_LONG).show();
-            }
-        });
-
-        */
 
         final ArrayList<String> exercisesList = new ArrayList<>();
 
@@ -99,22 +80,21 @@ public class CreateWorkout extends AppCompatActivity {
                 c.moveToNext();
             }
 
+            exerciseDB.close();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exercisesList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, exercisesList);
         exerciseLV.setAdapter(adapter);
+        exerciseLV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        exerciseLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(exercisesList.get(position) + " : " + id);
-                Toast.makeText(getApplicationContext(), "Hey " + exercisesList.get(position), Toast.LENGTH_LONG).show();
-            }
 
-        });
+
+
     }
+
+
 
 
 }
