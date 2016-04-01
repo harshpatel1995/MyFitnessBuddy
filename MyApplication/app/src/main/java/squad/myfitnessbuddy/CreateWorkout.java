@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 public class CreateWorkout extends AppCompatActivity {
 
+    //listview control that displays exercises on screen
     public ListView exerciseLV;
 
     @Override
@@ -37,6 +38,7 @@ public class CreateWorkout extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setTitle("Create Workout");
 
+        //gets intent of page that just called this one
         Intent intent = getIntent();
 
         exerciseLV = (ListView) findViewById(R.id.exercisesLV);
@@ -109,9 +111,12 @@ public class CreateWorkout extends AppCompatActivity {
     //Code to save a new workout (will add to database)
     public void saveCustomWorkout(View view)
     {
+        //get workout name from user
         EditText workoutNameED = (EditText) findViewById(R.id.createWorkoutName);
         String workoutNameStr = workoutNameED.getText().toString();
 
+        //boolean array for all list positions
+        //true if checked, false if unchecked
         SparseBooleanArray checked = exerciseLV.getCheckedItemPositions();
 
         //there is no workout name
@@ -123,6 +128,7 @@ public class CreateWorkout extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"You must select at least one exercise.",Toast.LENGTH_SHORT).show();
         }
         else {
+            //list of exercises to store in database for workout
             String exercisesForWorkoutStr = "";
 
             for (int i = 0; i < exerciseLV.getAdapter().getCount(); i++) {
@@ -141,6 +147,15 @@ public class CreateWorkout extends AppCompatActivity {
             }
 
             }
+
+    }
+
+    public void saveCustomWorkoutInDataBase(String workoutNameStr, String exercisesStr){
+
+        SQLiteDatabase database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+
+        database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
+
 
     }
 
