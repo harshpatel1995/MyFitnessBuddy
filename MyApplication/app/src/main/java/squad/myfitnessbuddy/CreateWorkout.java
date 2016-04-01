@@ -111,6 +111,9 @@ public class CreateWorkout extends AppCompatActivity {
     //Code to save a new workout (will add to database)
     public void saveCustomWorkout(View view)
     {
+        String mustSelectExerciseStr = "You must select at least one exercise.";
+        String mustSelectNameStr = "The workout must have a name.";
+
         //get workout name from user
         EditText workoutNameED = (EditText) findViewById(R.id.createWorkoutName);
         String workoutNameStr = workoutNameED.getText().toString();
@@ -121,11 +124,11 @@ public class CreateWorkout extends AppCompatActivity {
 
         //there is no workout name
         if (workoutNameStr.equals("")){
-            Toast.makeText(getApplicationContext(),"The workout must have a name.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),mustSelectNameStr,Toast.LENGTH_SHORT).show();
         }
         //nothing was pressed yet in listview to populate the sparse boolean array
         else if(checked.size()<1){
-            Toast.makeText(getApplicationContext(),"You must select at least one exercise.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), mustSelectExerciseStr ,Toast.LENGTH_SHORT).show();
         }
         else {
             //list of exercises to store in database for workout
@@ -140,10 +143,16 @@ public class CreateWorkout extends AppCompatActivity {
             if(!exercisesForWorkoutStr.equals("")){
             exercisesForWorkoutStr = exercisesForWorkoutStr.substring(0, exercisesForWorkoutStr.length() - 1);
             Log.i("Test", exercisesForWorkoutStr);
+                //save exercise to database
+                saveCustomWorkoutInDataBase(workoutNameStr,exercisesForWorkoutStr);
+
+                Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
+                startActivity(savedWorkouts);
+
             }
             //no exercise is checked
             else{
-                Toast.makeText(getApplicationContext(),"You must select at least one exercise.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),mustSelectExerciseStr,Toast.LENGTH_SHORT).show();
             }
 
             }
@@ -152,10 +161,18 @@ public class CreateWorkout extends AppCompatActivity {
 
     public void saveCustomWorkoutInDataBase(String workoutNameStr, String exercisesStr){
 
-        SQLiteDatabase database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+        try {
+            SQLiteDatabase database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
 
-        database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
+            database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
 
+            database.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
+                    + "', '" + exercisesStr + "')");
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
