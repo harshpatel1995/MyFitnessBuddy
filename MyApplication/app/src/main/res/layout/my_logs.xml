@@ -21,6 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_mylogs_page" />
+    <include layout="@layout/content_my_logs" />
 
 </android.support.design.widget.CoordinatorLayout>
