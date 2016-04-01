@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-//Test Kelechi
 public class UserProfile extends AppCompatActivity {
 
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV,
@@ -22,6 +21,12 @@ public class UserProfile extends AppCompatActivity {
     public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
         intent.putExtra("fromUserProfile", true);
+        startActivity(intent);
+    }
+
+    public void goToProfileOnClick(View view) {
+        Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
 
@@ -61,12 +66,9 @@ public class UserProfile extends AppCompatActivity {
 
 
     //The user clicked on 'My Saved Workouts' from the menu options
-    public void mySavedWorkoutsOnClick(View view) {
-        showPopUp();
-        menuPopup.setVisibility(View.INVISIBLE);
-        createWorkoutPopup.setVisibility(View.INVISIBLE);
-
-        myWorkoutsPopup.setVisibility(View.VISIBLE);
+    public void savedWorkoutsOnClick(View view) {
+        Intent savedWorkout = new Intent(getApplicationContext(), SavedWorkouts.class);
+        startActivity(savedWorkout);;
     }
 
     //The user clicked 'Back' on the predefined vs customized popup
@@ -105,7 +107,6 @@ public class UserProfile extends AppCompatActivity {
         myWorkoutsPopup = (LinearLayout) findViewById(R.id.mySavedWorkoutsLayout);
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
-
         fullNameTV = (TextView) findViewById(R.id.fullNameTV);
         ageTV = (TextView) findViewById(R.id.ageTV);
         genderTV = (TextView) findViewById(R.id.genderTV);
@@ -117,7 +118,6 @@ public class UserProfile extends AppCompatActivity {
         moderatelyActiveTV = (TextView) findViewById(R.id.moderatelyActiveTV);
         veryActiveTV = (TextView) findViewById(R.id.veryActiveTV);
         extremelyActiveTV = (TextView) findViewById(R.id.extremelyActiveTV);
-
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         Intent intent = getIntent();
@@ -154,10 +154,5 @@ public class UserProfile extends AppCompatActivity {
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
-    }
-
-    //Represent a string in 'length' spaces
-    public static String fixedLengthString(String string, int length) {
-        return String.format("%1$" + (0 - length) + "s", string);
     }
 }

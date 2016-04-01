@@ -38,5 +38,16 @@
     <string name="extremely_active">Extremely Active</string>
     <string name="title_activity_test">test</string>
     <string name="title_activity_create_workout">CreateWorkout</string>
+    <string name="title_activity_saved_workouts">SavedWorkouts</string>
+    <string name="title_activity_my_logs">MyLogs</string>
+
+    <!-- Buttons -->
+    <string name="edit_profile_button">Edit Profile</string>
+    <string name="profile_button">Profile</string>
+    <string name="workouts_button">Workouts</string>
+    <string name="logs_button">Logs</string>
+
+
+
 
 </resources>

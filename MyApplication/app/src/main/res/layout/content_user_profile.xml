@@ -7,6 +7,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="squad.myfitnessbuddy.UserProfile">
 
+    <Button
+        android:id="@+id/editProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="editProfileOnClick"
+        android:textAllCaps= "false"
+        android:text="@string/edit_profile_button"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="#00ffffff" />
+
     <TableLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -19,7 +32,7 @@
             android:id="@+id/fullNameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:paddingBottom="10dp"
             android:text="@string/full_name"
             android:textAlignment="center"
@@ -32,7 +45,8 @@
             <TextView
                 android:id="@+id/ageLabel"
                 android:text="@string/age"
-		android:textColor="@color/textPrimary"                android:textSize="20sp"
+                android:textColor="@color/textPrimary"
+                android:textSize="20sp"
                 android:typeface="sans" />
 
             <TextView
@@ -253,17 +267,6 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#d5eae8"
-            android:onClick="editProfileOnClick"
-            android:padding="10dp"
-            android:text="EDIT USER PROFILE"
-            android:textStyle="bold" />
-
-        <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -375,7 +378,7 @@
             android:layout_height="56dp"
             android:onClick="viewLogsOnClick"
             android:textAllCaps= "false"
-            android:text="Logs"
+            android:text="@string/logs_button"
             android:paddingTop="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="12dp"
@@ -386,9 +389,9 @@
             android:id="@+id/workoutsButtonBar"
             android:layout_width="120dp"
             android:layout_height="56dp"
-            android:onClick="mySavedWorkoutsOnClick"
+            android:onClick="savedWorkoutsOnClick"
             android:textAllCaps= "false"
-            android:text="Workouts"
+            android:text="@string/workouts_button"
             android:paddingTop="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="12dp"
@@ -399,9 +402,9 @@
             android:id="@+id/profileButtonBar"
             android:layout_width="120dp"
             android:layout_height="56dp"
-            android:onClick="menuOnClick"
+            android:onClick="goToProfileOnClick"
             android:textAllCaps= "false"
-            android:text="Profile"
+            android:text="@string/profile_button"
             android:paddingTop="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="12dp"

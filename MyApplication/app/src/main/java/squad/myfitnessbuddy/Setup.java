@@ -151,7 +151,7 @@ public class Setup extends AppCompatActivity {
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // set your desired color
+      //  actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // set your desired color
         actionBar.setTitle("Setup Page");
 
         //Matches each of the textfields, edittexts, radiobuttons and radiogroup to the respective local variables
