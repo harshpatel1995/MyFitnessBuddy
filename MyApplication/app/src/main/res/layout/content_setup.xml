@@ -239,7 +239,7 @@
         android:layout_height="wrap_content"
         android:text="@string/save_button"
         android:id="@+id/button"
-        android:background="#d5eae8"
+        android:background="#d8d8d8"
         android:textSize="20sp"
         android:textStyle="bold"
         android:minWidth="100dp"

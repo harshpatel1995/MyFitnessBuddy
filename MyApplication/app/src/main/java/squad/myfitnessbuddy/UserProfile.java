@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -68,7 +70,7 @@ public class UserProfile extends AppCompatActivity {
     //The user clicked on 'My Saved Workouts' from the menu options
     public void savedWorkoutsOnClick(View view) {
         Intent savedWorkout = new Intent(getApplicationContext(), SavedWorkouts.class);
-        startActivity(savedWorkout);;
+        startActivity(savedWorkout);
     }
 
     //The user clicked 'Back' on the predefined vs customized popup
