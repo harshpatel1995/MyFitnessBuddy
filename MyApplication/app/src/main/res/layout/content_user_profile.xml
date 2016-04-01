@@ -16,9 +16,8 @@
         android:text="@string/edit_profile_button"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:textAlignment="center"
-        android:background="#00ffffff" />
+        style="?android:borderlessButtonStyle" />
 
     <TableLayout
         android:id="@+id/linearLayout"
@@ -32,7 +31,7 @@
             android:id="@+id/fullNameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:paddingBottom="10dp"
             android:text="@string/full_name"
             android:textAlignment="center"
