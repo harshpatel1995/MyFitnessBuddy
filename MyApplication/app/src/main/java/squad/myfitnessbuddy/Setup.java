@@ -176,7 +176,6 @@ public class Setup extends AppCompatActivity {
         Intent intent = getIntent();
 
         //If intent.getExtras() is not null,  we got called from another class
-
         if (intent.getExtras() != null) {
 
             //We came from another class -> User wants to edit the information -> Let's preload the information in the boxes for the user to edit
@@ -185,6 +184,7 @@ public class Setup extends AppCompatActivity {
             ageET.setText(Integer.toString(sharedPreference.getInt("Age", 0)));
             heightET.setText(Float.toString(sharedPreference.getFloat("Height", 0)));
             weightET.setText(Float.toString(sharedPreference.getFloat("Weight", 0)));
+
             if (sharedPreference.getString("Gender", "").equals("Male")) {
                 genderRG.check(R.id.male);
             } else {

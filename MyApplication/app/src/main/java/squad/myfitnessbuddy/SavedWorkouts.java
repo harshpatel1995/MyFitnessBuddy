@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class SavedWorkouts extends AppCompatActivity {
+public class SavedWorkouts extends MenuButtonBar {
 
     //This will let you choose between create or predefined, for now just goes to create page
     public void addWorkoutOnClick(View view)
@@ -27,8 +28,8 @@ public class SavedWorkouts extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Saved Workouts");
         assert actionBar != null;
+        actionBar.setTitle("Saved Workouts");
 
     }
 

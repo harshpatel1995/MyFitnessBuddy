@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class UserProfile extends AppCompatActivity {
+public class UserProfile extends MenuButtonBar {
 
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV,
             moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
@@ -24,18 +25,6 @@ public class UserProfile extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
         intent.putExtra("fromUserProfile", true);
         startActivity(intent);
-    }
-
-    public void goToProfileOnClick(View view) {
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-    }
-
-    //The user clicked on "View My Logs"
-    public void viewLogsOnClick(View view) {
-        Intent viewMyLogs = new Intent(getApplicationContext(), MyLogs.class);
-        startActivity(viewMyLogs);
     }
 
     //The user clicked the back button on the popup -> Hide the popup. test
@@ -66,13 +55,6 @@ public class UserProfile extends AppCompatActivity {
         startActivity(createWorkout);
     }
 
-
-    //The user clicked on 'My Saved Workouts' from the menu options
-    public void savedWorkoutsOnClick(View view) {
-        Intent savedWorkout = new Intent(getApplicationContext(), SavedWorkouts.class);
-        startActivity(savedWorkout);
-    }
-
     //The user clicked 'Back' on the predefined vs customized popup
     public void createWorkoutBackButton(View view) {
         createWorkoutPopup.setVisibility(View.INVISIBLE);
@@ -99,6 +81,8 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

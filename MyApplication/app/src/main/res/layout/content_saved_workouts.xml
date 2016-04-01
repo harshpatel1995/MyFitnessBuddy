@@ -11,18 +11,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="squad.myfitnessbuddy.SavedWorkouts">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:id="@+id/addWorkoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addWorkoutOnClick"
-        android:textAllCaps= "false"
+        android:textAllCaps="false"
         android:text="Add Workout"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
