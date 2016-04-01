@@ -14,16 +14,21 @@ import android.widget.TextView;
 public class UserProfile extends AppCompatActivity {
 
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV,
-            moderatelyActiveTV, veryActiveTV, extremelyActiveTV, myLogsTV;
-
+            moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
     SharedPreferences sharedPreference;
-    LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup, viewLogsPopup, exerciseListPopup;
+    LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup;
 
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
         intent.putExtra("fromUserProfile", true);
         startActivity(intent);
+    }
+
+    //The user clicked on "View My Logs"
+    public void viewLogsOnClick(View view) {
+        Intent viewMyLogs = new Intent(getApplicationContext(), MyLogs.class);
+        startActivity(viewMyLogs);
     }
 
     //The user clicked the back button on the popup -> Hide the popup. test
@@ -44,37 +49,23 @@ public class UserProfile extends AppCompatActivity {
     public void createWorkoutOnClick(View view) {
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
-        viewLogsPopup.setVisibility(View.INVISIBLE);
         myWorkoutsPopup.setVisibility(View.INVISIBLE);
-        exerciseListPopup.setVisibility(View.INVISIBLE);
         createWorkoutPopup.setVisibility(View.VISIBLE);
     }
 
     //The user clicked on 'Customized Workout'
     public void customizedWorkoutButtonOnClick(View view) {
-
         Intent createWorkout = new Intent(getApplicationContext(), CreateWorkout.class);
         startActivity(createWorkout);
     }
 
-    // The user clicked on 'ViewMy Logs' from the menu options
-    public void viewLogsOnClick(View view) {
-        showPopUp();
-        menuPopup.setVisibility(View.INVISIBLE);
-        createWorkoutPopup.setVisibility(View.INVISIBLE);
-        exerciseListPopup.setVisibility(View.INVISIBLE);
-        myWorkoutsPopup.setVisibility(View.INVISIBLE);
-        viewLogsPopup.setVisibility(View.VISIBLE);
-        myLogsTV.setVisibility(View.VISIBLE);
-    }
 
     //The user clicked on 'My Saved Workouts' from the menu options
     public void mySavedWorkoutsOnClick(View view) {
         showPopUp();
         menuPopup.setVisibility(View.INVISIBLE);
         createWorkoutPopup.setVisibility(View.INVISIBLE);
-        exerciseListPopup.setVisibility(View.INVISIBLE);
-        viewLogsPopup.setVisibility(View.INVISIBLE);
+
         myWorkoutsPopup.setVisibility(View.VISIBLE);
     }
 
@@ -87,11 +78,8 @@ public class UserProfile extends AppCompatActivity {
     //Method that adjusts the visibility of the background layouts to show the show popup
     public void showPopUp() {
         createWorkoutPopup.setVisibility(View.INVISIBLE);
-        exerciseListPopup.setVisibility(View.INVISIBLE);
         myWorkoutsPopup.setVisibility(View.INVISIBLE);
-        viewLogsPopup.setVisibility(View.INVISIBLE);
         linearLayout.setVisibility(View.INVISIBLE);
-        myLogsTV.setVisibility(View.INVISIBLE);
         fullNameTV.setVisibility(View.INVISIBLE);
         menuPopup.setVisibility(View.VISIBLE);
     }
@@ -116,8 +104,7 @@ public class UserProfile extends AppCompatActivity {
         menuPopup = (LinearLayout) findViewById(R.id.popUpLayout);
         myWorkoutsPopup = (LinearLayout) findViewById(R.id.mySavedWorkoutsLayout);
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
-        viewLogsPopup = (LinearLayout) findViewById(R.id.viewLogsLayout);
-        exerciseListPopup = (LinearLayout) findViewById(R.id.exerciseListLayout);
+
 
         fullNameTV = (TextView) findViewById(R.id.fullNameTV);
         ageTV = (TextView) findViewById(R.id.ageTV);
@@ -130,10 +117,11 @@ public class UserProfile extends AppCompatActivity {
         moderatelyActiveTV = (TextView) findViewById(R.id.moderatelyActiveTV);
         veryActiveTV = (TextView) findViewById(R.id.veryActiveTV);
         extremelyActiveTV = (TextView) findViewById(R.id.extremelyActiveTV);
-        myLogsTV = (TextView) findViewById(R.id.myLogsTV);
+
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         Intent intent = getIntent();
+        Intent viewMyLogs = getIntent();
 
         float heightFlt = intent.getFloatExtra("Height", 0);
         float weightFlt = intent.getFloatExtra("Weight", 0);
