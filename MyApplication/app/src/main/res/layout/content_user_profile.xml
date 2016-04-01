@@ -36,7 +36,7 @@
             android:text="@string/full_name"
             android:textAlignment="center"
             android:textColor="@color/textHeading"
-            android:textSize="25sp"
+            android:textSize="@dimen/header_text_size"
             android:textStyle="bold" />
 
         <TableRow android:layout_gravity="right">
@@ -45,14 +45,14 @@
                 android:id="@+id/ageLabel"
                 android:text="@string/age"
                 android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/ageTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size" 
                 android:typeface="sans" />
 
         </TableRow>
@@ -63,14 +63,14 @@
                 android:id="@+id/genderLabel"
                 android:text="@string/gender"
 			    android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/genderTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
         </TableRow>
@@ -81,14 +81,14 @@
                 android:id="@+id/heightLabel"
                 android:text="@string/height"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/heightTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
         </TableRow>
@@ -99,14 +99,14 @@
                 android:id="@+id/weightLabel"
                 android:text="@string/weight"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/weightTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
         </TableRow>
@@ -117,14 +117,14 @@
                 android:id="@+id/bmiLabel"
                 android:text="@string/bmi"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/bmiTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp"
+                android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
         </TableRow>
@@ -142,7 +142,7 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/metabolic_rates"
                 android:textColor="@color/textHeading"
-                android:textSize="25sp"
+                android:textSize="@dimen/header_text_size"
                 android:textStyle="bold" />
 
             <TextView
@@ -164,13 +164,13 @@
                 android:id="@+id/sedentaryLabel"
                 android:text="@string/sedentary"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/sedentaryTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
@@ -180,13 +180,13 @@
                 android:id="@+id/lightlyActiveLabel"
                 android:text="@string/lightly_active"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/lightlyActiveTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
@@ -196,13 +196,13 @@
                 android:id="@+id/moderatelyActiveLabel"
                 android:text="@string/moderately_active"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/moderatelyActiveTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
@@ -212,13 +212,13 @@
                 android:id="@+id/veryActiveLabel"
                 android:text="@string/very_active"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/veryActiveTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
@@ -228,13 +228,13 @@
                 android:id="@+id/extremelyActiveLabel"
                 android:text="@string/extremely_active"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/extremelyActiveTV"
                 android:text="@string/test"
 				android:textColor="@color/textPrimary"
-                android:textSize="20sp" />
+                android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
@@ -276,7 +276,7 @@
             android:onClick="backOnClick"
             android:padding="10dp"
             android:text="BACK"
-            android:textSize="20sp"
+            android:textSize="@dimen/primary_text_size"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -357,7 +357,7 @@
             android:background="#d5eae8"
             android:minWidth="100dp"
             android:text="Create Workout"
-            android:textSize="25sp"
+            android:textSize="@dimen/primary_text_size"
             android:textStyle="bold" />
     </LinearLayout>
 
