@@ -114,10 +114,12 @@ public class CreateWorkout extends AppCompatActivity {
 
         SparseBooleanArray checked = exerciseLV.getCheckedItemPositions();
 
-        if (workoutNameStr == ""){
+        //there is no workout name
+        if (workoutNameStr.equals("")){
             Toast.makeText(getApplicationContext(),"The workout must have a name.",Toast.LENGTH_SHORT).show();
         }
-        else if(checked.size()==0){
+        //nothing was pressed yet in listview to populate the sparse boolean array
+        else if(checked.size()<1){
             Toast.makeText(getApplicationContext(),"You must select at least one exercise.",Toast.LENGTH_SHORT).show();
         }
         else {
@@ -128,9 +130,17 @@ public class CreateWorkout extends AppCompatActivity {
                     exercisesForWorkoutStr += exerciseLV.getItemAtPosition(i).toString() + "|";
                 }
             }
+            //at least one exercise is checked
+            if(!exercisesForWorkoutStr.equals("")){
             exercisesForWorkoutStr = exercisesForWorkoutStr.substring(0, exercisesForWorkoutStr.length() - 1);
             Log.i("Test", exercisesForWorkoutStr);
-        }
+            }
+            //no exercise is checked
+            else{
+                Toast.makeText(getApplicationContext(),"You must select at least one exercise.",Toast.LENGTH_SHORT).show();
+            }
+
+            }
 
     }
 
