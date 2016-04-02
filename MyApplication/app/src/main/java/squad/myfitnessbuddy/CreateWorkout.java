@@ -106,8 +106,6 @@ public class CreateWorkout extends AppCompatActivity {
 
     }
 
-
-    //************Still Working On  @@@Brandon
     //Code to save a new workout (will add to database)
     public void saveCustomWorkout(View view)
     {
@@ -142,7 +140,7 @@ public class CreateWorkout extends AppCompatActivity {
             //at least one exercise is checked
             if(!exercisesForWorkoutStr.equals("")){
             exercisesForWorkoutStr = exercisesForWorkoutStr.substring(0, exercisesForWorkoutStr.length() - 1);
-            Log.i("Test", exercisesForWorkoutStr);
+
                 //save exercise to database
                 saveCustomWorkoutInDataBase(workoutNameStr,exercisesForWorkoutStr);
 
@@ -159,13 +157,16 @@ public class CreateWorkout extends AppCompatActivity {
 
     }
 
+    //Saves the workout in the database
     public void saveCustomWorkoutInDataBase(String workoutNameStr, String exercisesStr){
 
         try {
             SQLiteDatabase database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
 
+            //open database
             database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
 
+            //adds a new record for the workout
             database.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
                     + "', '" + exercisesStr + "')");
 
