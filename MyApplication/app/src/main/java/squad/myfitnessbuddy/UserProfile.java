@@ -25,7 +25,7 @@ public class UserProfile extends MenuButtonBar {
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
-        intent.putExtra("fromUserProfile", true);
+        intent.putExtra(ConstantValues.cSP_FROM_USER_PROFILE, true);
         startActivity(intent);
     }
 
@@ -110,8 +110,8 @@ public class UserProfile extends MenuButtonBar {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-        float heightFlt = sharedPreference.getFloat("Height", 0);
-        float weightFlt = sharedPreference.getFloat("Weight", 0);
+        float heightFlt = sharedPreference.getFloat(ConstantValues.cSP_HEIGHT, 0);
+        float weightFlt = sharedPreference.getFloat(ConstantValues.cSP_WEIGHT, 0);
 
         //format height and weight to show appropriate precision per user input
         if (heightFlt == Math.floor(heightFlt)) {
@@ -126,18 +126,18 @@ public class UserProfile extends MenuButtonBar {
             weightStr = (String.format("%.2f", weightFlt));
         }
 
-        fullNameTV.setText(sharedPreference.getString("First Name", "") + " " + sharedPreference.getString("Last Name", ""));
-        ageTV.setText(String.valueOf(sharedPreference.getInt("Age", 0)));
-        genderTV.setText(sharedPreference.getString("Gender", ""));
+        fullNameTV.setText(sharedPreference.getString(ConstantValues.cSP_FIRST_NAME, "") + " " + sharedPreference.getString("Last Name", ""));
+        ageTV.setText(String.valueOf(sharedPreference.getInt(ConstantValues.cSP_AGE, 0)));
+        genderTV.setText(sharedPreference.getString(ConstantValues.cSP_GENDER, ""));
         heightTV.setText(heightStr + "\"");
         weightTV.setText(weightStr + " lbs");
-        bmiTV.setText(String.valueOf(sharedPreference.getFloat("BMI", 0)));
+        bmiTV.setText(String.valueOf(sharedPreference.getFloat(ConstantValues.cSP_BMI, 0)));
 
-        sedentaryTV.setText(String.format("%.0f", sharedPreference.getFloat("Sedentary", 0)));
-        lightlyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Lightly Active", 0)));
-        moderatelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Moderately Active", 0)));
-        veryActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Very Active", 0)));
-        extremelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Extremely Active", 0)));
+        sedentaryTV.setText(String.format("%.0f", sharedPreference.getFloat(ConstantValues.cSP_SEDENTARY, 0)));
+        lightlyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat(ConstantValues.cSP_LIGHTLY_ACTIVE, 0)));
+        moderatelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat(ConstantValues.cSP_MODERATELY_ACTIVE, 0)));
+        veryActiveTV.setText(String.format("%.0f", sharedPreference.getFloat(ConstantValues.cSP_VERY_ACTIVE, 0)));
+        extremelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat(ConstantValues.cSP_EXTREMELY_ACTIVE, 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
