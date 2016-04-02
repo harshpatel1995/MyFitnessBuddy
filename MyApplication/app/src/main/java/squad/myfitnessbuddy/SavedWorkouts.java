@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +24,8 @@ import java.util.ArrayList;
 
 
 public class SavedWorkouts extends MenuButtonBar {
-    LinearLayout createWorkoutPopup;
+    LinearLayout createWorkoutPopup, deleteWorkoutPopup, menuButtons;
+
     //database for system
     SQLiteDatabase database;
     //listview control that displays exercises on screen
@@ -32,6 +34,7 @@ public class SavedWorkouts extends MenuButtonBar {
     //This will let you choose between create or predefined, for now just goes to create page
     public void addWorkoutOnClick(View view) {
         createWorkoutPopup.setVisibility(View.VISIBLE);
+        menuButtons.setVisibility(View.INVISIBLE);
     }
 
     public void customizedWorkoutButton (View view){
@@ -66,6 +69,8 @@ public class SavedWorkouts extends MenuButtonBar {
         }
 
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
+        deleteWorkoutPopup = (LinearLayout) findViewById(R.id.savedWorkoutDeleteWorkoutLinearLayout);
+        menuButtons        = (LinearLayout) findViewById(R.id.savedWorkoutStartMenuLinearLayout);
 
         savedWorkOutsLV = (ListView) findViewById(R.id.savedWorkoutsLV);
         //populate list of exercises
@@ -114,10 +119,35 @@ public class SavedWorkouts extends MenuButtonBar {
         }
     }
 
+    //asks user if he or she really wants to delete the workout
     public void displayDeleteOption(View view){
 
-        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+        String workoutToDeleteStr = getCheckedItemName(savedWorkOutsLV);
+        if (!workoutToDeleteStr.equals("")) {
+
+            String deleteWorkoutText = "Are you sure you want to delete workout: \"" + workoutToDeleteStr + "\"?";
+            TextView deleteMessage = (TextView) findViewById(R.id.savedWorkoutsDeleteMessage);
+            deleteMessage.setText(deleteWorkoutText);
+            deleteWorkoutPopup.setVisibility(View.VISIBLE);
+            menuButtons.setVisibility(View.INVISIBLE);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Please select a workout to delete.",Toast.LENGTH_SHORT).show();
+        }
     }
+
+    public void doNotDeleteWorkout(View view){
+
+        deleteWorkoutPopup.setVisibility(View.INVISIBLE);
+        menuButtons.setVisibility(View.VISIBLE);
+    }
+
+    public void deleteWorkout(View view){
+
+        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+
+    }
+
 
     public void startWorkout(View view){
 
@@ -129,6 +159,24 @@ public class SavedWorkouts extends MenuButtonBar {
         Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
     }
 
+    //returns the name of the item that is checked in the list.
+    //returns empty string if it noting is checked
+    public String getCheckedItemName(ListView listView)
+    {
+        String selectedItem = "";
+
+        SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
+
+        //iterate through list
+        for(int counter = 0; counter < listView.getCount(); counter++){
+            //if something is checked get name of item
+            if (sparseBooleanArray.get(counter) == true){
+                selectedItem = listView.getItemAtPosition(counter).toString();
+                break;
+            }
+        }
+        return selectedItem;
+    }
 
 
 
