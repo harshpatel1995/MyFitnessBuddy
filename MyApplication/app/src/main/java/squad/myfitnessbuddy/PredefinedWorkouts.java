@@ -1,6 +1,7 @@
 package squad.myfitnessbuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -21,7 +22,8 @@ import java.util.ArrayList;
 
 public class PredefinedWorkouts extends AppCompatActivity {
 
-    public ListView workoutLV, previewLV;
+    ListView workoutLV, previewLV;
+    SQLiteDatabase exerciseDB;
     SharedPreferences sharedPreference;
     LinearLayout previewPopup;
 
@@ -37,6 +39,15 @@ public class PredefinedWorkouts extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setTitle("Predefined Workouts");
 
+        try {
+            exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+            //open or create database
+            exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         workoutLV = (ListView) findViewById(R.id.workoutLV);
         previewLV = (ListView) findViewById(R.id.previewLV);
 
@@ -49,24 +60,8 @@ public class PredefinedWorkouts extends AppCompatActivity {
     protected void populateWorkouts() {
         //create array to store Predefined Workout names
         final ArrayList<String> predefinedWorkoutList = new ArrayList<>();
-        //create the database manager
-        DataBaseHelper myDbHelper_v2;
-        myDbHelper_v2 = new DataBaseHelper(this);
-        //create database if it does not exist (or was erased)
-        //open if it is already there
+
         try {
-            myDbHelper_v2.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
-        try {
-            myDbHelper_v2.openDataBase();
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
-        try {
-            //get actual database from manager (the one we just opened)
-            SQLiteDatabase exerciseDB = myDbHelper_v2.getReadableDatabase();
 
             //set cursor to start traversing search
             //raw query is SQL code (Select everything from table "exercises" and order them by name)
@@ -80,9 +75,8 @@ public class PredefinedWorkouts extends AppCompatActivity {
                 predefinedWorkoutList.add(c_v2.getString(idxName));
                 c_v2.moveToNext();
             }
-
-            //close database to avoid memory leak
-            exerciseDB.close();
+            //close cursor to avoid memory leak
+            c_v2.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,67 +90,46 @@ public class PredefinedWorkouts extends AppCompatActivity {
 
     //Code to save the chosen predefined workout to the saved workouts repository
    public void previewPredefinedWorkoutButton(View view) {
-       SparseBooleanArray selected = workoutLV.getCheckedItemPositions();
-       final ArrayList<String> predefinedWorkoutListArr = new ArrayList<>();
-       //nothing was pressed yet in listview to populate the sparse boolean array
-       if (selected.size() < 1) {
-           Toast.makeText(getApplicationContext(), "Choose a workout to preview.", Toast.LENGTH_SHORT).show();
-       } else {
-           String workoutStr = "";
-           for (int i = 0; i < workoutLV.getAdapter().getCount(); i++) {
-               if (selected.get(i)) {
-                   workoutStr = workoutLV.getItemAtPosition(i).toString();
-               }
-           }
+       String selectedWorkoutName = getCheckedItemName(workoutLV);
 
-           DataBaseHelper myDbHelper_v3;
-           myDbHelper_v3 = new DataBaseHelper(this);
-           //at least one workout is checked
-           if (!workoutStr.equals("")) {
+       if (!selectedWorkoutName.equals("")) {
 
-               try {
-                   myDbHelper_v3.createDataBase();
-               } catch (IOException ioe) {
-                   throw new Error("Unable to create database");
-               }
-               try {
-                   myDbHelper_v3.openDataBase();
-               } catch (SQLException sqle) {
-                   throw sqle;
-               }
-               try {
-                   //get actual database from manager (the one we just opened)
-                   SQLiteDatabase exerciseDB = myDbHelper_v3.getReadableDatabase();
-                   Cursor c_v4 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = "+ "'" + workoutStr + "'", null);
-                   //get items from "name" column of table
-                   int idxExercise = c_v4.getColumnIndex("exercises");
-                   //move cursor to top of list (table)
-                   c_v4.moveToFirst();
+           SharedPreferences.Editor editor = sharedPreference.edit();
 
-                   while (c_v4 != null) {
-                       predefinedWorkoutListArr.add(c_v4.getString(idxExercise));
-                       Log.i("test",c_v4.getString(idxExercise));
-                       c_v4.moveToNext();
-                   }
+           //Use the editor to store the name of the current workout to preview in the SharedPreference
+           editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
+           editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED,true);
+           editor.apply();
 
-                   //close database to avoid memory leak
-                   exerciseDB.close();
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-               //no exercise is checked
-           } else {
-               Toast.makeText(getApplicationContext(), "Choose a workout to preview.", Toast.LENGTH_SHORT).show();
-           }
+           //open preview page
+           Intent previewWorkout = new Intent(getApplicationContext(), PreviewWorkout.class);
+           startActivity(previewWorkout);
        }
-       //adapter to get list into ListView
-       //adapter to get list into ListView
-       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, predefinedWorkoutListArr);
-       previewLV.setAdapter(adapter);
-       //only one workout can be checked at a time
-       previewLV.setChoiceMode(ListView.CHOICE_MODE_NONE);
-       previewPopup.setVisibility(View.VISIBLE);
+       else{
+           //if nothing selected, display error message
+           Toast.makeText(getApplicationContext(),"Please select a workout to preview.",Toast.LENGTH_SHORT).show();
+       }
+
    }
+
+    //returns the name of the item that is checked in the list.
+    //returns empty string if it noting is checked
+    public String getCheckedItemName(ListView listView)
+    {
+        String selectedItem = "";
+
+        SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
+
+        //iterate through list
+        for(int counter = 0; counter < listView.getCount(); counter++){
+            //if something is checked get name of item
+            if (sparseBooleanArray.get(counter) == true){
+                selectedItem = listView.getItemAtPosition(counter).toString();
+                break;
+            }
+        }
+        return selectedItem;
+    }
 
 
     public void selectPredefinedWorkoutButton(View view)
@@ -178,7 +151,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
             //at least one exercise is checked
             if(!workoutStr.equals("")){
                 workoutStr = workoutStr.substring(0, workoutStr.length() - 1);
-                Log.i("Test", workoutStr);
+                Log.i("Info", workoutStr);
             }
             //no exercise is checked
             else{

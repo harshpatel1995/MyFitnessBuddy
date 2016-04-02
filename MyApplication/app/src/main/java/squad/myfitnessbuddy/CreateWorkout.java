@@ -25,10 +25,10 @@ import java.util.ArrayList;
 public class CreateWorkout extends AppCompatActivity {
 
     //listview control that displays exercises on screen
-    public ListView exerciseLV;
+   ListView exerciseLV;
 
     //database
-    public SQLiteDatabase database;
+    SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
