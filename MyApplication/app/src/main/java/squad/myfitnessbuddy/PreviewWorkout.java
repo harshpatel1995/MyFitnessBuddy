@@ -34,6 +34,7 @@ public class PreviewWorkout extends AppCompatActivity {
 
     }
 
+    //go back a page
     public void onBackButtonClicked (View view){
         finish();
     }

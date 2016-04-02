@@ -12,16 +12,33 @@
     tools:context="squad.myfitnessbuddy.PreviewWorkout"
     tools:showIn="@layout/preview_workout">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:id="@+id/previewWorkoutExerciseLV"
+        android:layout_below="@+id/previewWorkoutNameTV"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:choiceMode="none"
+        android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Workout Name"
+        android:id="@+id/previewWorkoutNameTV"
+        android:textSize="20sp"
+        android:textColor="@color/textPrimary" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/previewWorkoutBackButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="124dp"
         android:textSize="20sp"
         android:paddingLeft="45dp"
         android:paddingRight="45dp"
-        android:onClick="onBackButtonClicked" />
+        android:onClick="onBackButtonClicked"
+        android:layout_below="@+id/previewWorkoutExerciseLV"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
