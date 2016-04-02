@@ -108,7 +108,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
                    workoutStr += workoutLV.getItemAtPosition(i).toString() + "|";
                }
            }
-       
+
            DataBaseHelper myDbHelper_v3;
            myDbHelper_v3 = new DataBaseHelper(this);
            //at least one workout is checked
