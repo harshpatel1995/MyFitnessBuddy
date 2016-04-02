@@ -162,7 +162,9 @@ public class SavedWorkouts extends MenuButtonBar {
 
     public void previewWorkout(View view){
 
-        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+        Intent previewWorkout = new Intent(getApplicationContext(), PreviewWorkout.class);
+        startActivity(previewWorkout);
+
     }
 
     //returns the name of the item that is checked in the list.

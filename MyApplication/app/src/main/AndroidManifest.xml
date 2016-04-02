@@ -23,7 +23,6 @@
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".CreateWorkout"
             android:label="@string/title_activity_create_workout"
@@ -39,9 +38,12 @@
         <activity
             android:name=".MyLogs"
             android:label="@string/title_activity_my_logs"
-            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
+            android:theme="@style/AppTheme.NoActionBar" />
         >
-        ]]>
+        <activity
+            android:name=".PreviewWorkout"
+            android:label="@string/title_activity_preview_workout"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -156,7 +156,7 @@
             android:text="Preview"
             android:id="@+id/savedWorkoutsPreviewbutton"
             android:layout_weight="1"
-            android:onClick="startWorkout" />
+            android:onClick="previewWorkout" />
 
         <Button
             android:layout_width="wrap_content"
