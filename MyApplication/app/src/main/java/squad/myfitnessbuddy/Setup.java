@@ -3,26 +3,20 @@ package squad.myfitnessbuddy;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 public class Setup extends AppCompatActivity {
 
@@ -83,18 +77,18 @@ public class Setup extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreference.edit();
 
         //Use the editor to store all the values in the SharedPreference
-        editor.putString("First Name", firstName);
-        editor.putString("Last Name", lastName);
-        editor.putInt("Age", age);
-        editor.putFloat("Height", height);
-        editor.putFloat("Weight", weight);
-        editor.putString("Gender", gender);
-        editor.putFloat("BMI", bmi);
-        editor.putFloat("Sedentary", sedentary);
-        editor.putFloat("Lightly Active", lightlyActive);
-        editor.putFloat("Moderately Active", moderatelyActive);
-        editor.putFloat("Very Active", veryActive);
-        editor.putFloat("Extremely Active", extremelyActive);
+        editor.putString(ConstantValues.cSP_FIRST_NAME, firstName);
+        editor.putString(ConstantValues.cSP_LAST_NAME, lastName);
+        editor.putInt(ConstantValues.cSP_AGE, age);
+        editor.putFloat(ConstantValues.cSP_HEIGHT, height);
+        editor.putFloat(ConstantValues.cSP_WEIGHT, weight);
+        editor.putString(ConstantValues.cSP_GENDER, gender);
+        editor.putFloat(ConstantValues.cSP_BMI, bmi);
+        editor.putFloat(ConstantValues.cSP_SEDENTARY, sedentary);
+        editor.putFloat(ConstantValues.cSP_LIGHTLY_ACTIVE, lightlyActive);
+        editor.putFloat(ConstantValues.cSP_MODERATELY_ACTIVE, moderatelyActive);
+        editor.putFloat(ConstantValues.cSP_VERY_ACTIVE, veryActive);
+        editor.putFloat(ConstantValues.cSP_EXTREMELY_ACTIVE, extremelyActive);
         editor.apply();
 
         //After saving the data, we are ready to go to the user profile
@@ -192,13 +186,13 @@ public class Setup extends AppCompatActivity {
         if (intent.getExtras() != null) {
 
             //We came from another class -> User wants to edit the information -> Let's preload the information in the boxes for the user to edit
-            firstNameET.setText(sharedPreference.getString("First Name", ""));
-            lastNameET.setText(sharedPreference.getString("Last Name", ""));
-            ageET.setText(Integer.toString(sharedPreference.getInt("Age", 0)));
-            heightET.setText(Float.toString(sharedPreference.getFloat("Height", 0)));
-            weightET.setText(Float.toString(sharedPreference.getFloat("Weight", 0)));
+            firstNameET.setText(sharedPreference.getString(ConstantValues.cSP_FIRST_NAME, ""));
+            lastNameET.setText(sharedPreference.getString(ConstantValues.cSP_LAST_NAME, ""));
+            ageET.setText(Integer.toString(sharedPreference.getInt(ConstantValues.cSP_AGE, 0)));
+            heightET.setText(Float.toString(sharedPreference.getFloat(ConstantValues.cSP_HEIGHT, 0)));
+            weightET.setText(Float.toString(sharedPreference.getFloat(ConstantValues.cSP_WEIGHT, 0)));
 
-            if (sharedPreference.getString("Gender", "").equals("Male")) {
+            if (sharedPreference.getString(ConstantValues.cSP_GENDER, "").equals("Male")) {
                 genderRG.check(R.id.male);
             } else {
                 genderRG.check(R.id.female);
@@ -208,7 +202,7 @@ public class Setup extends AppCompatActivity {
         //We did not get called from another class -> User didn't select to edit the information -> Check whether user has set the info before -> If so go to the user profile -> Otherwise, stay on the page
         else {
 
-            String tempFirstName = sharedPreference.getString("First Name", "");
+            String tempFirstName = sharedPreference.getString(ConstantValues.cSP_FIRST_NAME, "");
             if (!tempFirstName.equals("")) {
                 goToUserProfile();
             }

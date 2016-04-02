@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 
 public class SavedWorkouts extends MenuButtonBar {
+    SharedPreferences sharedPreference;
     LinearLayout createWorkoutPopup, deleteWorkoutPopup, menuButtons;
 
     //database for system
@@ -60,6 +61,8 @@ public class SavedWorkouts extends MenuButtonBar {
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
 
+        //Here we instantiate the sharedPreference by giving it the package name
+        sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -160,10 +163,24 @@ public class SavedWorkouts extends MenuButtonBar {
         Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
     }
 
+    //goes to the preview workout activity to preview the workout
     public void previewWorkout(View view){
+        String selectedWorkoutName = getCheckedItemName(savedWorkOutsLV);
 
-        Intent previewWorkout = new Intent(getApplicationContext(), PreviewWorkout.class);
-        startActivity(previewWorkout);
+        if (!selectedWorkoutName.equals("")) {
+
+            SharedPreferences.Editor editor = sharedPreference.edit();
+
+            //Use the editor to store the name of the current workout to preview in the SharedPreference
+            editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
+
+            Intent previewWorkout = new Intent(getApplicationContext(), PreviewWorkout.class);
+            startActivity(previewWorkout);
+        }
+        else{
+            //if nothing selected, display error message
+            Toast.makeText(getApplicationContext(),"Please select a workout to preview.",Toast.LENGTH_SHORT).show();
+        }
 
     }
 
