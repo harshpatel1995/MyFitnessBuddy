@@ -20,6 +20,7 @@ public class MyLogs extends MenuButtonBar {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.iconv2);
 
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();

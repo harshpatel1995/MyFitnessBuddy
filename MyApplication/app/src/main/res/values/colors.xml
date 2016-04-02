@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF370060</color>
     <color name="textHeading">#FF311440</color>
     <color name="textPrimary">#FF000000</color>
+    <color name="black">#FF000000</color>
 </resources>

@@ -48,6 +48,8 @@ public class SavedWorkouts extends MenuButtonBar {
         setContentView(R.layout.saved_workouts);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.iconv2);
+
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
