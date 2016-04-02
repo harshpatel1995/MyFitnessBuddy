@@ -41,14 +41,16 @@
                 android:id="@+id/logsButtonBar"
                 android:layout_width="120dp"
                 android:layout_height="56dp"
-                android:onClick="viewLogsOnClick"
                 android:textAllCaps= "false"
                 android:text="@string/logs_button"
-                android:paddingTop="6dp"
-                android:paddingBottom="10dp"
+                android:drawableTop="@drawable/logs"
+                android:paddingTop="5dp"
+                android:paddingBottom="12dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle" />
+                style="?android:borderlessButtonStyle"
+                android:textSize="13sp"
+                android:onClick="viewLogsOnClick" />
 
             <Button
                 android:id="@+id/workoutsButtonBar"
@@ -57,11 +59,13 @@
                 android:onClick="savedWorkoutsOnClick"
                 android:textAllCaps= "false"
                 android:text="@string/workouts_button"
-                android:paddingTop="6dp"
-                android:paddingBottom="10dp"
+                android:drawableTop="@drawable/workout"
+                android:paddingTop="5dp"
+                android:paddingBottom="12dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle" />
+                style="?android:borderlessButtonStyle"
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/profileButtonBar"
@@ -70,11 +74,16 @@
                 android:onClick="goToProfileOnClick"
                 android:textAllCaps= "false"
                 android:text="@string/profile_button"
-                android:paddingTop="6dp"
-                android:paddingBottom="10dp"
+                android:drawableTop="@drawable/profile"
+                android:paddingTop="5dp"
+                android:paddingBottom="12dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle" />
+                style="?android:borderlessButtonStyle"
+                android:textSize="13sp" />
+
+
+
 
         </LinearLayout>
 

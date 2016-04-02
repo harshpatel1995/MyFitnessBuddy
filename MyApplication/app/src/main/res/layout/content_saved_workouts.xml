@@ -24,6 +24,14 @@
         android:textAlignment="center"
         android:background="#00ffffff" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/savedWorkoutsLV"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/addWorkoutButton"
+        android:choiceMode="singleChoice" />
+
     <LinearLayout
         android:id="@+id/createWorkoutLayout"
         android:layout_width="match_parent"
