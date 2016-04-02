@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class Setup extends AppCompatActivity {
@@ -159,6 +160,17 @@ public class Setup extends AppCompatActivity {
         assert actionBar != null;
       //  actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // set your desired color
         actionBar.setTitle("Setup Page");
+
+        //create the database manager
+        DataBaseHelper myDbHelper;
+        myDbHelper = new DataBaseHelper(this);
+
+        //create database if it does not exist (or was erased) for initial exercises
+        try {
+            myDbHelper.createDataBase();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
 
         //Matches each of the textfields, edittexts, radiobuttons and radiogroup to the respective local variables
         firstNameET = (EditText) findViewById(R.id.userFirstName);
