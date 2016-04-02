@@ -13,12 +13,22 @@ import android.widget.TextView;
 
 
 public class SavedWorkouts extends MenuButtonBar {
+    LinearLayout createWorkoutPopup;
 
     //This will let you choose between create or predefined, for now just goes to create page
     public void addWorkoutOnClick(View view)
     {
+        createWorkoutPopup.setVisibility(View.VISIBLE);
+    }
+
+    public void customizedWorkoutButton (View view){
         Intent addWorkout = new Intent(getApplicationContext(), CreateWorkout.class);
         startActivity(addWorkout);
+    }
+
+    public void PredefinedWorkoutOnClick(View view) {
+        Intent predefinedWorkout = new Intent(getApplicationContext(), PredefinedWorkouts.class);
+        startActivity(predefinedWorkout);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +40,8 @@ public class SavedWorkouts extends MenuButtonBar {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Saved Workouts");
+
+        createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
     }
 

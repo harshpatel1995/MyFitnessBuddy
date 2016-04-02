@@ -40,6 +40,8 @@
     <string name="title_activity_create_workout">CreateWorkout</string>
     <string name="title_activity_saved_workouts">SavedWorkouts</string>
     <string name="title_activity_my_logs">MyLogs</string>
+    <string name="title_activity_predefined_workouts">PredefinedWorkouts</string>
+
 
     <!-- Buttons -->
     <string name="edit_profile_button">Edit Profile</string>

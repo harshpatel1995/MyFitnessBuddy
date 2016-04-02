@@ -29,6 +29,10 @@
             android:label="@string/title_activity_create_workout"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".PredefinedWorkouts"
+            android:label="@string/title_activity_predefined_workouts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".SavedWorkouts"
             android:label="@string/title_activity_saved_workouts"
             android:theme="@style/AppTheme.NoActionBar" />

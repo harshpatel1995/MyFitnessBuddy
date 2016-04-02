@@ -19,6 +19,8 @@ public class MenuButtonBar extends AppCompatActivity{
         startActivity(savedWorkout);
     }
 
+
+
     public void goToProfileOnClick(View view) {
         Intent profile = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(profile);
