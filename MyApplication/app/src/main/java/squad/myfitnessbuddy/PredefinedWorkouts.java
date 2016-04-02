@@ -33,6 +33,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
         setContentView(R.layout.predefined_workouts);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
 
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -49,11 +50,10 @@ public class PredefinedWorkouts extends AppCompatActivity {
         }
 
         workoutLV = (ListView) findViewById(R.id.workoutLV);
-        previewLV = (ListView) findViewById(R.id.previewLV);
+
 
         populateWorkouts();
-
-        previewPopup = (LinearLayout) findViewById(R.id.previewPopupLayout);
+        
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
     }
     //Method to populate list of predefined workouts
@@ -131,6 +131,10 @@ public class PredefinedWorkouts extends AppCompatActivity {
         return selectedItem;
     }
 
+    //go back
+    public void predefinedWorkoutBackButton(View view){
+        finish();
+    }
 
     public void selectPredefinedWorkoutButton(View view)
     {

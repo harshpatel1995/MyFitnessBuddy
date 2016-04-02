@@ -109,6 +109,7 @@ public class SavedWorkouts extends MenuButtonBar {
                     workoutsList.add(c.getString(nameIndex));
                     c.moveToNext();
                 }
+            c.close();
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -151,8 +152,18 @@ public class SavedWorkouts extends MenuButtonBar {
     }
 
     public void deleteWorkout(View view){
+        String selectedWorkoutName = getCheckedItemName(savedWorkOutsLV);
 
-        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+        try {
+            //adds a new record for the workout
+            database.execSQL("DELETE FROM savedWorkouts WHERE name = '" + selectedWorkoutName + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //reopen the page to see changes
+        Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
+        startActivity(savedWorkouts);
 
     }
 
@@ -172,7 +183,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
             //Use the editor to store the name of the current workout to preview in the SharedPreference
             editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
-            editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED,false);
+            editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED, false);
             editor.apply();
 
             //open preview page
