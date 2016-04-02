@@ -29,8 +29,7 @@ public class SavedWorkouts extends MenuButtonBar {
     public ListView savedWorkOutsLV;
 
     //This will let you choose between create or predefined, for now just goes to create page
-    public void addWorkoutOnClick(View view)
-    {
+    public void addWorkoutOnClick(View view) {
         createWorkoutPopup.setVisibility(View.VISIBLE);
     }
 
