@@ -53,7 +53,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
 
 
         populateWorkouts();
-        
+
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
     }
     //Method to populate list of predefined workouts
