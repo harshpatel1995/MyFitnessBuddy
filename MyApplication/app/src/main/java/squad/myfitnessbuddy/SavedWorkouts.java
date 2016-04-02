@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,12 +28,14 @@ public class SavedWorkouts extends MenuButtonBar {
     SQLiteDatabase database;
     //listview control that displays exercises on screen
     public ListView savedWorkOutsLV;
+    public Button addWorkoutButtonBT;
 
     //This will let you choose between create or predefined, for now just goes to create page
     public void addWorkoutOnClick(View view) {
         createWorkoutPopup.setVisibility(View.VISIBLE);
         menuButtons.setVisibility(View.INVISIBLE);
         savedWorkOutsLV.setVisibility(View.INVISIBLE);
+        addWorkoutButtonBT.setVisibility(View.INVISIBLE);
     }
 
     public void customizedWorkoutButton (View view){
@@ -49,6 +52,7 @@ public class SavedWorkouts extends MenuButtonBar {
         createWorkoutPopup.setVisibility(View.INVISIBLE);
         menuButtons.setVisibility(View.VISIBLE);
         savedWorkOutsLV.setVisibility(View.VISIBLE);
+        addWorkoutButtonBT.setVisibility(View.VISIBLE);
     }
 
 
@@ -75,6 +79,7 @@ public class SavedWorkouts extends MenuButtonBar {
             e.printStackTrace();
         }
 
+        addWorkoutButtonBT = (Button) findViewById(R.id.addWorkoutButton);
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
         deleteWorkoutPopup = (LinearLayout) findViewById(R.id.savedWorkoutDeleteWorkoutLinearLayout);
         menuButtons        = (LinearLayout) findViewById(R.id.savedWorkoutStartMenuLinearLayout);
