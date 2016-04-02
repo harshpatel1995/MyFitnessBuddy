@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:onClick="addWorkoutOnClick"
         android:textAllCaps="false"
-        android:text="Add Workout"
+        android:text="Add New Workout"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
