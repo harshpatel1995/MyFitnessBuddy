@@ -36,6 +36,7 @@ public class SavedWorkouts extends MenuButtonBar {
     public void addWorkoutOnClick(View view) {
         createWorkoutPopup.setVisibility(View.VISIBLE);
         menuButtons.setVisibility(View.INVISIBLE);
+        savedWorkOutsLV.setVisibility(View.INVISIBLE);
     }
 
     public void customizedWorkoutButton (View view){
@@ -51,6 +52,7 @@ public class SavedWorkouts extends MenuButtonBar {
     public void backOnClick(View view) {
         createWorkoutPopup.setVisibility(View.INVISIBLE);
         menuButtons.setVisibility(View.VISIBLE);
+        savedWorkOutsLV.setVisibility(View.VISIBLE);
     }
 
 

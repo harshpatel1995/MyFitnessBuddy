@@ -105,7 +105,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
            String workoutStr = "";
            for (int i = 0; i < workoutLV.getAdapter().getCount(); i++) {
                if (selected.get(i)) {
-                   workoutStr += workoutLV.getItemAtPosition(i).toString() + "|";
+                   workoutStr = workoutLV.getItemAtPosition(i).toString();
                }
            }
 
@@ -113,7 +113,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
            myDbHelper_v3 = new DataBaseHelper(this);
            //at least one workout is checked
            if (!workoutStr.equals("")) {
-               workoutStr = workoutStr.substring(0, workoutStr.length() - 1);
+
                try {
                    myDbHelper_v3.createDataBase();
                } catch (IOException ioe) {
@@ -127,14 +127,15 @@ public class PredefinedWorkouts extends AppCompatActivity {
                try {
                    //get actual database from manager (the one we just opened)
                    SQLiteDatabase exerciseDB = myDbHelper_v3.getReadableDatabase();
-                   Cursor c_v4 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = "+workoutStr, null);
+                   Cursor c_v4 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = "+ "'" + workoutStr + "'", null);
                    //get items from "name" column of table
-                   int idxExercise = c_v4.getColumnIndex("exercise");
+                   int idxExercise = c_v4.getColumnIndex("exercises");
                    //move cursor to top of list (table)
                    c_v4.moveToFirst();
 
                    while (c_v4 != null) {
                        predefinedWorkoutListArr.add(c_v4.getString(idxExercise));
+                       Log.i("test",c_v4.getString(idxExercise));
                        c_v4.moveToNext();
                    }
 
