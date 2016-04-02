@@ -14,7 +14,7 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:id="@+id/previewWorkoutExerciseLV"
         android:layout_below="@+id/previewWorkoutNameTV"
         android:layout_alignParentLeft="true"
@@ -28,7 +28,8 @@
         android:text="Workout Name"
         android:id="@+id/previewWorkoutNameTV"
         android:textSize="20sp"
-        android:textColor="@color/textPrimary" />
+        android:textColor="@color/textPrimary"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:layout_width="wrap_content"

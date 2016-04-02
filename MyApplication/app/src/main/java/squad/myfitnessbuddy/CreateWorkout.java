@@ -27,6 +27,9 @@ public class CreateWorkout extends AppCompatActivity {
     //listview control that displays exercises on screen
     public ListView exerciseLV;
 
+    //database
+    public SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,17 @@ public class CreateWorkout extends AppCompatActivity {
         //gets intent of page that just called this one
         Intent intent = getIntent();
 
+        try {
+            database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+
+            //open database
+            database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         exerciseLV = (ListView) findViewById(R.id.exercisesLV);
 
         //populate list of exercises
@@ -55,30 +69,12 @@ public class CreateWorkout extends AppCompatActivity {
         //create array to store exercise names
         final ArrayList<String> exercisesList = new ArrayList<>();
 
-        //create the database manager
-        DataBaseHelper myDbHelper;
-        myDbHelper = new DataBaseHelper(this);
-
-        //create database if it does not exist (or was erased)
-        //open if it is already there
-        try {
-            myDbHelper.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
 
         try {
-            myDbHelper.openDataBase();
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
-        try {
-            //get actual database from manager (the one we just opened)
-            SQLiteDatabase exerciseDB = myDbHelper.getReadableDatabase();
 
             //set cursor to start traversing search
             //raw query is SQL code (Select everything from table "exercises" and order them by name)
-            Cursor c = exerciseDB.rawQuery("SELECT * FROM exercises ORDER BY name", null);
+            Cursor c = database.rawQuery("SELECT * FROM exercises ORDER BY name", null);
 
             //get items from "name" column of table
             int nameIndex = c.getColumnIndex("name");
@@ -93,8 +89,6 @@ public class CreateWorkout extends AppCompatActivity {
                 c.moveToNext();
             }
 
-            //close database to avoid memory leak
-            exerciseDB.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -143,10 +137,33 @@ public class CreateWorkout extends AppCompatActivity {
             exercisesForWorkoutStr = exercisesForWorkoutStr.substring(0, exercisesForWorkoutStr.length() - 1);
 
                 //save exercise to database
-                saveCustomWorkoutInDataBase(workoutNameStr,exercisesForWorkoutStr);
+                boolean isAcceptableNameBln = true;
+                boolean isOriginalName = true;
 
-                Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
-                startActivity(savedWorkouts);
+                if (containsSpecialCharacter(workoutNameStr))
+                {
+                    isAcceptableNameBln = false;
+                }
+                if(workoutAlreadyInDataBase(workoutNameStr))
+                {
+                    isOriginalName = false;
+                }
+
+                if(isAcceptableNameBln && isOriginalName) {
+                    saveCustomWorkoutInDataBase(workoutNameStr, exercisesForWorkoutStr);
+
+                    Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
+                    startActivity(savedWorkouts);
+                }
+                else{
+                    if(!isAcceptableNameBln) {
+                        Toast.makeText(getApplicationContext(), "Name cannot cannot special characters.", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "This exercise already exists.", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
             //no exercise is checked
@@ -158,25 +175,25 @@ public class CreateWorkout extends AppCompatActivity {
 
     }
 
+    //checks if there are any special character in string
+    //not good for SQL
+    public boolean containsSpecialCharacter(String string) {
+        return (string == null) ? false : !string.matches("[A-Za-z0-9 ]*");
+    }
+
     //Saves the workout in the database
     public void saveCustomWorkoutInDataBase(String workoutNameStr, String exercisesStr){
 
-        try {
-            SQLiteDatabase database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+            try {
 
-            //open database
-            database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
-
-            //adds a new record for the workout
-            database.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
-                    + "', '" + exercisesStr + "')");
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
+                //adds a new record for the workout
+                database.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
+                        + "', '" + exercisesStr + "')");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-    }
 
     //go back a page
     public void cancelCustomWorkout(View view){
@@ -184,8 +201,25 @@ public class CreateWorkout extends AppCompatActivity {
     }
 
 
+    //checks if exercise is already in the database
+public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
+{
+    //counts number of entries in daabase with same name
+    Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE name = '" + workoutNameStrToCheck + "'", null);
+    mCount.moveToFirst();
+    int count= mCount.getInt(0);
+    mCount.close();
 
+    if (count!=0){
+        return true;
+    }
+    else{
+        return false;
+    }
 
+    }
 }
+
+
 
 

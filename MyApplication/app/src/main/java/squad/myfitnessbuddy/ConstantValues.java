@@ -25,6 +25,7 @@ public class ConstantValues {
 
     public static final String cSP_FROM_USER_PROFILE = "fromUserProfile";
     public static final String cSP_PREVIEW_WORKOUT = "Preview Workout";
+    public static final String cSP_PREVIEW_FOR_PREDEFINED = "Preview For Predefined Workout";
 
 
 }

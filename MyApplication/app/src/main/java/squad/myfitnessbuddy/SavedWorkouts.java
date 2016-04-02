@@ -4,22 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -126,6 +122,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
         }
         else{
+            //message for developer
             Log.i("Error", "Database is null.");
         }
     }
@@ -175,7 +172,10 @@ public class SavedWorkouts extends MenuButtonBar {
 
             //Use the editor to store the name of the current workout to preview in the SharedPreference
             editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
+            editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED,false);
+            editor.apply();
 
+            //open preview page
             Intent previewWorkout = new Intent(getApplicationContext(), PreviewWorkout.class);
             startActivity(previewWorkout);
         }
