@@ -48,6 +48,7 @@
     <string name="profile_button">Profile</string>
     <string name="workouts_button">Workouts</string>
     <string name="logs_button">Logs</string>
+
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
