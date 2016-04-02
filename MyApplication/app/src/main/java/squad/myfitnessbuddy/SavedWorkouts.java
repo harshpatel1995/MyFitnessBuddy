@@ -47,6 +47,12 @@ public class SavedWorkouts extends MenuButtonBar {
         startActivity(predefinedWorkout);
     }
 
+    public void backOnClick(View view) {
+        createWorkoutPopup.setVisibility(View.INVISIBLE);
+        menuButtons.setVisibility(View.VISIBLE);
+    }
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.saved_workouts);
