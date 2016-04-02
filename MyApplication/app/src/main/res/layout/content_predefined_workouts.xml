@@ -57,9 +57,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/savedWorkoutsLV"
-        android:layout_alignLeft="@+id/savedWorkoutsLV"
-        android:layout_alignStart="@+id/savedWorkoutsLV"
+        android:layout_below="@+id/workoutLV"
+        android:layout_alignEnd="@+id/workoutLV"
+        android:layout_alignStart="@+id/workoutLV"
         android:id="@+id/predefinedWorkoutMenuLinearLayout"
         android:weightSum="3">
         <Button
@@ -69,7 +69,7 @@
             android:id="@+id/savePreWorkout"
             android:layout_below="@+id/workoutLV"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:onClick="selectPredefinedWorkoutButton" />
 
         <Button
@@ -79,7 +79,7 @@
             android:id="@+id/previewWorkout"
             android:layout_below="@+id/workoutLV"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:onClick="previewPredefinedWorkoutButton" />
     </LinearLayout>
 </RelativeLayout>
