@@ -18,7 +18,8 @@
         android:id="@+id/exercisesLV"
         android:layout_below="@+id/createWorkoutName"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,8 +36,8 @@
         android:layout_height="wrap_content"
         android:text="Save Workout"
         android:id="@+id/saveWorkout"
-        android:layout_below="@+id/exercisesLV"
-        android:layout_centerHorizontal="true"
         android:textSize="20sp"
-        android:onClick="saveCustomWorkout" />
+        android:onClick="saveCustomWorkout"
+        android:layout_below="@+id/exercisesLV"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
