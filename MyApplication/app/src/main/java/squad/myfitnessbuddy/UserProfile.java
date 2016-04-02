@@ -88,7 +88,7 @@ public class UserProfile extends MenuButtonBar {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
-//
+
         String heightStr, weightStr;
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
