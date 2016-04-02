@@ -24,7 +24,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Workout Name"
+        android:hint="Enter Workout Name"
         android:id="@+id/createWorkoutName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
