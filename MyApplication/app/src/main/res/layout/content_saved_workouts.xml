@@ -26,7 +26,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:id="@+id/savedWorkoutsLV"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/addWorkoutButton"
@@ -64,6 +64,42 @@
             android:textColor="#FFFFFF"
             android:onClick="customizedWorkoutButton"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/savedWorkoutsLV"
+        android:layout_alignLeft="@+id/savedWorkoutsLV"
+        android:layout_alignStart="@+id/savedWorkoutsLV"
+        android:id="@+id/savedWorkoutStartMenuLinearLayout"
+        android:weightSum="3">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:id="@+id/savedWorkoutsStartbutton"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:onClick="startWorkout" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preview"
+            android:id="@+id/savedWorkoutsPreviewbutton"
+            android:layout_weight="1"
+            android:onClick="startWorkout" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/savedWorkoutsDeletebutton"
+            android:layout_weight="1"
+            android:onClick="displayDeleteOption" />
     </LinearLayout>
 
 </RelativeLayout>

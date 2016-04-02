@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -111,6 +112,21 @@ public class SavedWorkouts extends MenuButtonBar {
         else{
             Log.i("Error", "Database is null.");
         }
+    }
+
+    public void displayDeleteOption(View view){
+
+        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+    }
+
+    public void startWorkout(View view){
+
+        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+    }
+
+    public void previewWorkout(View view){
+
+        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
     }
 
 
