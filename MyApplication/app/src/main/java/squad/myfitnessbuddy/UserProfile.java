@@ -107,7 +107,6 @@ public class UserProfile extends MenuButtonBar {
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
-
         float heightFlt = sharedPreference.getFloat("Height", 0);
         float weightFlt = sharedPreference.getFloat("Weight", 0);
 
