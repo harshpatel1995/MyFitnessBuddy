@@ -106,11 +106,10 @@ public class UserProfile extends MenuButtonBar {
         extremelyActiveTV = (TextView) findViewById(R.id.extremelyActiveTV);
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        Intent intent = getIntent();
-        Intent viewMyLogs = getIntent();
 
-        float heightFlt = intent.getFloatExtra("Height", 0);
-        float weightFlt = intent.getFloatExtra("Weight", 0);
+
+        float heightFlt = sharedPreference.getFloat("Height", 0);
+        float weightFlt = sharedPreference.getFloat("Weight", 0);
 
         //format height and weight to show appropriate precision per user input
         if (heightFlt == Math.floor(heightFlt)) {
@@ -125,18 +124,18 @@ public class UserProfile extends MenuButtonBar {
             weightStr = (String.format("%.2f", weightFlt));
         }
 
-        fullNameTV.setText(intent.getStringExtra("First Name") + " " + intent.getStringExtra("Last Name"));
-        ageTV.setText(String.valueOf(intent.getIntExtra("Age", 0)));
-        genderTV.setText(intent.getStringExtra("Gender"));
+        fullNameTV.setText(sharedPreference.getString("First Name", "") + " " + sharedPreference.getString("Last Name", ""));
+        ageTV.setText(String.valueOf(sharedPreference.getInt("Age", 0)));
+        genderTV.setText(sharedPreference.getString("Gender", ""));
         heightTV.setText(heightStr + "\"");
         weightTV.setText(weightStr + " lbs");
-        bmiTV.setText(String.valueOf(intent.getFloatExtra("BMI", 0)));
+        bmiTV.setText(String.valueOf(sharedPreference.getFloat("BMI", 0)));
 
-        sedentaryTV.setText(String.format("%.0f", intent.getFloatExtra("Sedentary", 0)));
-        lightlyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Lightly Active", 0)));
-        moderatelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Moderately Active", 0)));
-        veryActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Very Active", 0)));
-        extremelyActiveTV.setText(String.format("%.0f", intent.getFloatExtra("Extremely Active", 0)));
+        sedentaryTV.setText(String.format("%.0f", sharedPreference.getFloat("Sedentary", 0)));
+        lightlyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Lightly Active", 0)));
+        moderatelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Moderately Active", 0)));
+        veryActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Very Active", 0)));
+        extremelyActiveTV.setText(String.format("%.0f", sharedPreference.getFloat("Extremely Active", 0)));
 
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();

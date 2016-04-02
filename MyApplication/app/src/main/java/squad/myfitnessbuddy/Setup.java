@@ -204,26 +204,7 @@ public class Setup extends AppCompatActivity {
 
     //Transfer to the user profile page
     public void goToUserProfile() {
-
-        //Create an intent to transfer to UserProfile class
         Intent profile = new Intent(getApplicationContext(), UserProfile.class);
-
-        //Transfer all the info
-        profile.putExtra("First Name", sharedPreference.getString("First Name", ""));
-        profile.putExtra("Last Name", sharedPreference.getString("Last Name", ""));
-        profile.putExtra("Gender", sharedPreference.getString("Gender", ""));
-        profile.putExtra("Age", sharedPreference.getInt("Age", 0));
-        profile.putExtra("Height", sharedPreference.getFloat("Height", 0));
-
-        profile.putExtra("Weight", sharedPreference.getFloat("Weight", 0));
-        profile.putExtra("BMI", sharedPreference.getFloat("BMI", 0));
-        profile.putExtra("Sedentary", sharedPreference.getFloat("Sedentary", 0));
-        profile.putExtra("Lightly Active", sharedPreference.getFloat("Lightly Active", 0));
-        profile.putExtra("Moderately Active", sharedPreference.getFloat("Moderately Active", 0));
-        profile.putExtra("Very Active", sharedPreference.getFloat("Very Active", 0));
-        profile.putExtra("Extremely Active", sharedPreference.getFloat("Extremely Active", 0));
-
-        //Perform the intent
         startActivity(profile);
     }
 
