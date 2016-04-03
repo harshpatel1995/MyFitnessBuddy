@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 public class MyLogs extends MenuButtonBar {
@@ -44,31 +45,34 @@ public class MyLogs extends MenuButtonBar {
 
     protected void populateLogs() {
 
-        int id;
-        String date;
-        String exerciseName;
-        int reps;
-        int weight;
+        try {
+            int id;
+            String date;
+            String exerciseName;
+            int reps;
+            int weight;
 
-        Cursor c = exerciseDB.rawQuery("SELECT * FROM logs", null);
-        int idColumn = c.getColumnIndex("_id");
-        int dateColumn = c.getColumnIndex("date");
-        int exerciseColumn = c.getColumnIndex("exercise");
-        int repsColumn = c.getColumnIndex("reps");
-        int weightColumn = c.getColumnIndex("weight");
+            Cursor c = exerciseDB.rawQuery("SELECT * FROM logs", null);
+            int idColumn = c.getColumnIndex("_id");
+            int dateColumn = c.getColumnIndex("date");
+            int exerciseColumn = c.getColumnIndex("exercise");
+            int repsColumn = c.getColumnIndex("reps");
+            int weightColumn = c.getColumnIndex("weight");
 
-        c.moveToLast();
 
-        while(c != null) {
-            id = c.getInt(idColumn);
-            date = c.getString(dateColumn);
-            exerciseName = c.getString(exerciseColumn);
-            reps = c.getInt(repsColumn);
-            weight = c.getInt(weightColumn);
-            System.out.println(id + " " + date + " " + exerciseName + " " + reps + " " + weight +" ");
-            c.moveToPrevious();
+            for (c.moveToLast(); !c.isBeforeFirst(); c.moveToPrevious()) {
+                id = c.getInt(idColumn);
+                date = c.getString(dateColumn);
+                exerciseName = c.getString(exerciseColumn);
+                reps = c.getInt(repsColumn);
+                weight = c.getInt(weightColumn);
+                System.out.println(id + " " + date + " " + exerciseName + " " + reps + " " + weight + " ");
+            }
+            c.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
         }
 
-        c.close();
     }
 }
