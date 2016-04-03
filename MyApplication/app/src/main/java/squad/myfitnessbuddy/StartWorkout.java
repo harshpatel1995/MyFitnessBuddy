@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 
 public class StartWorkout extends AppCompatActivity {
@@ -32,10 +33,9 @@ public class StartWorkout extends AppCompatActivity {
     //database for system
     SQLiteDatabase database;
 
-    String workoutNameStr;
+    String workoutNameStr, formattedDateStr;
     ListView startWorkoutView;
     TextView startWorkoutNameTV;
-    String date;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     final ArrayList<String> exerciseList = new ArrayList<>();
 
@@ -53,13 +53,12 @@ public class StartWorkout extends AppCompatActivity {
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         workoutNameStr = sharedPreference.getString(ConstantValues.cSP_STARTED_WORKOUT, "Workout");
-        date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle(workoutNameStr+date);
-
+        actionBar.setTitle("Log Workout");
 
         try {
             database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
@@ -84,6 +83,7 @@ public class StartWorkout extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.i("Exercise Tapped: ", exerciseList.get(position));
+                Toast.makeText(getApplicationContext(), "This feature coming soon.", Toast.LENGTH_LONG).show();
             }
 
         });
@@ -101,12 +101,8 @@ public class StartWorkout extends AppCompatActivity {
         //create array to store exercise names
         //final ArrayList<String> exerciseList = new ArrayList<>();
 
-        if (isPredefinedWorkoutBln){
-            tableNameStr = "predefinedWorkouts";
-        }
-        else{
             tableNameStr = "savedWorkouts";
-        }
+
 
         if (database != null) {
             try {
@@ -138,12 +134,6 @@ public class StartWorkout extends AppCompatActivity {
                 adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
 
                 startWorkoutView.setAdapter(adapter);
-
-
-
-
-
-
 
             }
             else{
