@@ -43,6 +43,10 @@
         <activity
             android:name=".PreviewWorkout"
             android:label="@string/title_activity_preview_workout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StartWorkout"
+            android:label="@string/title_activity_start_workout"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
