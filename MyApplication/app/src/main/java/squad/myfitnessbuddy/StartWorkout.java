@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,11 +16,8 @@ import android.widget.ListView;
 import java.text.SimpleDateFormat;
 import android.widget.TextView;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import android.widget.AdapterView.OnItemClickListener;
+
 import android.widget.Toast;
 
 
@@ -34,7 +29,7 @@ public class StartWorkout extends AppCompatActivity {
     SQLiteDatabase database;
 
     String workoutNameStr, formattedDateStr;
-    ListView startWorkoutView;
+    ListView startWorkoutLV;
     TextView startWorkoutNameTV;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     final ArrayList<String> exerciseList = new ArrayList<>();
@@ -69,7 +64,7 @@ public class StartWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        startWorkoutView = (ListView) findViewById(R.id.startWorkoutView);
+        startWorkoutLV = (ListView) findViewById(R.id.startWorkoutView);
         startWorkoutNameTV = (TextView) findViewById(R.id.startWorkoutNameTV);
         startWorkoutNameTV.setText(workoutNameStr);
 
@@ -78,7 +73,7 @@ public class StartWorkout extends AppCompatActivity {
         populateExercisesListView();
 
 
-        startWorkoutView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        startWorkoutLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -94,7 +89,6 @@ public class StartWorkout extends AppCompatActivity {
     public void populateExercisesListView(){
 
         //String workoutNameStr = sharedPreference.getString(ConstantValues.cSP_PREVIEW_WORKOUT, "");
-        boolean isPredefinedWorkoutBln = sharedPreference.getBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
         String tableNameStr;
         String exercisesToAddStr = "";
 
@@ -118,6 +112,8 @@ public class StartWorkout extends AppCompatActivity {
 
                 exercisesToAddStr = c.getString(exerciseIndex);
 
+                c.close();
+
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -133,7 +129,7 @@ public class StartWorkout extends AppCompatActivity {
                 //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
                 adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
 
-                startWorkoutView.setAdapter(adapter);
+                startWorkoutLV.setAdapter(adapter);
 
             }
             else{

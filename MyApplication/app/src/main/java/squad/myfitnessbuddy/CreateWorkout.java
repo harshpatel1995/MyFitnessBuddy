@@ -76,11 +76,13 @@ public class CreateWorkout extends AppCompatActivity {
                exercisesList.add(c.getString(nameIndex));
                 c.moveToNext();
             }
+
+            c.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         //adapter to get list into ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, exercisesList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, exercisesList);
         exerciseLV.setAdapter(adapter);
         //check multiple exercises at a time
         exerciseLV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
