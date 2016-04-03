@@ -29,14 +29,12 @@ public class PredefinedWorkouts extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
 
-        //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Predefined Workouts");
 
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
-            //open or create database
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
         }
         catch (Exception e){
@@ -45,17 +43,18 @@ public class PredefinedWorkouts extends AppCompatActivity {
 
         workoutLV = (ListView) findViewById(R.id.workoutLV);
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+
         populateWorkouts();
     }
+
     //Method to populate list of predefined workouts
     protected void populateWorkouts() {
         //create array to store Predefined Workout names
         final ArrayList<String> predefinedWorkoutList = new ArrayList<>();
 
         try {
-
             //set cursor to start traversing search
-            //raw query is SQL code (Select everything from table "exercises" and order them by name)
+            //raw query is SQL code (Select everything from table "predefinedWorkouts")
             Cursor c_v2 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts", null);
             //get items from "name" column of table
             int idxName = c_v2.getColumnIndex("name");
@@ -128,36 +127,41 @@ public class PredefinedWorkouts extends AppCompatActivity {
     }
 
     public void selectPredefinedWorkoutButton(View view) {
+        //create an array to hold the checked predefined workout
         SparseBooleanArray checked = workoutLV.getCheckedItemPositions();
+        //String to hold the list of exercersises for the selected workout (as one long string)
         String exerciseString = "";
+        //hold the string name of the predefined workout
         String selectedWorkoutName = "";
 
+        //if no predefined workout was checked
         if (checked.size() < 1) {
             Toast.makeText(getApplicationContext(), "You must select a workout.", Toast.LENGTH_SHORT).show();
         } else {
+            //get the string name of the selected predefined workout
             for (int i = 0; i < workoutLV.getAdapter().getCount(); i++) {
                 if (checked.get(i)) {
-                    selectedWorkoutName = workoutLV.getItemAtPosition(i).toString() + "|";
+                    selectedWorkoutName = workoutLV.getItemAtPosition(i).toString();
                 }
-            }
-            if (!selectedWorkoutName.equals("")) {
-                selectedWorkoutName = selectedWorkoutName.substring(0, selectedWorkoutName.length() - 1);
             }
             boolean isOriginalName = true;
             if (workoutAlreadyInDataBase(selectedWorkoutName)) {
                 isOriginalName = false;
             }
+            //fetch the exercises of the selected predefined workout if the workout doesnt already exist in the saved workouts table
             if (isOriginalName) {
                 try {
                     Cursor C = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = '" + selectedWorkoutName + "'", null);
-                    //get items from "name" column of table
+                    //get items from "exercises" column of table
                     int exerciseIndex = C.getColumnIndex("exercises");
                     //move cursor to top of list (table)
                     C.moveToFirst();
+                    //save the exercise string
                     exerciseString = C.getString(exerciseIndex);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                //save the predefined workout into the "savedWorkouts" table
                 savePredefinedWorkoutInDataBase(selectedWorkoutName, exerciseString);
                 Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
                 startActivity(savedWorkouts);
@@ -167,7 +171,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
 
     public void savePredefinedWorkoutInDataBase(String workoutNameStr, String exercisesStr){
         try {
-            //adds a new record for the workout
+            //adds a new record for the workout in the "savedWorkouts" table
             exerciseDB.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
                     + "', '" + exercisesStr + "')");
         } catch (Exception e) {
