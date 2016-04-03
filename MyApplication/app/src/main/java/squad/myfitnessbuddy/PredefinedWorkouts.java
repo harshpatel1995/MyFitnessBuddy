@@ -27,6 +27,9 @@ public class PredefinedWorkouts extends AppCompatActivity {
     SharedPreferences sharedPreference;
     LinearLayout previewPopup;
 
+    //database
+    SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +53,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
         }
 
         workoutLV = (ListView) findViewById(R.id.workoutLV);
-
-
         populateWorkouts();
-
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
     }
     //Method to populate list of predefined workouts
@@ -136,35 +136,60 @@ public class PredefinedWorkouts extends AppCompatActivity {
         finish();
     }
 
-    public void selectPredefinedWorkoutButton(View view)
-    {
-        SparseBooleanArray selected = workoutLV.getCheckedItemPositions();
+    public void selectPredefinedWorkoutButton(View view) {
+        String selectedWorkoutName = getCheckedItemName(workoutLV);
+        String exerciseString = "";
 
-        //nothing was pressed yet in listview to populate the sparse boolean array
-        if(selected.size()<1){
-            Toast.makeText(getApplicationContext(),"You must select a workout.",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            String workoutStr = "";
+        if (!selectedWorkoutName.equals("")) {
+            try {
+                Cursor c = exerciseDB.rawQuery("SELECT * predefinedWorkouts WHERE name = '" + selectedWorkoutName + "'", null);
+                int idxExercise = c.getColumnIndex("exercises");
+                while (c != null) {
+                    exerciseString = c.getString(idxExercise);
 
-            for (int i = 0; i < workoutLV.getAdapter().getCount(); i++) {
-                if (selected.get(i)) {
-                    workoutStr += workoutLV.getItemAtPosition(i).toString() + "|";
                 }
-            }
-            //at least one exercise is checked
-            if(!workoutStr.equals("")){
-                workoutStr = workoutStr.substring(0, workoutStr.length() - 1);
-                Log.i("Info", workoutStr);
-            }
-            //no exercise is checked
-            else{
-                Toast.makeText(getApplicationContext(),"You must select a workout.",Toast.LENGTH_SHORT).show();
-            }
+            //close cursor to avoid memory leak
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        }else {
+            //nothing was pressed yet in listview so "selectedWorkoutName" is null
+            Toast.makeText(getApplicationContext(), "You must select a workout.", Toast.LENGTH_SHORT).show();
+        }
+        savePredefinedWorkoutInDataBase(selectedWorkoutName, exerciseString);
 
+        Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
+        startActivity(savedWorkouts);
+    }
+
+    public void savePredefinedWorkoutInDataBase(String workoutNameStr, String exercisesStr){
+        String selectedWorkoutName = getCheckedItemName(workoutLV);
+        try {
+            //adds a new record for the workout
+            database.execSQL("INSERT INTO savedWorkouts (name, exercises) VALUES ('" + workoutNameStr
+                    + "', '" + exercisesStr + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
+    {
+        //counts number of entries in database with same name
+        Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE name = '" + workoutNameStrToCheck + "'", null);
+        mCount.moveToFirst();
+        int count= mCount.getInt(0);
+        mCount.close();
+
+        if (count!=0){
+            return true;
+        }
+        else{
+            return false;
         }
 
     }
-
 }
+
 

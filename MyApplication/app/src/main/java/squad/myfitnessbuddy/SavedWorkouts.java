@@ -89,8 +89,6 @@ public class SavedWorkouts extends MenuButtonBar {
         populateExercises();
 
     }
-
-
     //Method to populate list of exercises
     protected void populateExercises() {
         //create array to store exercise names
