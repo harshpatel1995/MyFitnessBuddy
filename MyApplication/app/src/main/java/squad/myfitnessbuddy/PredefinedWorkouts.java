@@ -140,8 +140,6 @@ public class PredefinedWorkouts extends AppCompatActivity {
         if (checked.size() < 1) {
             Toast.makeText(getApplicationContext(), "You must select a workout.", Toast.LENGTH_SHORT).show();
         } else {
-            //selectedWorkoutName = getCheckedItemName(workoutLV);
-
             for (int i = 0; i < workoutLV.getAdapter().getCount(); i++) {
                 if (checked.get(i)) {
                     selectedWorkoutName = workoutLV.getItemAtPosition(i).toString() + "|";
