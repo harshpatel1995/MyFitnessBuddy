@@ -1,7 +1,6 @@
 package squad.myfitnessbuddy;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PreviewWorkout extends AppCompatActivity {
 
@@ -66,7 +64,7 @@ public class PreviewWorkout extends AppCompatActivity {
     public void populateExercisesListView(){
 
         String workoutNameStr = sharedPreference.getString(ConstantValues.cSP_PREVIEW_WORKOUT, "");
-        boolean isPredefinedWorkoutBln = sharedPreference.getBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED, false);
+        boolean isPredefinedWorkoutBln = sharedPreference.getBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
         String tableNameStr;
         String exercisesToAddStr = "";
 
@@ -106,7 +104,7 @@ public class PreviewWorkout extends AppCompatActivity {
                     }
 
                     //adapter to get list into ListView
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exerciseList);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
                     exercisesLV.setAdapter(adapter);
 
 

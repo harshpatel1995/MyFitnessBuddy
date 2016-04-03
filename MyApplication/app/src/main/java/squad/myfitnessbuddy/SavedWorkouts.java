@@ -182,7 +182,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
             //Use the editor to store the name of the current workout to preview in the SharedPreference
             editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
-            editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED, false);
+            editor.putBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
             editor.apply();
 
             //open preview page
@@ -207,7 +207,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
             //Use the editor to store the name of the current workout to preview in the SharedPreference
             editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
-            editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED, false);
+            editor.putBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
             editor.apply();
 
             //open preview page

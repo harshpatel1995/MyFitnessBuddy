@@ -88,7 +88,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
 
            //Use the editor to store the name of the current workout to preview in the SharedPreference
            editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
-           editor.putBoolean(ConstantValues.cSP_PREVIEW_FOR_PREDEFINED,true);
+           editor.putBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED,true);
            editor.apply();
 
            //open preview page
