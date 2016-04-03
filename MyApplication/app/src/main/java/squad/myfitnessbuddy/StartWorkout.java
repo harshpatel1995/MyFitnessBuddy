@@ -45,7 +45,7 @@ public class StartWorkout extends AppCompatActivity {
         try {
             database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             //open or create database
-            database.execSQL(ConstantValues.cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL);
+            database.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -58,5 +58,13 @@ public class StartWorkout extends AppCompatActivity {
 
 
     }
+
+
+    public void addSetToDatabase(String exerciseNameStr, Integer repsInt, Integer weightInt){
+
+        
+    }
+
+
 
 }

@@ -193,7 +193,7 @@ public class SavedWorkouts extends MenuButtonBar {
             Toast.makeText(getApplicationContext(),"Please select a workout to start.",Toast.LENGTH_SHORT).show();
         }
 
-        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_LONG).show();
     }
 
     //goes to the preview workout activity to preview the workout
