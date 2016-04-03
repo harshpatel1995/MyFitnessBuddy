@@ -4,20 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class PredefinedWorkouts extends AppCompatActivity {
@@ -154,12 +149,12 @@ public class PredefinedWorkouts extends AppCompatActivity {
             }
             if (isOriginalName) {
                 try {
-                    Cursor V = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = '" + selectedWorkoutName + "'", null);
+                    Cursor C = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts WHERE name = '" + selectedWorkoutName + "'", null);
                     //get items from "name" column of table
-                    int exerciseIndex = V.getColumnIndex("exercises");
+                    int exerciseIndex = C.getColumnIndex("exercises");
                     //move cursor to top of list (table)
-                    V.moveToFirst();
-                    exerciseString = V.getString(exerciseIndex);
+                    C.moveToFirst();
+                    exerciseString = C.getString(exerciseIndex);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
