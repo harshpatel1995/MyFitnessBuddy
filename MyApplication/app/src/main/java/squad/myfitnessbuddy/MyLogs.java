@@ -66,6 +66,7 @@ public class MyLogs extends MenuButtonBar {
                 exerciseName = c.getString(exerciseColumn);
                 reps = c.getInt(repsColumn);
                 weight = c.getInt(weightColumn);
+                //for testing purposes
                 System.out.println(id + " " + date + " " + exerciseName + " " + reps + " " + weight + " ");
             }
             c.close();
