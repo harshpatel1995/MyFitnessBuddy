@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class StartWorkout extends AppCompatActivity {
 
@@ -57,42 +58,29 @@ public class StartWorkout extends AppCompatActivity {
 
 
         final ArrayList <String> myExerciseList = new ArrayList<>();
+        
 
-        /*
-        String formattedDateStr;
-
-        Calendar calendar = Calendar.getInstance();
-        //for testing
-        System.out.println("Current time => " + calendar.getTime());
-
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("YYYY-MM-DD");
-        formattedDateStr  = dateFormatter.format(calendar.getTime());
-        System.out.println(formattedDateStr);
-*/
     }
 
 
     //adds a single set to the database logs table
     public void addSetToDatabase(String exerciseNameStr, Integer repsInt, Integer weightInt){
 
-        String formattedDateStr;
-        Calendar calendar = Calendar.getInstance();
-        //for testing
-        System.out.println("Current time => " + calendar.getTime());
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("YYYY-MM-DD");
-        formattedDateStr  = dateFormatter.format(calendar.getTime());
+        String formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-/*
         try {
 
+            //SQL to insert the set into the database
+            String sqlCodeStr = "INSERT INTO logs (date, exercise, reps, weight) VALUES ('" + formattedDateStr
+                    + "', '" + exerciseNameStr + "', " + repsInt + ", " + weightInt + ")";
+
             //adds a new record for the workout
-            database.execSQL("INSERT INTO logs (date, exercise, reps, weight) VALUES ('" + workoutNameStr
-                    + "', '" + exercisesStr + "')");
+            database.execSQL(sqlCodeStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
-*/
+
     }
 
 
