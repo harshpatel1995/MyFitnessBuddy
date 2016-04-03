@@ -92,6 +92,7 @@ public class Setup extends AppCompatActivity {
         editor.apply();
 
         //After saving the data, we are ready to go to the user profile
+        UserProfile.backButtonCheck("setupPage");
         goToUserProfile();
     }
 

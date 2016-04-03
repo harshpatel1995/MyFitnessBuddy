@@ -20,8 +20,8 @@ public class UserProfile extends MenuButtonBar {
     TextView fullNameTV, ageTV, genderTV, heightTV, weightTV, bmiTV, sedentaryTV, lightlyActiveTV,
             moderatelyActiveTV, veryActiveTV, extremelyActiveTV;
     SharedPreferences sharedPreference;
+    static String backButton;
     LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup;
-
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
@@ -71,6 +71,29 @@ public class UserProfile extends MenuButtonBar {
         fullNameTV.setVisibility(View.INVISIBLE);
         menuPopup.setVisibility(View.VISIBLE);
     }
+    public static void backButtonCheck(String backButtonCheck) {
+        backButton = backButtonCheck;
+    }
+    @Override
+    public void onBackPressed() {
+        if(backButton == "setupPage") {
+            Intent backButton = new Intent(Intent.ACTION_MAIN);
+            backButton.addCategory(Intent.CATEGORY_HOME);
+            backButton.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(backButton);
+        }
+        else if(backButton == "other") {
+            finish();
+        }
+        else{
+            Intent backButton = new Intent(Intent.ACTION_MAIN);
+            backButton.addCategory(Intent.CATEGORY_HOME);
+            backButton.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(backButton);
+        }
+        backButton = null;
+    }
+
 
     //Method that adjusts the visibility of the background layouts to hide the menu popup
     public void hidePopUp() {
@@ -142,4 +165,5 @@ public class UserProfile extends MenuButtonBar {
         // For testing the first page multiple times. When applied, the sharedPreference data is deleted and the user goes to the Set Up page when the application starts next time.
         // sharedPreference.edit().clear().apply();
     }
+
 }

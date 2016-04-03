@@ -22,6 +22,7 @@ public class MenuButtonBar extends AppCompatActivity{
 
 
     public void goToProfileOnClick(View view) {
+        UserProfile.backButtonCheck("other");
         Intent profile = new Intent(getApplicationContext(), UserProfile.class);
         startActivity(profile);
     }
