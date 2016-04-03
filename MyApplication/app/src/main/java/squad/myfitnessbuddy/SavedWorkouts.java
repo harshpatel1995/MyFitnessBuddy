@@ -181,17 +181,16 @@ public class SavedWorkouts extends MenuButtonBar {
             SharedPreferences.Editor editor = sharedPreference.edit();
 
             //Use the editor to store the name of the current workout to preview in the SharedPreference
-            editor.putString(ConstantValues.cSP_PREVIEW_WORKOUT, selectedWorkoutName);
-            editor.putBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
+            editor.putString(ConstantValues.cSP_STARTED_WORKOUT, selectedWorkoutName);
             editor.apply();
 
-            //open preview page
+            //open workout page
             Intent startWorkout = new Intent(getApplicationContext(), StartWorkout.class);
             startActivity(startWorkout);
         }
         else{
             //if nothing selected, display error message
-            Toast.makeText(getApplicationContext(),"Please select a workout to preview.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Please select a workout to start.",Toast.LENGTH_SHORT).show();
         }
 
         Toast.makeText(getApplicationContext(),"This feature coming soon.",Toast.LENGTH_SHORT).show();
