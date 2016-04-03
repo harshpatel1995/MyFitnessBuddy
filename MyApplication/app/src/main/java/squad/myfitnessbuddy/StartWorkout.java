@@ -20,6 +20,8 @@ public class StartWorkout extends AppCompatActivity {
     //database for system
     SQLiteDatabase database;
 
+    String workoutNameStr;
+
 
 
     @Override
@@ -33,9 +35,11 @@ public class StartWorkout extends AppCompatActivity {
         //Here we instantiate the sharedPreference by giving it the package name
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
+        workoutNameStr = sharedPreference.getString(ConstantValues.cSP_STARTED_WORKOUT, "Workout");
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle(sharedPreference.getString(ConstantValues.cSP_PREVIEW_WORKOUT,"Workout"));
+        actionBar.setTitle(workoutNameStr);
 
 
         try {
