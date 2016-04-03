@@ -119,7 +119,7 @@ public class SavedWorkouts extends MenuButtonBar {
             }
 
             //adapter to get list into ListView
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, workoutsList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, workoutsList);
             savedWorkOutsLV.setAdapter(adapter);
             //check multiple exercises at a time
             savedWorkOutsLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -137,7 +137,7 @@ public class SavedWorkouts extends MenuButtonBar {
         String workoutToDeleteStr = getCheckedItemName(savedWorkOutsLV);
         if (!workoutToDeleteStr.equals("")) {
 
-            String deleteWorkoutText = "Are you sure you want to delete workout: \"" + workoutToDeleteStr + "\"?";
+            String deleteWorkoutText = "Are you sure you want to delete workout:\n\"" + workoutToDeleteStr + "?\"";
             TextView deleteMessage = (TextView) findViewById(R.id.savedWorkoutsDeleteMessage);
             deleteMessage.setText(deleteWorkoutText);
             deleteWorkoutPopup.setVisibility(View.VISIBLE);
@@ -211,7 +211,7 @@ public class SavedWorkouts extends MenuButtonBar {
         //iterate through list
         for(int counter = 0; counter < listView.getCount(); counter++){
             //if something is checked get name of item
-            if (sparseBooleanArray.get(counter) == true){
+            if (sparseBooleanArray.get(counter)){
                 selectedItem = listView.getItemAtPosition(counter).toString();
                 break;
             }

@@ -72,7 +72,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
         }
 
         //adapter to get list into ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, predefinedWorkoutList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, predefinedWorkoutList);
         workoutLV.setAdapter(adapter);
         //only one workout can be checked at a time
         workoutLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -113,7 +113,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
         //iterate through list
         for(int counter = 0; counter < listView.getCount(); counter++){
             //if something is checked get name of item
-            if (sparseBooleanArray.get(counter) == true){
+            if (sparseBooleanArray.get(counter)){
                 selectedItem = listView.getItemAtPosition(counter).toString();
                 break;
             }
@@ -188,7 +188,7 @@ public class PredefinedWorkouts extends AppCompatActivity {
         mCount.close();
 
         if (count!=0){
-            Toast.makeText(getApplicationContext(), "Workout Already Exists in Your Saved Workouts.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "\"" + workoutNameStrToCheck + "\" already exists in your saved workouts.", Toast.LENGTH_SHORT).show();
             return true;
         }
         else{
