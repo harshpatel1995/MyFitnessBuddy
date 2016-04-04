@@ -40,8 +40,8 @@ public class MyLogs extends MenuButtonBar {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
             exerciseDB.execSQL("DELETE FROM logs");
-            exerciseDB.execSQL("INSERT INTO logs (date, exercise, reps, weight) VALUES ('2016-04-03', 'Squats', 8, 200)");
-            exerciseDB.execSQL("INSERT INTO logs (date, exercise, reps, weight) VALUES ('2016-04-05', 'Bench Press', 7, 100)");
+            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-03', 'Leg Day', 'Squats', 8, 200)");
+            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-05', 'Chest Blast', 'Bench Press', 7, 100)");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -54,14 +54,17 @@ public class MyLogs extends MenuButtonBar {
 
         try {
             int id;
+            String workoutName;
             String dateString;
             String exerciseName;
             int reps;
             int weight;
 
+
             Cursor c = exerciseDB.rawQuery("SELECT * FROM logs", null);
             int idColumn = c.getColumnIndex("_id");
             int dateColumn = c.getColumnIndex("date");
+            int workoutColumn = c.getColumnIndex("workout");
             int exerciseColumn = c.getColumnIndex("exercise");
             int repsColumn = c.getColumnIndex("reps");
             int weightColumn = c.getColumnIndex("weight");
@@ -69,6 +72,7 @@ public class MyLogs extends MenuButtonBar {
 
             for (c.moveToLast(); !c.isBeforeFirst(); c.moveToPrevious()) {
                 id = c.getInt(idColumn);
+                workoutName = c.getString(workoutColumn);
                 dateString = c.getString(dateColumn);
                 exerciseName = c.getString(exerciseColumn);
                 reps = c.getInt(repsColumn);
@@ -77,7 +81,7 @@ public class MyLogs extends MenuButtonBar {
                 Date date = getDate(dateString);
 
                 //For testing purposes
-                System.out.println(id + " " + date.toString() + " " + exerciseName + " " + reps + " " + weight + " ");
+                System.out.println(id + " " + date.toString() + " " + workoutName + " " + exerciseName + " " + reps + " " + weight + " ");
             }
             c.close();
         }
