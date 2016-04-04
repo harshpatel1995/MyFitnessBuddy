@@ -84,6 +84,7 @@ public class StartWorkout extends AppCompatActivity {
         });
 
 
+        addSetToDatabase("Test Exercise", 10, 250);
     }
 
     public void populateExercisesListView(){
@@ -148,14 +149,11 @@ public class StartWorkout extends AppCompatActivity {
     //adds a single set to the database logs table
     public void addSetToDatabase(String exerciseNameStr, Integer repsInt, Integer weightInt){
 
-
-        String formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-
         try {
 
             //SQL to insert the set into the database
-            String sqlCodeStr = "INSERT INTO logs (date, exercise, reps, weight) VALUES ('" + formattedDateStr
-                    + "', '" + exerciseNameStr + "', " + repsInt + ", " + weightInt + ")";
+            String sqlCodeStr = "INSERT INTO logs (date, workout, exercise, reps, weight) VALUES ('" + formattedDateStr
+                    + "', '" + workoutNameStr + "', '" + exerciseNameStr + "', " + repsInt + ", " + weightInt + ")";
 
             //adds a new record for the workout
             database.execSQL(sqlCodeStr);
