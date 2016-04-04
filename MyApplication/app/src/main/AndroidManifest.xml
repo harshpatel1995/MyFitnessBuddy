@@ -47,6 +47,10 @@
         <activity
             android:name=".StartWorkout"
             android:label="@string/title_activity_start_workout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LogSets"
+            android:label="@string/title_activity_log_sets"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

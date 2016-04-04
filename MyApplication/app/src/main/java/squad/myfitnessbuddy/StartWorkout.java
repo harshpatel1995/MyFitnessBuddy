@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,13 +14,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.view.ContextMenu;
+import android.content.Intent;
+
 
 import java.text.SimpleDateFormat;
 import android.widget.TextView;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Date;
+import android.widget.AdapterView.OnItemClickListener;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
+
 
 
 public class StartWorkout extends AppCompatActivity {
@@ -28,12 +39,40 @@ public class StartWorkout extends AppCompatActivity {
     //database for system
     SQLiteDatabase database;
 
-    String workoutNameStr, formattedDateStr;
-    ListView startWorkoutLV;
+    String workoutNameStr;
+    ListView startWorkoutView;
     TextView startWorkoutNameTV;
+    String date;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     final ArrayList<String> exerciseList = new ArrayList<>();
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater contextualMenuInflater = getMenuInflater();
+        contextualMenuInflater.inflate(R.menu.menu_add_set, menu);
+
+
+        // menu.add("Add Set");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        if(item.getTitle().equals("Add Set")){
+            Toast.makeText(this, "Hello World", Toast.LENGTH_SHORT).show();
+            Intent logSets = new Intent(getApplicationContext(), LogSets.class);
+            startActivity(logSets);
+        }
+        /*
+        else if(item.getTitle() == "Add Set"){
+            //open workout page
+            Intent logSets = new Intent(getApplicationContext(), LogSets.class);
+            startActivity(logSets);
+
+        }*/
+        return super.onContextItemSelected(item);
+    }
 
 
     @Override
@@ -48,12 +87,13 @@ public class StartWorkout extends AppCompatActivity {
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         workoutNameStr = sharedPreference.getString(ConstantValues.cSP_STARTED_WORKOUT, "Workout");
-        formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Log Workout");
+        actionBar.setTitle(workoutNameStr+date);
+
 
         try {
             database = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
@@ -64,21 +104,25 @@ public class StartWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        startWorkoutLV = (ListView) findViewById(R.id.startWorkoutView);
+        startWorkoutView = (ListView) findViewById(R.id.startWorkoutView);
         startWorkoutNameTV = (TextView) findViewById(R.id.startWorkoutNameTV);
         startWorkoutNameTV.setText(workoutNameStr);
 
 
-       // final ArrayList <String> myExerciseList = new ArrayList<>();
+        // final ArrayList <String> myExerciseList = new ArrayList<>();
         populateExercisesListView();
 
+        registerForContextMenu(startWorkoutView);
 
-        startWorkoutLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        startWorkoutView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.i("Exercise Tapped: ", exerciseList.get(position));
                 Toast.makeText(getApplicationContext(), "This feature coming soon.", Toast.LENGTH_LONG).show();
+
             }
 
         });
@@ -89,14 +133,19 @@ public class StartWorkout extends AppCompatActivity {
     public void populateExercisesListView(){
 
         //String workoutNameStr = sharedPreference.getString(ConstantValues.cSP_PREVIEW_WORKOUT, "");
+        boolean isPredefinedWorkoutBln = sharedPreference.getBoolean(ConstantValues.cSP_IS_PREVIEW_FOR_PREDEFINED, false);
         String tableNameStr;
         String exercisesToAddStr = "";
 
         //create array to store exercise names
         //final ArrayList<String> exerciseList = new ArrayList<>();
 
+        if (isPredefinedWorkoutBln){
+            tableNameStr = "predefinedWorkouts";
+        }
+        else{
             tableNameStr = "savedWorkouts";
-
+        }
 
         if (database != null) {
             try {
@@ -111,8 +160,6 @@ public class StartWorkout extends AppCompatActivity {
                 c.moveToFirst();
 
                 exercisesToAddStr = c.getString(exerciseIndex);
-
-                c.close();
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -129,7 +176,13 @@ public class StartWorkout extends AppCompatActivity {
                 //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
                 adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
 
-                startWorkoutLV.setAdapter(adapter);
+                startWorkoutView.setAdapter(adapter);
+
+
+
+
+
+
 
             }
             else{

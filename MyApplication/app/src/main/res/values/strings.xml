@@ -5,6 +5,10 @@
 
     <string name="test">-</string>
 
+    <!--Start Workout Contextual Menu Strings -->
+    <string name="add_set">Add Set</string>
+
+
     <!-- Layout Strings -->
     <string name="app_name">MyFitness Buddy</string>
     <string name="action_settings">Settings</string>
@@ -141,6 +145,8 @@
     </string>
     <string name="title_activity_preview_workout">PreviewWorkout</string>
     <string name="title_activity_start_workout">StartWorkout</string>
+    <string name="title_activity_enter_sets">enter_sets</string>
+    <string name="title_activity_log_sets">LogSets</string>
 
 
 </resources>
