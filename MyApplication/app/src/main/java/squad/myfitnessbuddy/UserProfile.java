@@ -34,7 +34,7 @@ public class UserProfile extends MenuButtonBar {
         hidePopUp();
     }
 
-    //The user clicked 'Menu' button -> If popup is showing, hide it & vice-versa
+    //The user clicked 'Menu' button -> If popup is showing, hide it & vice-versadAD
     public void menuOnClick(View view) {
         if (menuPopup.getVisibility() == View.INVISIBLE) {
             showPopUp();
