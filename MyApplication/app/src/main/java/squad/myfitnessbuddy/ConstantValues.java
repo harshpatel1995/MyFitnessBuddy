@@ -6,9 +6,14 @@ public class ConstantValues {
 
     public static final String cCREATE_OR_OPEN_SAVED_WORKOUTS_DATABASE_SQL =
             "CREATE TABLE IF NOT EXISTS savedWorkouts (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, exercises TEXT NOT NULL)";
-
     public static final String cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL =
             "CREATE TABLE IF NOT EXISTS logs (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, workout TEXT NOT NULL, exercise TEXT NOT NULL, reps INTEGER CHECK(reps>0), weight INTEGER CHECK(weight>0))";
+
+    public static final String cFETCH_LOGS_ALL = "SELECT * FROM logs";
+    public static final String cFETCH_LOGS_LAST_7DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-7 day'))";
+    public static final String cFETCH_LOGS_LAST_15DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-15 day'))";
+    public static final String cFETCH_LOGS_LAST_1MONTH = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-1 month'))";
+    public static final String cFETCH_LOGS_LAST_3MONTHS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-3 month'))";
 
     public static final String cSP_FIRST_NAME = "First Name";
     public static final String cSP_LAST_NAME = "Last Name";
