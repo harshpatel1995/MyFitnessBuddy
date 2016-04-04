@@ -204,6 +204,8 @@ public class StartWorkout extends AppCompatActivity {
 
         try {
 
+            String formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
             //SQL to insert the set into the database
             String sqlCodeStr = "INSERT INTO logs (date, workout, exercise, reps, weight) VALUES ('" + formattedDateStr
                     + "', '" + workoutNameStr + "', '" + exerciseNameStr + "', " + repsInt + ", " + weightInt + ")";
