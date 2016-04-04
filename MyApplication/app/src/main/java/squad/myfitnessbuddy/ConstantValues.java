@@ -8,7 +8,7 @@ public class ConstantValues {
             "CREATE TABLE IF NOT EXISTS savedWorkouts (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, exercises TEXT NOT NULL)";
 
     public static final String cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL =
-            "CREATE TABLE IF NOT EXISTS logs (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, exercise TEXT NOT NULL, reps INTEGER CHECK(reps>0), weight INTEGER CHECK(weight>0))";
+            "CREATE TABLE IF NOT EXISTS logs (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, workout TEXT NOT NULL, exercise TEXT NOT NULL, reps INTEGER CHECK(reps>0), weight INTEGER CHECK(weight>0))";
 
     public static final String cSP_FIRST_NAME = "First Name";
     public static final String cSP_LAST_NAME = "Last Name";
