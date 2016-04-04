@@ -13,6 +13,10 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class MyLogs extends MenuButtonBar {
 
@@ -35,6 +39,9 @@ public class MyLogs extends MenuButtonBar {
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
+            exerciseDB.execSQL("DELETE FROM logs");
+            exerciseDB.execSQL("INSERT INTO logs (date, exercise, reps, weight) VALUES ('2016-04-03', 'Squats', 8, 200)");
+            exerciseDB.execSQL("INSERT INTO logs (date, exercise, reps, weight) VALUES ('2016-04-05', 'Bench Press', 7, 100)");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -47,7 +54,7 @@ public class MyLogs extends MenuButtonBar {
 
         try {
             int id;
-            String date;
+            String dateString;
             String exerciseName;
             int reps;
             int weight;
@@ -62,12 +69,15 @@ public class MyLogs extends MenuButtonBar {
 
             for (c.moveToLast(); !c.isBeforeFirst(); c.moveToPrevious()) {
                 id = c.getInt(idColumn);
-                date = c.getString(dateColumn);
+                dateString = c.getString(dateColumn);
                 exerciseName = c.getString(exerciseColumn);
                 reps = c.getInt(repsColumn);
                 weight = c.getInt(weightColumn);
-                //for testing purposes
-                System.out.println(id + " " + date + " " + exerciseName + " " + reps + " " + weight + " ");
+
+                Date date = getDate(dateString);
+
+                //For testing purposes
+                System.out.println(id + " " + date.toString() + " " + exerciseName + " " + reps + " " + weight + " ");
             }
             c.close();
         }
@@ -76,4 +86,11 @@ public class MyLogs extends MenuButtonBar {
         }
 
     }
+
+    public Date getDate(String dateString){
+        SimpleDateFormat formattedDateStr = new SimpleDateFormat("yyyy-MM-dd");
+        ParsePosition parsePosition = new ParsePosition(0);
+        return formattedDateStr.parse(dateString, parsePosition);
+    }
+
 }
