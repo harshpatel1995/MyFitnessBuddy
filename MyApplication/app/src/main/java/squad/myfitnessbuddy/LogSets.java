@@ -1,8 +1,6 @@
 package squad.myfitnessbuddy;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,7 +12,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LogSets extends AppCompatActivity {
 
@@ -55,18 +52,14 @@ public class LogSets extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_sets);
+        setContentView(R.layout.log_sets);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle("Log Workout");
 
         addSetsLV = (ListView) findViewById(R.id.addedSetsLV);
         repET = (EditText) findViewById(R.id.repET);
@@ -98,6 +91,9 @@ public class LogSets extends AppCompatActivity {
 
                 strArr.add("Reps: "+Integer.toString(reps)+" Weights: "+Integer.toString(weight));
                 adapter.notifyDataSetChanged();
+
+                repET.setText("");
+                weightET.setText("");
             }
         });
 
