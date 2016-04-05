@@ -191,9 +191,24 @@ public class StartWorkout extends AppCompatActivity {
     }
 
 
+    //adds all sets of a workout to the database
+    //workout must be presented as a list of sets
+    public void addWorkoutToDatabase(ArrayList<ExerciseSet> workoutSetsList){
+
+        for (ExerciseSet setObj : workoutSetsList)
+        {
+            String setExerciseNameStr = setObj.getExercise();
+            int setRepsInt = setObj.getReps();
+            int setWeightInt = setObj.getWeight();
+
+            addSetToDatabase(setExerciseNameStr,setRepsInt,setWeightInt);
+        }
+
+    }
+
 
     //adds a single set to the database logs table
-    public void addSetToDatabase(String exerciseNameStr, Integer repsInt, Integer weightInt){
+    public void addSetToDatabase(String exerciseNameStr, int repsInt, int weightInt){
 
         try {
 
