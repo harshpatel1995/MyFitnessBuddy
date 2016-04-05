@@ -22,6 +22,7 @@ public class UserProfile extends MenuButtonBar {
     SharedPreferences sharedPreference;
     static String backButton;
     LinearLayout linearLayout, menuPopup, createWorkoutPopup, myWorkoutsPopup;
+
     //The user clicked the 'Edit User Profile' Button -> Transfer back to the SetUp page
     public void editProfileOnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), Setup.class);
@@ -74,6 +75,7 @@ public class UserProfile extends MenuButtonBar {
     public static void backButtonCheck(String backButtonCheck) {
         backButton = backButtonCheck;
     }
+
     @Override
     public void onBackPressed() {
         if(backButton == "setupPage") {
@@ -94,7 +96,6 @@ public class UserProfile extends MenuButtonBar {
         backButton = null;
     }
 
-
     //Method that adjusts the visibility of the background layouts to hide the menu popup
     public void hidePopUp() {
         menuPopup.setVisibility(View.INVISIBLE);
@@ -106,7 +107,6 @@ public class UserProfile extends MenuButtonBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
