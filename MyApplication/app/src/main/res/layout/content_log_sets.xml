@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="squad.myfitnessbuddy.LogSets"
-    tools:showIn="@layout/activity_log_sets">
+    tools:showIn="@layout/log_sets">
 
     <TextView
         android:layout_width="fill_parent"
@@ -64,7 +64,6 @@
         android:id="@+id/addedSetsLV"
         android:choiceMode="none"
         android:visibility="visible"
-        android:background="#84027c"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
