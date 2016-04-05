@@ -127,8 +127,6 @@ public class StartWorkout extends AppCompatActivity {
 
         });
 
-
-        addSetToDatabase("Test Exercise", 10, 250);
     }
 
     public void populateExercisesListView(){
@@ -178,11 +176,6 @@ public class StartWorkout extends AppCompatActivity {
                 adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
 
                 startWorkoutView.setAdapter(adapter);
-
-
-
-
-
 
 
             }
