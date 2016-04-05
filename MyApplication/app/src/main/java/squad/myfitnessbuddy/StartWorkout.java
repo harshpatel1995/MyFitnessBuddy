@@ -42,7 +42,7 @@ public class StartWorkout extends AppCompatActivity {
     String workoutNameStr;
     ListView startWorkoutView;
     TextView startWorkoutNameTV;
-    String date;
+    String formattedDateStr;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     final ArrayList<String> exerciseList = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class StartWorkout extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
 
         if(item.getTitle().equals("Add Set")){
-            Toast.makeText(this, "Hello World", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "This feature coming soon", Toast.LENGTH_SHORT).show();
             Intent logSets = new Intent(getApplicationContext(), LogSets.class);
             startActivity(logSets);
         }
@@ -87,12 +87,12 @@ public class StartWorkout extends AppCompatActivity {
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
 
         workoutNameStr = sharedPreference.getString(ConstantValues.cSP_STARTED_WORKOUT, "Workout");
-        date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle(workoutNameStr+date);
+        actionBar.setTitle("Log Workout");
 
 
         try {
@@ -203,8 +203,6 @@ public class StartWorkout extends AppCompatActivity {
     public void addSetToDatabase(String exerciseNameStr, Integer repsInt, Integer weightInt){
 
         try {
-
-            String formattedDateStr = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
             //SQL to insert the set into the database
             String sqlCodeStr = "INSERT INTO logs (date, workout, exercise, reps, weight) VALUES ('" + formattedDateStr
