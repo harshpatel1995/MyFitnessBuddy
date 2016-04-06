@@ -13,11 +13,46 @@
 
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timeSpinner"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="200dp" />
+        android:layout_marginLeft="0dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filterBySpinner"
+        android:layout_below="@+id/timeSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filterOptionsSpinnner"
+        android:layout_below="@+id/filterBySpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Query"
+        android:id="@+id/queryButton"
+        android:layout_below="@+id/filterOptionsSpinnner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:onClick="onQueryClick" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_below="@+id/queryButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
 </RelativeLayout>

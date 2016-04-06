@@ -1,31 +1,27 @@
 package squad.myfitnessbuddy;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TreeSet;
 
 
 public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedListener {
 
     SQLiteDatabase exerciseDB;
-    Spinner timeSpinner;
+    Spinner timeSpinner, filterBySpinner, filterOptionsSpinner;
+    TreeSet<String> exerciseSet, workoutSet, bodypartSet;
+    String[] timeOptions = new String[] {"7 Days", "15 Days", "1 Month", "3 Months", "All Logs"};
+    String[] filterByOptions = new String[] {"", "Exercise", "Workout", "Body Part"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,29 +37,84 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         assert actionBar != null;
         actionBar.setTitle("My Logs");
 
-        timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.timeOptionsArray, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        timeSpinner.setAdapter(adapter);
-        timeSpinner.setOnItemSelectedListener(this);
 
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
-//            exerciseDB.execSQL("DELETE FROM logs");
-//            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-29', 'Leg Day', 'Squats', 8, 200)");
-//            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-28', 'Chest Blast', 'Bench Press', 7, 100)");
+          exerciseDB.execSQL("DELETE FROM logs");
+          exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-01', 'Leg Day', 'Squats', 8, 200)");
+          exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-28', 'Chest Blast', 'Arnold Press', 7, 100)");
         }
         catch (Exception e){
             e.printStackTrace();
         }
+
+        exerciseSet = new TreeSet<>();
+        workoutSet = new TreeSet<>();
+        bodypartSet = new TreeSet<>();
+
+        populateFilters();
+
+        timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
+        ArrayAdapter<CharSequence> timeSpinnerAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, timeOptions);
+        timeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        timeSpinner.setAdapter(timeSpinnerAdapter);
+        timeSpinner.setOnItemSelectedListener(this);
+
+        filterBySpinner = (Spinner) findViewById(R.id.filterBySpinner);
+        ArrayAdapter<CharSequence> filterByAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, filterByOptions);
+        filterByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        filterBySpinner.setAdapter(filterByAdapter);
+        filterBySpinner.setOnItemSelectedListener(this);
+
+        filterOptionsSpinner = (Spinner) findViewById(R.id.filterOptionsSpinnner);
     }
 
+    public String timeString() {
+        switch(timeSpinner.getSelectedItemPosition()) {
+            case 0: return ConstantValues.cFETCH_LOGS_LAST_7DAYS;
+            case 1: return ConstantValues.cFETCH_LOGS_LAST_15DAYS;
+            case 2: return ConstantValues.cFETCH_LOGS_LAST_1MONTH;
+            case 3: return ConstantValues.cFETCH_LOGS_LAST_3MONTHS;
+            case 4: return ConstantValues.cFETCH_LOGS_ALL;
+            default: return "";
+        }
+    }
 
+    public void onQueryClick(View view) {
 
-    protected void populateLogs(Cursor c) {
+        String queryString;
+
+        String filterBySelected = filterBySpinner.getSelectedItem().toString();
+        String filterOptionsSelected = filterOptionsSpinner.getSelectedItem().toString();
+        if(filterBySelected == "" || filterOptionsSelected == "") {
+            populateLogs(timeString());
+        }
+
+        else {
+            switch(filterBySpinner.getSelectedItemPosition()) {
+                case 1: queryString = timeString() + "AND exercise = '" + filterOptionsSelected + "'";
+                    populateLogs(queryString);
+                    break;
+                case 2: queryString = timeString() + "AND workout = '" + filterOptionsSelected + "'";
+                    populateLogs(queryString);
+                    break;
+                case 3: //queryString = "SELECT * FROM logs, exercises WHERE logs.name = exercises.name AND exercises.primary = '" + filterOptionsSelected +  "'";
+                        queryString = "SELECT * FROM logs INNER JOIN exercises ON exercises.name = log.exercise WHERE exercises.primary = '" + filterOptionsSelected +  "'";
+                    populateLogs(queryString);
+
+                    break;
+            }
+        }
+    }
+
+    protected void setFilterOptions(String[] array) {
+        ArrayAdapter<CharSequence> filterOptionsAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, array);
+        filterOptionsSpinner.setAdapter(filterOptionsAdapter);
+        filterOptionsSpinner.setOnItemSelectedListener(this);
+    }
+
+    protected void populateLogs(String queryString) {
 
         try {
             int id;
@@ -73,7 +124,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
             int reps;
             int weight;
 
-
+            Cursor c = exerciseDB.rawQuery(queryString, null);
             int idColumn = c.getColumnIndex("_id");
             int dateColumn = c.getColumnIndex("date");
             int workoutColumn = c.getColumnIndex("workout");
@@ -89,14 +140,50 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
                 exerciseName = c.getString(exerciseColumn);
                 reps = c.getInt(repsColumn);
                 weight = c.getInt(weightColumn);
-
                 Date date = getDate(dateString);
 
-                //For testing purposes
+                //For testing purposes, print to the console
                 System.out.println(id + " " + date.toString() + " " + workoutName + " " + exerciseName + " " + reps + " " + weight + " ");
             }
 
             c.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void populateFilters() {
+
+        try {
+            exerciseSet.add("");
+            workoutSet.add("");
+            bodypartSet.add("");
+
+            Cursor c = exerciseDB.rawQuery("SELECT * FROM exercises", null);
+            int exerciseIndex = c.getColumnIndex("name");
+            int primaryIndex = c.getColumnIndex("primary");
+            while(c != null && c.moveToNext()){
+                exerciseSet.add(c.getString(exerciseIndex));
+                bodypartSet.add(c.getString(primaryIndex));
+            }
+            c.close();
+
+            Cursor c_v2 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts", null);
+            int idxName = c_v2.getColumnIndex("name");
+            while (c_v2 != null &&  c_v2.moveToNext()) {
+                workoutSet.add(c_v2.getString(idxName));
+
+            }
+            c_v2.close();
+
+            Cursor c_v3 = exerciseDB.rawQuery("SELECT * FROM savedWorkouts", null);
+            int idxName2 = c_v3.getColumnIndex("name");
+            while (c_v3 != null &&  c_v3.moveToNext()) {
+                workoutSet.add(c_v3.getString(idxName2));
+                System.out.println(c_v3.getString(idxName2));
+            }
+            c_v3.close();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -109,28 +196,24 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         return formattedDateStr.parse(dateString, parsePosition);
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Cursor cursor = null;
-        switch (position) {
-            case 0:
-                cursor = exerciseDB.rawQuery(ConstantValues.cFETCH_LOGS_LAST_7DAYS, null);
-                break;
-            case 1:
-                cursor = exerciseDB.rawQuery(ConstantValues.cFETCH_LOGS_LAST_15DAYS, null);
-                break;
-            case 2:
-                cursor = exerciseDB.rawQuery(ConstantValues.cFETCH_LOGS_LAST_1MONTH, null);
-                break;
-            case 3:
-                cursor = exerciseDB.rawQuery(ConstantValues.cFETCH_LOGS_LAST_3MONTHS, null);
-                break;
-            case 4:
-                cursor = exerciseDB.rawQuery(ConstantValues.cFETCH_LOGS_ALL, null);
-                break;
+        if(parent.getId() == R.id.filterBySpinner) {
+            switch(position) {
+                case 0:
+                    setFilterOptions(new String[] {""});
+                    break;
+                case 1:
+                    setFilterOptions(exerciseSet.toArray(new String[exerciseSet.size()]));
+                    break;
+                case 2:
+                    setFilterOptions(workoutSet.toArray(new String[workoutSet.size()]));
+                    break;
+                case 3:
+                    setFilterOptions(bodypartSet.toArray(new String[bodypartSet.size()]));
+                    break;
+            }
         }
-        populateLogs(cursor);
     }
 
     @Override
@@ -138,3 +221,4 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
     }
 }
+
