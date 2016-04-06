@@ -46,6 +46,9 @@ public class StartWorkout extends AppCompatActivity {
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     final ArrayList<String> exerciseList = new ArrayList<>();
 
+    //can be accessed by any class to populated exercises
+    public static final ArrayList<ExerciseSet> workoutAsListOfSetsList = new ArrayList<>();
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -60,7 +63,7 @@ public class StartWorkout extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
 
         if(item.getTitle().equals("Add Set")){
-            Toast.makeText(this, "This feature coming soon", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "This feature in progress", Toast.LENGTH_SHORT).show();
             Intent logSets = new Intent(getApplicationContext(), LogSets.class);
             startActivity(logSets);
         }
@@ -121,7 +124,7 @@ public class StartWorkout extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.i("Exercise Tapped: ", exerciseList.get(position));
-                Toast.makeText(getApplicationContext(), "This feature coming soon.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "This feature coming soon. Try long pressing for now.", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -189,6 +192,35 @@ public class StartWorkout extends AppCompatActivity {
         }
 
     }
+
+
+    //saves the workout from the button click
+    public void onSaveWorkoutClick(View view){
+
+        //add workout to database
+        addWorkoutToDatabase(workoutAsListOfSetsList);
+
+        //clear list of sets so it can be repopulated the next time
+        workoutAsListOfSetsList.clear();
+
+        //go back to home page (user profile)
+        Intent userProfile = new Intent(getApplicationContext(), UserProfile.class);
+        startActivity(userProfile);
+
+    }
+
+    //cancels the workout from the button click
+    public void onBackOrCancelClick(View view){
+
+
+        //clear list of sets so it can be repopulated the next time
+        workoutAsListOfSetsList.clear();
+
+        //ends the activity and goes back to the previous page
+       finish();
+
+    }
+
 
 
     //adds all sets of a workout to the database
