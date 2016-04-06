@@ -59,11 +59,10 @@
     </LinearLayout>
 
     <ListView
-        android:layout_width="329dp"
+        android:layout_width="fill_parent"
         android:layout_height="300dp"
         android:id="@+id/addedSetsLV"
         android:choiceMode="none"
-        android:visibility="visible"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
