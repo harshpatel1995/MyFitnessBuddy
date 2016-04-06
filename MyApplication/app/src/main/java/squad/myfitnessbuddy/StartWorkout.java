@@ -20,6 +20,8 @@ import android.content.Intent;
 
 import java.text.SimpleDateFormat;
 import android.widget.TextView;
+
+import java.util.Collections;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,14 +68,10 @@ public class StartWorkout extends AppCompatActivity {
             Toast.makeText(this, "This feature in progress", Toast.LENGTH_SHORT).show();
             Intent logSets = new Intent(getApplicationContext(), LogSets.class);
             startActivity(logSets);
-        }
-        /*
-        else if(item.getTitle() == "Add Set"){
-            //open workout page
-            Intent logSets = new Intent(getApplicationContext(), LogSets.class);
-            startActivity(logSets);
 
-        }*/
+        }
+
+
         return super.onContextItemSelected(item);
     }
 
