@@ -39,6 +39,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
 
         try {
+            //test code
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
           exerciseDB.execSQL("DELETE FROM logs");
@@ -100,7 +101,9 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
                     populateLogs(queryString);
                     break;
                 case 3: //queryString = "SELECT * FROM logs, exercises WHERE logs.name = exercises.name AND exercises.primary = '" + filterOptionsSelected +  "'";
-                        queryString = "SELECT * FROM logs INNER JOIN exercises ON exercises.name = log.exercise WHERE exercises.primary = '" + filterOptionsSelected +  "'";
+                        //"SELECT * FROM logs LEFT OUTER JOIN exercises ON exercises.name = logs.exercise WHERE exercises.primary = '" + filterOptionsSelected +  "'"
+                    //"SELECT * FROM logs, exercises WHERE exercises.name = logs.exercise AND exercises.primaryWorked = '" + filterOptionsSelected +  "'";
+                        queryString = "SELECT * FROM logs LEFT OUTER JOIN exercises ON exercises.name = logs.exercise WHERE exercises.primaryWorked = '" + filterOptionsSelected +  "'";
                     populateLogs(queryString);
 
                     break;
@@ -162,28 +165,22 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
             Cursor c = exerciseDB.rawQuery("SELECT * FROM exercises", null);
             int exerciseIndex = c.getColumnIndex("name");
-            int primaryIndex = c.getColumnIndex("primary");
+            int primaryIndex = c.getColumnIndex("primaryWorked");
             while(c != null && c.moveToNext()){
                 exerciseSet.add(c.getString(exerciseIndex));
                 bodypartSet.add(c.getString(primaryIndex));
             }
             c.close();
 
-            Cursor c_v2 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts", null);
-            int idxName = c_v2.getColumnIndex("name");
+            //should optimize more
+            Cursor c_v2 = exerciseDB.rawQuery("SELECT logs.workout FROM logs LIMIT 5000", null);
+            int idxName = c_v2.getColumnIndex("workout");
             while (c_v2 != null &&  c_v2.moveToNext()) {
                 workoutSet.add(c_v2.getString(idxName));
 
             }
             c_v2.close();
 
-            Cursor c_v3 = exerciseDB.rawQuery("SELECT * FROM savedWorkouts", null);
-            int idxName2 = c_v3.getColumnIndex("name");
-            while (c_v3 != null &&  c_v3.moveToNext()) {
-                workoutSet.add(c_v3.getString(idxName2));
-                System.out.println(c_v3.getString(idxName2));
-            }
-            c_v3.close();
         }
         catch(Exception e) {
             e.printStackTrace();
