@@ -56,7 +56,7 @@ public class LogSets extends AppCompatActivity {
             repET.setText("");
             weightET.setText("");
 
-            repET.requestFocus();
+            //repET.requestFocus();
         } else if ((repsStr + weightStr).equals("")) {
             Toast.makeText(getApplicationContext(), errorMessagesArr[2], Toast.LENGTH_SHORT).show();
         } else if (repsStr.equals("")) {
