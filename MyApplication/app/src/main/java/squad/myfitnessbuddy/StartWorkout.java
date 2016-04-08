@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -65,12 +66,9 @@ public class StartWorkout extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
 
         if(item.getTitle().equals("Add Set")){
-            Toast.makeText(this, "This feature in progress", Toast.LENGTH_SHORT).show();
-            Intent logSets = new Intent(getApplicationContext(), LogSets.class);
-            startActivity(logSets);
+            Toast.makeText(getApplicationContext(), "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
 
         }
-
 
         return super.onContextItemSelected(item);
     }
@@ -93,7 +91,7 @@ public class StartWorkout extends AppCompatActivity {
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Log Workout");
+        actionBar.setTitle("Start Workout");
 
 
         try {
@@ -115,19 +113,20 @@ public class StartWorkout extends AppCompatActivity {
 
         registerForContextMenu(startWorkoutView);
 
-
-
         startWorkoutView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.i("Exercise Tapped: ", exerciseList.get(position));
-                Toast.makeText(getApplicationContext(), "This feature coming soon. Try long pressing for now.", Toast.LENGTH_SHORT).show();
 
+                SharedPreferences.Editor editor = sharedPreference.edit();
+                editor.putString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, exerciseList.get(position));
+                editor.apply();
+
+                Intent logSets = new Intent(getApplicationContext(), LogSets.class);
+                startActivity(logSets);
             }
-
         });
-
     }
 
     public void populateExercisesListView(){
@@ -188,9 +187,7 @@ public class StartWorkout extends AppCompatActivity {
         else{
             Log.i("Error", "Database is null.");
         }
-
     }
-
 
     //saves the workout from the button click
     public void onSaveWorkoutClick(View view){
@@ -219,8 +216,6 @@ public class StartWorkout extends AppCompatActivity {
 
     }
 
-
-
     //adds all sets of a workout to the database
     //workout must be presented as a list of sets
     public void addWorkoutToDatabase(ArrayList<ExerciseSet> workoutSetsList){
@@ -235,7 +230,6 @@ public class StartWorkout extends AppCompatActivity {
         }
 
     }
-
 
     //adds a single set to the database logs table
     public void addSetToDatabase(String exerciseNameStr, int repsInt, int weightInt){

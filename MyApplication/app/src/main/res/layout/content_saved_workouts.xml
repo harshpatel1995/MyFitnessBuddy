@@ -17,10 +17,10 @@
         android:layout_height="wrap_content"
         android:onClick="addWorkoutOnClick"
         android:textAllCaps="false"
-        android:text="Add New Workout"
+        android:text="@string/add_new_workout"
+        style="?android:borderlessButtonStyle"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:textAlignment="center" />
 
     <ListView
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you sure you want to delete this workout?"
+            android:text="@string/are_you_sure"
             android:id="@+id/savedWorkoutsDeleteMessage"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
@@ -64,7 +64,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes"
+                android:text="@string/yes_button"
                 android:id="@+id/savedWorkoutsYesButton"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
@@ -73,7 +73,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No"
+                android:text="@string/no_button"
                 android:id="@+id/savedWorkoutsNoButton"
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/styled_button"
             android:padding="10dp"
-            android:text="Predefined Workout"
+            android:text="@string/predefined_workout"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:onClick="PredefinedWorkoutOnClick" />
@@ -108,7 +108,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/styled_button"
             android:padding="10dp"
-            android:text="Customized Workout"
+            android:text="@string/customized_workout"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:onClick="customizedWorkoutButton"/>
@@ -119,13 +119,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/styled_button"
             android:padding="10dp"
-            android:text="Go Back"
+            android:text="@string/back_button"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:onClick="backOnClick"
-            android:layout_below="@+id/createWorkoutLayout"
-            android:layout_alignLeft="@+id/createWorkoutLayout"
-            android:layout_alignStart="@+id/createWorkoutLayout"
             android:layout_marginTop="5dp" />
 
     </LinearLayout>
@@ -143,7 +140,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="@string/start_button"
+            android:background="@color/buttonBarColor"
+            android:layout_marginRight="5dp"
             android:id="@+id/savedWorkoutsStartbutton"
             android:layout_gravity="bottom"
             android:layout_weight="1"
@@ -152,7 +151,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preview"
+            android:text="@string/preview_button"
+            android:layout_marginRight="5dp"
+            android:background="@color/buttonBarColor"
             android:id="@+id/savedWorkoutsPreviewbutton"
             android:layout_weight="1"
             android:onClick="previewWorkout" />
@@ -160,7 +161,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="@string/delete_button"
+            android:layout_marginRight="5dp"
+            android:background="@color/buttonBarColor"
             android:id="@+id/savedWorkoutsDeletebutton"
             android:layout_weight="1"
             android:onClick="displayDeleteOption" />

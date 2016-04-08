@@ -1,2 +1,14 @@
 <resources>>
+
+        <style name="MyFitnessBuddyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+                <!-- Customize your theme here. -->
+                <item name="colorPrimary">@color/colorPrimary</item>
+                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorAccent">@color/colorAccent</item>
+                <item name="android:colorBackground">@color/colorBackground</item>
+                <item name="android:colorForeground">@color/colorForeground</item>
+                <item name="android:navigationBarColor">@color/navigationBarColor</item>
+                <item name="android:statusBarColor">@color/statusBarColor</item>
+                <item name="android:windowBackground">@color/windowBackground</item>
+        </style>
 </resources>

@@ -6,6 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="squad.myfitnessbuddy.UserProfile">
 
@@ -34,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="5dp"
             android:text="@string/full_name"
             android:textAlignment="center"
             android:textColor="@color/textHeading"
@@ -46,14 +50,14 @@
             <TextView
                 android:id="@+id/ageLabel"
                 android:text="@string/age"
-                android:textColor="@color/textPrimary"
+                android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/ageTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" 
                 android:typeface="sans" />
 
@@ -64,14 +68,14 @@
             <TextView
                 android:id="@+id/genderLabel"
                 android:text="@string/gender"
-			    android:textColor="@color/textPrimary"
+			    android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/genderTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
@@ -82,14 +86,14 @@
             <TextView
                 android:id="@+id/heightLabel"
                 android:text="@string/height"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/heightTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
@@ -100,14 +104,14 @@
             <TextView
                 android:id="@+id/weightLabel"
                 android:text="@string/weight"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/weightTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
@@ -118,14 +122,14 @@
             <TextView
                 android:id="@+id/bmiLabel"
                 android:text="@string/bmi"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
             <TextView
                 android:id="@+id/bmiTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size"
                 android:typeface="sans" />
 
@@ -141,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/metabolic_rates"
                 android:textColor="@color/textHeading"
                 android:textSize="@dimen/header_text_size"
@@ -153,25 +157,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/calorie_note"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="15sp" />
 
         </LinearLayout>
 
         <TableRow
             android:layout_gravity="right"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/sedentaryLabel"
                 android:text="@string/sedentary"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/sedentaryTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
@@ -181,13 +185,13 @@
             <TextView
                 android:id="@+id/lightlyActiveLabel"
                 android:text="@string/lightly_active"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/lightlyActiveTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
@@ -197,13 +201,13 @@
             <TextView
                 android:id="@+id/moderatelyActiveLabel"
                 android:text="@string/moderately_active"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/moderatelyActiveTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
@@ -213,13 +217,13 @@
             <TextView
                 android:id="@+id/veryActiveLabel"
                 android:text="@string/very_active"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/veryActiveTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
@@ -229,138 +233,17 @@
             <TextView
                 android:id="@+id/extremelyActiveLabel"
                 android:text="@string/extremely_active"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
             <TextView
                 android:id="@+id/extremelyActiveTV"
                 android:text="@string/test"
-				android:textColor="@color/textPrimary"
+				android:textColor="@color/regularText"
                 android:textSize="@dimen/primary_text_size" />
 
         </TableRow>
 
     </TableLayout>
-
-
-    <LinearLayout
-        android:id="@+id/popUpLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="150dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="75dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <Button
-            android:id="@+id/createWorkoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#d5eae8"
-            android:onClick="createWorkoutOnClick"
-            android:padding="10dp"
-            android:text="CREATE A NEW WORKOUT"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="#d5eae8"
-            android:minWidth="150dp"
-            android:onClick="backOnClick"
-            android:padding="10dp"
-            android:text="BACK"
-            android:textSize="@dimen/primary_text_size"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/createWorkoutLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <Button
-            android:id="@+id/predefinedWorkoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#d5eae8"
-            android:padding="10dp"
-            android:text="Predefined Workout"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/customizedWorkoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="#d5eae8"
-            android:padding="10dp"
-            android:text="Customized Workout"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/createWorkoutBackButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="#d5eae8"
-            android:onClick="createWorkoutBackButton"
-            android:padding="10dp"
-            android:text="BACK"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mySavedWorkoutsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="200dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/exerciseListLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="200dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center"
-            android:layout_marginBottom="37dp"
-            android:background="#d5eae8"
-            android:minWidth="100dp"
-            android:text="Create Workout"
-            android:textSize="@dimen/primary_text_size"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 </RelativeLayout>

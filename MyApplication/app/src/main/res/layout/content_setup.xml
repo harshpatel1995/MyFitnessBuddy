@@ -34,7 +34,7 @@
         android:textIsSelectable="true"
         android:typeface="sans"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/regularText"
         android:layout_marginTop="5dp" />
 
     <EditText
@@ -59,7 +59,7 @@
         android:textStyle="bold"
         android:typeface="sans"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/regularText"
         android:layout_marginTop="5dp" />
 
     <EditText
@@ -95,7 +95,7 @@
                 android:textSize="@dimen/primary_text_size"
                 android:textStyle="bold"
                 android:typeface="sans"
-                android:textColor="#000000"
+                android:textColor="@color/regularText"
                 android:gravity="center"/>
 
             <TextView
@@ -107,7 +107,7 @@
                 android:textSize="@dimen/primary_text_size"
                 android:textStyle="bold"
                 android:typeface="sans"
-                android:textColor="#000000"
+                android:textColor="@color/regularText"
                 android:gravity="center"/>
 
         </TableRow>
@@ -184,7 +184,7 @@
                 android:textSize="@dimen/primary_text_size"
                 android:textStyle="bold"
                 android:typeface="sans"
-                android:textColor="#000000"
+                android:textColor="@color/regularText"
                 android:layout_marginTop="5dp"
                 android:gravity="center"/>
 
@@ -196,7 +196,7 @@
                 android:textSize="@dimen/primary_text_size"
                 android:textStyle="bold"
                 android:typeface="sans"
-                android:textColor="#000000"
+                android:textColor="@color/regularText"
                 android:layout_marginTop="5dp"
                 android:gravity="center"/>
 

@@ -121,7 +121,7 @@ public class SavedWorkouts extends MenuButtonBar {
             //adapter to get list into ListView
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, workoutsList);
             savedWorkOutsLV.setAdapter(adapter);
-            //check multiple exercises at a time
+            //check one workout at a time
             savedWorkOutsLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         }

@@ -67,7 +67,7 @@ public class CreateWorkout extends AppCompatActivity {
             Cursor c = database.rawQuery("SELECT * FROM exercises ORDER BY name", null);
             //get items from "name" column of table
             int nameIndex = c.getColumnIndex("name");
-            //move cursor to to of list (table)
+            //move cursor to start of list (table)
             c.moveToFirst();
 
             //add exercise to list and move cursor to next exercise

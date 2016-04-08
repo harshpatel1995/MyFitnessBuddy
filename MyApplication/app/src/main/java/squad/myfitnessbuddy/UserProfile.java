@@ -115,9 +115,6 @@ public class UserProfile extends MenuButtonBar {
         String heightStr, weightStr;
 
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        menuPopup = (LinearLayout) findViewById(R.id.popUpLayout);
-        myWorkoutsPopup = (LinearLayout) findViewById(R.id.mySavedWorkoutsLayout);
-        createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
 
         fullNameTV = (TextView) findViewById(R.id.fullNameTV);
         ageTV = (TextView) findViewById(R.id.ageTV);
