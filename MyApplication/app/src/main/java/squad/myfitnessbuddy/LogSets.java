@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -41,10 +43,10 @@ public class LogSets extends AppCompatActivity {
 
         String repsStr = repET.getText().toString();
         String weightStr = weightET.getText().toString();
-        setNum++;
 
         if ((!repsStr.equals("")) && (!weightStr.equals(""))) {
 
+            setNum++;
             int repsInt = Integer.parseInt(repsStr);
             int weightInt = Integer.parseInt(weightStr);
 
