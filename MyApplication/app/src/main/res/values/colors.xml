@@ -18,8 +18,8 @@
     <color name="buttonBarSnackColor">#eaeaea</color>
     <color name="buttonBarShader">#e4e4e4</color>
 
-    <color name="buttonPressed">#FF311440</color>
-    <color name="buttonBarSnackPressed">#260f30</color>
+    <color name="buttonPressed">#d4d4d4</color>
+    <color name="buttonBarSnackPressed">#FF370060</color>
     <color name="buttonBarShaderPressed">#1a0a21</color>
 
 
