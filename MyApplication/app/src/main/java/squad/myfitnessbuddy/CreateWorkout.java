@@ -67,14 +67,9 @@ public class CreateWorkout extends AppCompatActivity {
             Cursor c = database.rawQuery("SELECT * FROM exercises ORDER BY name", null);
             //get items from "name" column of table
             int nameIndex = c.getColumnIndex("name");
-            //move cursor to start of list (table)
-            c.moveToFirst();
-
             //add exercise to list and move cursor to next exercise
-            while (c != null) {
-
+            while (c != null &&  c.moveToNext()) {
                exercisesList.add(c.getString(nameIndex));
-                c.moveToNext();
             }
 
             c.close();
@@ -193,7 +188,3 @@ public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
 
     }
 }
-
-
-
-

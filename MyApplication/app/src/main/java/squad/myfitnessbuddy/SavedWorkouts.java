@@ -123,14 +123,10 @@ public class SavedWorkouts extends MenuButtonBar {
                 //get items from "name" column of table
                 int nameIndex = c.getColumnIndex("name");
 
-                //move cursor to to of list (table)
-                c.moveToFirst();
-
                 //add exercise to list and move cursor to next exercise
-                while (c != null) {
-
+                 while (c != null &&  c.moveToNext()) {
                     workoutsList.add(c.getString(nameIndex));
-                    c.moveToNext();
+
                 }
             c.close();
 

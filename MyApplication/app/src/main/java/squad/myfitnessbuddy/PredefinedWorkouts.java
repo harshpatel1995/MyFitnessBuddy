@@ -58,12 +58,8 @@ public class PredefinedWorkouts extends AppCompatActivity {
             Cursor c_v2 = exerciseDB.rawQuery("SELECT * FROM predefinedWorkouts", null);
             //get items from "name" column of table
             int idxName = c_v2.getColumnIndex("name");
-            //move cursor to top of list (table)
-            c_v2.moveToFirst();
-
-            while (c_v2 != null) {
+            while (c_v2 != null &&  c_v2.moveToNext()) {
                 predefinedWorkoutList.add(c_v2.getString(idxName));
-                c_v2.moveToNext();
             }
             //close cursor to avoid memory leak
             c_v2.close();
