@@ -44,4 +44,5 @@ public class MenuButtonBar extends AppCompatActivity{
         setContentView(R.layout.menu_button_bar);
     }
 
+    //TODO fix screen flicker black when transitions are way too quick
 }
