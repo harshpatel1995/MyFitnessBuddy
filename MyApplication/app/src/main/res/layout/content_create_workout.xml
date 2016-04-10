@@ -24,8 +24,10 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Workout Name"
+        android:hint="@string/enter_workout_name"
         android:id="@+id/createWorkoutName"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -42,21 +44,23 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="@string/save_button"
             android:id="@+id/saveWorkout"
-            android:textSize="20sp"
+            android:background="@color/buttonBarColor"
             android:onClick="saveCustomWorkout"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel_button"
+            android:background="@color/buttonBarColor"
             android:id="@+id/createWorkoutCancel"
-            android:textSize="20sp"
             android:onClick="cancelCustomWorkout"
             android:layout_weight="1"
+            android:layout_marginRight="5dp"
             android:layout_gravity="center_vertical" />
 
     </LinearLayout>

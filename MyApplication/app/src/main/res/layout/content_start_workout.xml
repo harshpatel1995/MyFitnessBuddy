@@ -12,6 +12,15 @@
     tools:context="squad.myfitnessbuddy.StartWorkout"
     tools:showIn="@layout/start_workout">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startWorkoutNameTV"
+        android:text="@string/workout_name"
+        android:textSize="@dimen/primary_text_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="350dp"
@@ -21,13 +30,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/startWorkoutNameTV"
-        android:text="WORKOUT"
-        android:layout_alignParentTop="true"
+        android:text="@string/save_button"
+        android:id="@+id/saveButton"
+        android:layout_below="@+id/startWorkoutView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onSaveWorkoutClick" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_button"
+        android:id="@+id/cancelButton"
+        android:layout_below="@+id/saveButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onBackOrCancelClick" />
+
+
 </RelativeLayout>

@@ -67,14 +67,9 @@ public class CreateWorkout extends AppCompatActivity {
             Cursor c = database.rawQuery("SELECT * FROM exercises ORDER BY name", null);
             //get items from "name" column of table
             int nameIndex = c.getColumnIndex("name");
-            //move cursor to to of list (table)
-            c.moveToFirst();
-
             //add exercise to list and move cursor to next exercise
-            while (c != null) {
-
+            while (c != null &&  c.moveToNext()) {
                exercisesList.add(c.getString(nameIndex));
-                c.moveToNext();
             }
 
             c.close();
@@ -168,7 +163,6 @@ public class CreateWorkout extends AppCompatActivity {
             }
         }
 
-
     //go back a page
     public void cancelCustomWorkout(View view){
         finish();
@@ -176,8 +170,7 @@ public class CreateWorkout extends AppCompatActivity {
 
 
     //checks if exercise is already in the database
-public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
-{
+public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck) {
     //counts number of entries in database with same name
     Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE name = '" + workoutNameStrToCheck + "'", null);
     mCount.moveToFirst();
@@ -193,7 +186,3 @@ public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
 
     }
 }
-
-
-
-

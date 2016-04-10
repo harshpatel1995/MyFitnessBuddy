@@ -6,19 +6,20 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
 
 public class SavedWorkouts extends MenuButtonBar {
     SharedPreferences sharedPreference;
@@ -55,10 +56,27 @@ public class SavedWorkouts extends MenuButtonBar {
         addWorkoutButtonBT.setVisibility(View.VISIBLE);
     }
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.saved_workouts);
+
+        workoutsButtonTV = (TextView) findViewById(R.id.workoutsButtonBarText);
+        workoutsButtonIV = (ImageView) findViewById(R.id.workoutsButtonBarIcon);
+        buttonBarL = (LinearLayout) findViewById(R.id.workoutsButtonBar);
+        buttonBarSnackL = (TextView) findViewById(R.id.workoutsButtonBarSnack);
+        buttonBarShaderL = (TextView) findViewById(R.id.workoutsButtonBarShader);
+
+        workoutsButtonTV.setTextColor(ContextCompat.getColor(this, R.color.windowBackground));
+        buttonBarL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonPressed));
+        buttonBarSnackL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarSnackPressed));
+        buttonBarShaderL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarShaderPressed));
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            workoutsButtonIV.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.workout_button_active));
+        } else {
+            workoutsButtonIV.setBackground(ContextCompat.getDrawable(this, R.drawable.workout_button_active));
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
@@ -103,14 +121,9 @@ public class SavedWorkouts extends MenuButtonBar {
                 //get items from "name" column of table
                 int nameIndex = c.getColumnIndex("name");
 
-                //move cursor to to of list (table)
-                c.moveToFirst();
-
                 //add exercise to list and move cursor to next exercise
-                while (c != null) {
-
+                 while (c != null &&  c.moveToNext()) {
                     workoutsList.add(c.getString(nameIndex));
-                    c.moveToNext();
                 }
             c.close();
 
@@ -121,7 +134,7 @@ public class SavedWorkouts extends MenuButtonBar {
             //adapter to get list into ListView
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, workoutsList);
             savedWorkOutsLV.setAdapter(adapter);
-            //check multiple exercises at a time
+            //check one workout at a time
             savedWorkOutsLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         }
@@ -170,9 +183,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
     }
 
-
     public void startWorkout(View view){
-
 
         String selectedWorkoutName = getCheckedItemName(savedWorkOutsLV);
 
@@ -237,7 +248,4 @@ public class SavedWorkouts extends MenuButtonBar {
         }
         return selectedItem;
     }
-
-
-
 }

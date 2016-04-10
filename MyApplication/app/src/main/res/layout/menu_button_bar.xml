@@ -1,83 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="squad.myfitnessbuddy.MenuButtonBar">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/MyFitnessBuddyTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/MyFitnessBuddyTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
+    <LinearLayout
+        android:id="@+id/buttonBarMenu"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buttonBarColor">
+
         <LinearLayout
-            android:id="@+id/buttonBarMenu"
-            android:layout_width="fill_parent"
+            android:id="@+id/logsButtonBar"
+            android:layout_width="120dp"
             android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            style="@android:style/ButtonBar"
-            android:gravity="center"
-            android:background="#d8d8d8">
+            android:onClick="viewLogsOnClick"
+            android:background="@color/buttonBarColor"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/logsButtonBar"
-                android:layout_width="120dp"
-                android:layout_height="56dp"
-                android:onClick="viewLogsOnClick"
-                android:textAllCaps="false"
+            <ImageView
+                android:id="@+id/logsButtonBarIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/log_button" />
+
+            <TextView
+                android:id="@+id/logsButtonBarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
                 android:text="@string/logs_button"
-                android:drawableTop="@drawable/logs"
-                android:background="@drawable/button"
-                android:paddingBottom="5dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/workoutsButtonBar"
-                android:layout_width="120dp"
-                android:layout_height="56dp"
-                android:onClick="savedWorkoutsOnClick"
-                android:textAllCaps="false"
-                android:text="@string/workouts_button"
-                android:drawableTop="@drawable/workout"
-                android:background="@drawable/button"
-                android:paddingBottom="5dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle"
-                android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/profileButtonBar"
-                android:layout_width="120dp"
-                android:layout_height="56dp"
-                android:onClick="goToProfileOnClick"
-                android:textAllCaps="false"
-                android:text="@string/profile_button"
-                android:drawableTop="@drawable/profile"
-                android:background="@drawable/button"
-                android:paddingBottom="5dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                style="?android:borderlessButtonStyle"
-                android:textSize="13sp" />
+                android:textColor="@color/regularText"
+                android:textSize="@dimen/button_text" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/workoutsButtonBar"
+            android:layout_width="120dp"
+            android:layout_height="56dp"
+            android:onClick="viewWorkoutsOnClick"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/workoutsButtonBarIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/workout_button" />
+
+            <TextView
+                android:id="@+id/workoutsButtonBarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/workouts_button"
+                android:textColor="@color/regularText"
+                android:textSize="@dimen/button_text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileButtonBar"
+            android:layout_width="120dp"
+            android:layout_height="56dp"
+            android:onClick="viewProfileOnClick"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/profileButtonBarIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/profile" />
+
+            <TextView
+                android:id="@+id/profileButtonBarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/profile_button"
+                android:textColor="@color/regularText"
+                android:textSize="@dimen/button_text" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonBarShaders"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/buttonBarMenu"
+        >
+
+        <TextView
+            android:id="@+id/logButtonBarShader"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:background="@color/buttonBarShader"/>
+
+        <TextView
+            android:id="@+id/workoutsButtonBarShader"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:background="@color/buttonBarShader"/>
+
+        <TextView
+            android:id="@+id/profileButtonBarShader"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:background="@color/buttonBarShader"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonBarSnacks"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_above="@id/buttonBarShaders">
+
+        <TextView
+            android:id="@+id/logButtonBarSnack"
+            android:layout_width="120dp"
+            android:layout_height="5dp"
+            android:background="@color/buttonBarSnackColor"
+            />
+
+        <TextView
+            android:id="@+id/workoutsButtonBarSnack"
+            android:layout_width="120dp"
+            android:layout_height="5dp"
+            android:background="@color/buttonBarSnackColor"
+            />
+
+        <TextView
+            android:id="@+id/profileButtonBarSnack"
+            android:layout_width="120dp"
+            android:layout_height="5dp"
+            android:background="@color/buttonBarSnackColor"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

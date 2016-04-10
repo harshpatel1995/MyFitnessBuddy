@@ -12,24 +12,24 @@
     tools:context="squad.myfitnessbuddy.PredefinedWorkouts"
     tools:showIn="@layout/predefined_workouts">
 
-    <ListView
-       android:layout_width="wrap_content"
-       android:layout_height="320dp"
-       android:id="@+id/workoutLV"
-       android:layout_below="@+id/savePredefinedWorkout"
-       android:layout_alignParentRight="true"
-       android:layout_alignParentEnd="true" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose A Workout"
+        android:text="@string/choose_workout"
         android:id="@+id/savePredefinedWorkout"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="20sp"
+        android:textSize="@dimen/primary_text_size"
         android:layout_marginBottom="20dp" />
+
+    <ListView
+       android:layout_width="wrap_content"
+       android:layout_height="320dp"
+       android:id="@+id/workoutLV"
+       android:layout_below="@id/savePredefinedWorkout"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -44,23 +44,28 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select"
+            android:text="@string/select_button"
+            android:background="@color/buttonBarColor"
             android:id="@+id/savePreWorkout"
             android:onClick="selectPredefinedWorkoutButton"
+            android:layout_marginRight="5dp"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preview"
+            android:text="@string/preview_button"
+            android:background="@color/buttonBarColor"
             android:id="@+id/previewWorkout"
             android:onClick="previewPredefinedWorkoutButton"
+            android:layout_marginRight="5dp"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"
+            android:text="@string/back_button"
+            android:background="@color/buttonBarColor"
             android:id="@+id/predefinedBackButton"
             android:onClick="predefinedWorkoutBackButton"
             android:layout_weight="1" />

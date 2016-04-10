@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#FF311440</color>
     <color name="colorPrimaryDark">#FF261030</color>
     <color name="colorAccent">#FF370060</color>
+    <color name="colorBackground">#FFFAFAFA</color>
+    <color name="colorForeground">#FF000000</color>
+    <color name="navigationBarColor">#FF000000</color>
+    <color name="statusBarColor">#FF261030</color>
+    <color name="textColorPrimary">#FFFFFFFF</color>
+    <color name="textColorPrimaryInverse">#FFFFFFFF</color>
+    <color name="textColorSecondary">#FFFFFFFF</color>
+    <color name="textColorSecondaryInverse">#FFFFFFFF</color>
+    <color name="windowBackground">#ffffff</color>
+
+    <color name="buttonBarColor">#f0f0f0</color>
+    <color name="buttonBarSnackColor">#eaeaea</color>
+    <color name="buttonBarShader">#e4e4e4</color>
+
+    <color name="buttonPressed">#d4d4d4</color>
+    <color name="buttonBarSnackPressed">#FF370060</color>
+    <color name="buttonBarShaderPressed">#1a0a21</color>
+
     <color name="textHeading">#FF311440</color>
-    <color name="textPrimary">#FF000000</color>
-    <color name="black">#FF000000</color>
+    <color name="regularText">#FF000000</color>
+
+    <!--
+    Original Colors
+
+    FF311440
+    FF261030
+    FF370060
+    FFFAFAFA
+    FF000000
+    FF000000
+    FF261030
+    FFFFFFFF
+        DE000000
+        DE000000
+    FFFFFFFF
+        FFFFFFFF
+        FFFFFFFF
+    FFFFFFFF
+        8A000000
+        8A000000
+    FFFFFFFF
+        B3FFFFFF
+        B3FFFFFF
+    FFFAFAFA
+    -->
+
+
 </resources>

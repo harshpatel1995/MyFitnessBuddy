@@ -40,8 +40,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Query"
+        android:text="@string/query_button"
         android:id="@+id/queryButton"
+        android:background="@color/buttonBarColor"
         android:layout_below="@+id/filterOptionsSpinnner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
