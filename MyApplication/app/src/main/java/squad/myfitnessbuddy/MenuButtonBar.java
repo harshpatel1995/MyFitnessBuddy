@@ -20,19 +20,22 @@ public class MenuButtonBar extends AppCompatActivity{
 
     //The user clicked on "View My Logs"
     public void viewLogsOnClick(View view) {
-        Intent viewMyLogs = new Intent(getApplicationContext(), MyLogs.class);
+        Intent viewMyLogs = new Intent(this, MyLogs.class);
+        viewMyLogs.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(viewMyLogs);
     }
 
     //The user clicked on 'My Saved Workouts' from the menu options
     public void viewWorkoutsOnClick(View view) {
-        Intent workouts = new Intent(getApplicationContext(), SavedWorkouts.class);
+        Intent workouts = new Intent(this, SavedWorkouts.class);
+        workouts.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(workouts);
     }
 
     public void viewProfileOnClick(View view) {
         UserProfile.backButtonCheck("other");
-        Intent profile = new Intent(getApplicationContext(), UserProfile.class);
+        Intent profile = new Intent(this, UserProfile.class);
+        profile.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(profile);
     }
 
