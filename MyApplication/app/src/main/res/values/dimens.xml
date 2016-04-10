@@ -8,4 +8,7 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="button_text">12sp</dimen>
+    <dimen name="button_active_text">14sp</dimen>
+
 </resources>

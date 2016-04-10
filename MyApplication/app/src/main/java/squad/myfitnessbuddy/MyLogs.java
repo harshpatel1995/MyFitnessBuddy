@@ -1,14 +1,24 @@
 package squad.myfitnessbuddy;
 
+import android.animation.ValueAnimator;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +38,23 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_logs);
 
+        logsButtonTV = (TextView) findViewById(R.id.logsButtonBarText);
+        logsButtonIV = (ImageView) findViewById(R.id.logsButtonBarIcon);
+        buttonBarL = (LinearLayout) findViewById(R.id.logsButtonBar);
+        buttonBarSnackL = (TextView) findViewById(R.id.logButtonBarSnack);
+        buttonBarShaderL = (TextView) findViewById(R.id.logButtonBarShader);
+
+        logsButtonTV.setTextColor(ContextCompat.getColor(this, R.color.windowBackground));
+        buttonBarL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonPressed));
+        buttonBarSnackL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarSnackPressed));
+        buttonBarShaderL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarShaderPressed));
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            logsButtonIV.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.log_button_active));
+        } else {
+            logsButtonIV.setBackground(ContextCompat.getDrawable(this, R.drawable.log_button_active));
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
@@ -42,9 +69,9 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
             //test code
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
-          exerciseDB.execSQL("DELETE FROM logs");
-          exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-01', 'Leg Day', 'Squats', 8, 200)");
-          exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-28', 'Chest Blast', 'Arnold Press', 7, 100)");
+            exerciseDB.execSQL("DELETE FROM logs");
+            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-01', 'Leg Day', 'Squats', 8, 200)");
+            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-28', 'Chest Blast', 'Arnold Press', 7, 100)");
         }
         catch (Exception e){
             e.printStackTrace();

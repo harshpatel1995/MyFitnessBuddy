@@ -15,6 +15,14 @@
     <color name="windowBackground">#ffffff</color>
 
     <color name="buttonBarColor">#f0f0f0</color>
+    <color name="buttonBarSnackColor">#eaeaea</color>
+    <color name="buttonBarShader">#e4e4e4</color>
+
+    <color name="buttonPressed">#FF311440</color>
+    <color name="buttonBarSnackPressed">#260f30</color>
+    <color name="buttonBarShaderPressed">#1a0a21</color>
+
+
 
     <color name="textHeading">#FF311440</color>
     <color name="regularText">#FF000000</color>

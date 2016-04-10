@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -108,6 +110,22 @@ public class UserProfile extends MenuButtonBar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
+        profileButtonTV = (TextView) findViewById(R.id.profileButtonBarText);
+        profileButtonIV = (ImageView) findViewById(R.id.profileButtonBarIcon);
+        buttonBarL = (LinearLayout) findViewById(R.id.profileButtonBar);
+        buttonBarSnackL = (TextView) findViewById(R.id.profileButtonBarSnack);
+        buttonBarShaderL = (TextView) findViewById(R.id.profileButtonBarShader);
+
+        profileButtonTV.setTextColor(ContextCompat.getColor(this, R.color.windowBackground));
+        buttonBarL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonPressed));
+        buttonBarSnackL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarSnackPressed));
+        buttonBarShaderL.setBackgroundColor(ContextCompat.getColor(this, R.color.buttonBarShaderPressed));
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            profileButtonIV.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.log_button_active));
+        } else {
+            profileButtonIV.setBackground(ContextCompat.getDrawable(this, R.drawable.profile_button_active));
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
