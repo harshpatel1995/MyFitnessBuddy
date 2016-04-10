@@ -170,8 +170,7 @@ public class CreateWorkout extends AppCompatActivity {
 
 
     //checks if exercise is already in the database
-public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck)
-{
+public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck) {
     //counts number of entries in database with same name
     Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE name = '" + workoutNameStrToCheck + "'", null);
     mCount.moveToFirst();
