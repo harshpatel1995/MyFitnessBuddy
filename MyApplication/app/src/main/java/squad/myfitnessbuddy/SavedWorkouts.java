@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
 public class SavedWorkouts extends MenuButtonBar {
     SharedPreferences sharedPreference;
     LinearLayout createWorkoutPopup, deleteWorkoutPopup, menuButtons;
@@ -56,7 +55,6 @@ public class SavedWorkouts extends MenuButtonBar {
         savedWorkOutsLV.setVisibility(View.VISIBLE);
         addWorkoutButtonBT.setVisibility(View.VISIBLE);
     }
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +124,6 @@ public class SavedWorkouts extends MenuButtonBar {
                 //add exercise to list and move cursor to next exercise
                  while (c != null &&  c.moveToNext()) {
                     workoutsList.add(c.getString(nameIndex));
-
                 }
             c.close();
 
@@ -186,9 +183,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
     }
 
-
     public void startWorkout(View view){
-
 
         String selectedWorkoutName = getCheckedItemName(savedWorkOutsLV);
 
@@ -253,7 +248,4 @@ public class SavedWorkouts extends MenuButtonBar {
         }
         return selectedItem;
     }
-
-
-
 }

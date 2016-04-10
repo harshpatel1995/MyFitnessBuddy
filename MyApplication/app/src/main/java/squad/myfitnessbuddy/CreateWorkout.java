@@ -163,7 +163,6 @@ public class CreateWorkout extends AppCompatActivity {
             }
         }
 
-
     //go back a page
     public void cancelCustomWorkout(View view){
         finish();
