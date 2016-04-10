@@ -62,6 +62,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         timeSpinner.setAdapter(timeSpinnerAdapter);
         timeSpinner.setOnItemSelectedListener(this);
 
+
         filterBySpinner = (Spinner) findViewById(R.id.filterBySpinner);
         ArrayAdapter<CharSequence> filterByAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, filterByOptions);
         filterByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -88,7 +89,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
         String filterBySelected = filterBySpinner.getSelectedItem().toString();
         String filterOptionsSelected = filterOptionsSpinner.getSelectedItem().toString();
-        if(filterBySelected == "" || filterOptionsSelected == "") {
+        if(filterBySelected.equals("") || filterOptionsSelected.equals("")) {
             populateLogs(timeString());
         }
 
