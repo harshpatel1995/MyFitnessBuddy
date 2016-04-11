@@ -30,25 +30,55 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save_button"
-        android:id="@+id/saveButton"
+        android:weightSum="3"
         android:layout_below="@+id/startWorkoutView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onSaveWorkoutClick" />
+        android:layout_marginTop="30dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel_button"
-        android:id="@+id/cancelButton"
-        android:layout_below="@+id/saveButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onBackOrCancelClick" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_button"
+            android:id="@+id/saveButton"
+            android:layout_below="@+id/startWorkoutView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onSaveWorkoutClick"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preview_button"
+            android:id="@+id/startWorkoutPreviewButton"
+            android:layout_below="@+id/startWorkoutView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onPreviewLoggedWorkoutClick"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_button"
+            android:id="@+id/cancelButton"
+            android:layout_below="@+id/saveButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onBackOrCancelClick"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
 
 
 </RelativeLayout>

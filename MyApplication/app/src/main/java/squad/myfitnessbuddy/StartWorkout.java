@@ -52,6 +52,7 @@ public class StartWorkout extends AppCompatActivity {
     //can be accessed by any class to populated exercises
     public static final ArrayList<ExerciseSet> workoutAsListOfSetsList = new ArrayList<>();
 
+    /*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -62,17 +63,7 @@ public class StartWorkout extends AppCompatActivity {
         // menu.add("Add Set");
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-
-        if(item.getTitle().equals("Add Set")){
-            Toast.makeText(getApplicationContext(), "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show();
-
-        }
-
-        return super.onContextItemSelected(item);
-    }
-
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,6 +237,10 @@ public class StartWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void onPreviewLoggedWorkoutClick(View view){
+        //TODO code method and add layout items
     }
 
 

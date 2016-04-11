@@ -58,7 +58,6 @@ public class LogSets extends AppCompatActivity {
             repET.setText("");
             weightET.setText("");
 
-            //repET.requestFocus();
         } else if ((repsStr + weightStr).equals("")) {
             Toast.makeText(getApplicationContext(), errorMessagesArr[2], Toast.LENGTH_SHORT).show();
         } else if (repsStr.equals("")) {
@@ -90,6 +89,7 @@ public class LogSets extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     addSet(repET, weightET);
+
                 }
 
                 return false;
@@ -109,7 +109,11 @@ public class LogSets extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strArr);
 
         addSetsLV.setAdapter(adapter);
+
+        // repET.requestFocus();
     }
+
+
 
     //this saves the sets to the workout and then goes back to workout page
     public void saveSetsForExerciseOnClick(View view) {
@@ -117,8 +121,8 @@ public class LogSets extends AppCompatActivity {
         for (ExerciseSet setObj : setsForCurrentExerciseList) {
 
             StartWorkout.workoutAsListOfSetsList.add(setObj);
-            finish();
         }
+        finish();
     }
 
     //when back or cancel button is clicked, go back to previous activity

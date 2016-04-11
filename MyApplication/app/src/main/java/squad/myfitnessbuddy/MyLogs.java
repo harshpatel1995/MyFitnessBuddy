@@ -66,12 +66,8 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
 
         try {
-            //test code
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
-            exerciseDB.execSQL("DELETE FROM logs");
-            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-04-01', 'Leg Day', 'Squats', 8, 200)");
-            exerciseDB.execSQL("INSERT INTO logs (date, workout,  exercise, reps, weight) VALUES ('2016-03-28', 'Chest Blast', 'Arnold Press', 7, 100)");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -97,6 +93,27 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         filterBySpinner.setOnItemSelectedListener(this);
 
         filterOptionsSpinner = (Spinner) findViewById(R.id.filterOptionsSpinnner);
+    }
+
+    @Override
+    protected void onRestart(){
+
+        try {
+            exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+            exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        exerciseSet = new TreeSet<>();
+        workoutSet = new TreeSet<>();
+        bodypartSet = new TreeSet<>();
+
+        populateFilters();
+
+        super.onRestart();
+
     }
 
     public String timeString() {
@@ -128,9 +145,8 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
                 case 2: queryString = timeString() + "AND workout = '" + filterOptionsSelected + "'";
                     populateLogs(queryString);
                     break;
-                case 3: //queryString = "SELECT * FROM logs, exercises WHERE logs.name = exercises.name AND exercises.primary = '" + filterOptionsSelected +  "'";
+                case 3:
                         //"SELECT * FROM logs LEFT OUTER JOIN exercises ON exercises.name = logs.exercise WHERE exercises.primary = '" + filterOptionsSelected +  "'"
-                    //"SELECT * FROM logs, exercises WHERE exercises.name = logs.exercise AND exercises.primaryWorked = '" + filterOptionsSelected +  "'";
                         queryString = "SELECT * FROM logs LEFT OUTER JOIN exercises ON exercises.name = logs.exercise WHERE exercises.primaryWorked = '" + filterOptionsSelected +  "'";
                     populateLogs(queryString);
 
