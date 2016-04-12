@@ -18,10 +18,10 @@
         android:onClick="addWorkoutOnClick"
         android:textAllCaps="false"
         android:text="@string/add_new_workout"
-        style="?android:borderlessButtonStyle"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:background="@color/buttonBarColor"/>
 
     <ListView
         android:layout_width="match_parent"
