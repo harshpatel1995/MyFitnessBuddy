@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,13 +38,13 @@ public class StartWorkout extends AppCompatActivity {
 
     String workoutNameStr, formattedDateStr;
     ListView startWorkoutLV, previewLogLV;
-    TextView startWorkoutNameTV;
+    TextView startWorkoutNameTV, deleteSetTV;
     RelativeLayout previewLayout;
     LinearLayout mainButtonsLayout, deleteLayout;
     Button previewBackButton;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
     ArrayAdapter<String> adapterForPreview; // = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, savedSetsAsStringsList);
-    int listPostionToDeleteFromLog = 0;
+    int listPostionToDeleteFromLogInt = 0;
 
     final ArrayList<String> savedSetsAsStringsList = new ArrayList<>();
     final ArrayList<String> exerciseList = new ArrayList<>();
@@ -84,10 +83,12 @@ public class StartWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         previewBackButton = (Button) findViewById(R.id.startWorkoutLogSetsBackButton);
         previewLayout = (RelativeLayout) findViewById(R.id.startWorkoutPreviewLayout);
         previewLogLV =(ListView) findViewById(R.id.startWorkoutLogsSetsLV);
 
+        deleteSetTV = (TextView) findViewById(R.id.startWorkoutDeleteTV);
         mainButtonsLayout =(LinearLayout) findViewById(R.id.startWorkoutLinearButtonLayout);
         deleteLayout = (LinearLayout) findViewById(R.id.startWorkoutDeleteLayout);
         startWorkoutLV = (ListView) findViewById(R.id.startWorkoutView);
@@ -119,10 +120,12 @@ public class StartWorkout extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                            int pos, long id) {
 
-                listPostionToDeleteFromLog = pos;
+                listPostionToDeleteFromLogInt = pos;
                 deleteLayout.setVisibility(View.VISIBLE);
                 previewBackButton.setVisibility(View.INVISIBLE);
                 previewLogLV.setEnabled(false);
+
+                deleteSetTV.setText("Are you sure you want to delete set #" + (pos+1) + "?");
 
                 return true;
             }
@@ -131,13 +134,21 @@ public class StartWorkout extends AppCompatActivity {
 
     public void deleteOnClick(View view){
 
+        workoutAsListOfSetsList.remove(listPostionToDeleteFromLogInt);
+        savedSetsAsStringsList.clear();
+        
+        populateLogPreview();
 
         deleteLayout.setVisibility(View.INVISIBLE);
         previewBackButton.setVisibility(View.VISIBLE);
         previewLogLV.setEnabled(true);
     }
 
-    
+    public void backFromDelete(View view){
+        deleteLayout.setVisibility(View.INVISIBLE);
+        previewBackButton.setVisibility(View.VISIBLE);
+        previewLogLV.setEnabled(true);
+    }
 
     public void populateExercisesListView(){
 
