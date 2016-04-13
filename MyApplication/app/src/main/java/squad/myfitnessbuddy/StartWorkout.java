@@ -5,34 +5,25 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.view.ContextMenu;
 import android.content.Intent;
 
 
 import java.text.SimpleDateFormat;
+
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import android.widget.AdapterView.OnItemClickListener;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 
 
 public class StartWorkout extends AppCompatActivity {
@@ -42,28 +33,22 @@ public class StartWorkout extends AppCompatActivity {
     //database for system
     SQLiteDatabase database;
 
-    String workoutNameStr;
-    ListView startWorkoutView;
+
+    String workoutNameStr, formattedDateStr;
+    ListView startWorkoutLV, previewLogLV;
     TextView startWorkoutNameTV;
-    String formattedDateStr;
+    RelativeLayout previewLayout;
+    LinearLayout mainButtonsLayout;
     ArrayAdapter<String> adapter;// = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
+    ArrayAdapter<String> adapterForPreview; // = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, savedSetsAsStringsList);
+
+    final ArrayList<String> savedSetsAsStringsList = new ArrayList<>();
     final ArrayList<String> exerciseList = new ArrayList<>();
 
+    //IMPORTANT
     //can be accessed by any class to populated exercises
     public static final ArrayList<ExerciseSet> workoutAsListOfSetsList = new ArrayList<>();
 
-    /*
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater contextualMenuInflater = getMenuInflater();
-        contextualMenuInflater.inflate(R.menu.menu_add_set, menu);
-
-
-        // menu.add("Add Set");
-    }
-
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +79,12 @@ public class StartWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        startWorkoutView = (ListView) findViewById(R.id.startWorkoutView);
+        previewLayout = (RelativeLayout) findViewById(R.id.startWorkoutPreviewLayout);
+        previewLogLV =(ListView) findViewById(R.id.startWorkoutLogsSetsLV);
+
+        mainButtonsLayout =(LinearLayout) findViewById(R.id.startWorkoutLinearButtonLayout);
+
+        startWorkoutLV = (ListView) findViewById(R.id.startWorkoutView);
         startWorkoutNameTV = (TextView) findViewById(R.id.startWorkoutNameTV);
         startWorkoutNameTV.setText(workoutNameStr);
 
@@ -102,9 +92,9 @@ public class StartWorkout extends AppCompatActivity {
         // final ArrayList <String> myExerciseList = new ArrayList<>();
         populateExercisesListView();
 
-        registerForContextMenu(startWorkoutView);
+        registerForContextMenu(startWorkoutLV);
 
-        startWorkoutView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        startWorkoutLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -166,7 +156,7 @@ public class StartWorkout extends AppCompatActivity {
                 //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
                 adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
 
-                startWorkoutView.setAdapter(adapter);
+                startWorkoutLV.setAdapter(adapter);
 
 
             }
@@ -239,8 +229,20 @@ public class StartWorkout extends AppCompatActivity {
 
     }
 
+    //user hits preview
     public void onPreviewLoggedWorkoutClick(View view){
-        //TODO code method and add layout items
+        previewLayout.setVisibility(View.VISIBLE);
+        previewLogLV.setVisibility(View.VISIBLE);
+        startWorkoutLV.setVisibility(View.INVISIBLE);
+        mainButtonsLayout.setVisibility(View.INVISIBLE);
+    }
+
+    //user hits back button
+    public void onPreviewLoggedWorkoutBackClick(View view){
+        previewLayout.setVisibility(View.INVISIBLE);
+        previewLogLV.setVisibility(View.INVISIBLE);
+        startWorkoutLV.setVisibility(View.VISIBLE);
+        mainButtonsLayout.setVisibility(View.VISIBLE);
     }
 
 

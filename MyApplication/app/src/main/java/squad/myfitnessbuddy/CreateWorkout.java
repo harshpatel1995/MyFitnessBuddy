@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class CreateWorkout extends AppCompatActivity {
 
-    //listview control that displays exercises on screen
+    //listView control that displays exercises on screen
    ListView exerciseLV;
 
     //database

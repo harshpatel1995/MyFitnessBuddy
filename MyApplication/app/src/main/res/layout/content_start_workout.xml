@@ -38,7 +38,8 @@
         android:layout_below="@+id/startWorkoutView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:id="@+id/startWorkoutLinearButtonLayout">
 
         <Button
             android:layout_width="match_parent"
@@ -79,6 +80,34 @@
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/startWorkoutView"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/startWorkoutPreviewLayout">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:id="@+id/startWorkoutLogsSetsLV"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_button"
+            android:id="@+id/startWorkoutLogSetsBackButton"
+            android:onClick="onPreviewLoggedWorkoutBackClick"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/startWorkoutLogsSetsLV"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp" />
+    </RelativeLayout>
 
 
 </RelativeLayout>
