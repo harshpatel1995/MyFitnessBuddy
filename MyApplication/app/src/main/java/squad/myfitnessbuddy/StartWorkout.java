@@ -136,7 +136,7 @@ public class StartWorkout extends AppCompatActivity {
 
         workoutAsListOfSetsList.remove(listPostionToDeleteFromLogInt);
         savedSetsAsStringsList.clear();
-        
+
         populateLogPreview();
 
         deleteLayout.setVisibility(View.INVISIBLE);

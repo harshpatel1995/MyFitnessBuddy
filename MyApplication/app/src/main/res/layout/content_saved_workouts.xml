@@ -21,7 +21,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:textAlignment="center"
-        android:background="@color/buttonBarColor"/>
+        android:background="@color/buttonBarColor"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
     <ListView
         android:layout_width="match_parent"
