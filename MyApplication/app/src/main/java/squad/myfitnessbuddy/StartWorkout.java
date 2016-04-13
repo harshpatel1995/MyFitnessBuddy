@@ -287,6 +287,8 @@ public class StartWorkout extends AppCompatActivity {
 
     //user hits back button
     public void onPreviewLoggedWorkoutBackClick(View view){
+       savedSetsAsStringsList.clear();
+
         previewLayout.setVisibility(View.INVISIBLE);
         previewLogLV.setVisibility(View.INVISIBLE);
         startWorkoutLV.setVisibility(View.VISIBLE);
