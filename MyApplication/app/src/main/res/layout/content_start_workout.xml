@@ -94,7 +94,8 @@
             android:layout_height="350dp"
             android:id="@+id/startWorkoutLogsSetsLV"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:longClickable="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -107,6 +108,58 @@
             android:layout_below="@+id/startWorkoutLogsSetsLV"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="?attr/colorPrimary"
+            android:padding="5dp"
+            android:visibility="invisible"
+            android:touchscreenBlocksFocus="false"
+            android:id="@+id/startWorkoutDeleteLayout"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="73dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/are_you_sure"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/secondary_text_default_material_dark"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="2" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes_button"
+                    android:id="@+id/startWorkoutDeleteYes"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:onClick="deleteWorkout" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_button"
+                    android:id="@+id/startWorkoutDeleteYes"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:onClick="doNotDeleteWorkout" />
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 

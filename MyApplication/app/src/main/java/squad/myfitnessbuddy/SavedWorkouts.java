@@ -155,6 +155,7 @@ public class SavedWorkouts extends MenuButtonBar {
             deleteMessage.setText(deleteWorkoutText);
             deleteWorkoutPopup.setVisibility(View.VISIBLE);
             menuButtons.setVisibility(View.INVISIBLE);
+            savedWorkOutsLV.setEnabled(false);
         }
         else{
             Toast.makeText(getApplicationContext(),"Please select a workout to delete.",Toast.LENGTH_SHORT).show();
@@ -165,6 +166,7 @@ public class SavedWorkouts extends MenuButtonBar {
 
         deleteWorkoutPopup.setVisibility(View.INVISIBLE);
         menuButtons.setVisibility(View.VISIBLE);
+        savedWorkOutsLV.setEnabled(true);
     }
 
     public void deleteWorkout(View view){
@@ -177,6 +179,7 @@ public class SavedWorkouts extends MenuButtonBar {
             e.printStackTrace();
         }
 
+        finish();
         //reopen the page to see changes
         Intent savedWorkouts = new Intent(getApplicationContext(), SavedWorkouts.class);
         startActivity(savedWorkouts);
