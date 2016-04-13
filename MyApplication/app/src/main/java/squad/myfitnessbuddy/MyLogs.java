@@ -217,7 +217,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
             c.close();
 
             //should optimize more
-            Cursor c_v2 = exerciseDB.rawQuery("SELECT logs.workout FROM logs LIMIT 5000", null);
+            Cursor c_v2 = exerciseDB.rawQuery("SELECT logs.workout FROM logs ORDER BY _id DESC LIMIT 5000", null);
             int idxName = c_v2.getColumnIndex("workout");
             while (c_v2 != null &&  c_v2.moveToNext()) {
                 workoutSet.add(c_v2.getString(idxName));
