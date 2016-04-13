@@ -43,6 +43,7 @@ public class LogSets extends AppCompatActivity {
 
         String repsStr = repET.getText().toString();
         String weightStr = weightET.getText().toString();
+        String spaceBeforeRep;
 
         if ((!repsStr.equals("")) && (!weightStr.equals(""))) {
 
@@ -50,10 +51,21 @@ public class LogSets extends AppCompatActivity {
             int repsInt = Integer.parseInt(repsStr);
             int weightInt = Integer.parseInt(weightStr);
 
+            //to keep alignment of text
+            if(setNum < 10){
+                spaceBeforeRep = "     ";
+            }
+            else if (setNum < 100){
+                spaceBeforeRep = "   ";
+            }
+            else{
+                spaceBeforeRep = " ";
+            }
+
             ExerciseSet setObj = new ExerciseSet(workoutNameStr, exerciseNameStr, repsInt, weightInt);
             setsForCurrentExerciseList.add(setObj);
 
-            strArr.add("Set: " + setNum + "     Reps: " + repsStr + "     Weight: " + weightStr);
+            strArr.add("Set: " + setNum + spaceBeforeRep + "Reps: " + repsStr + "     Weight: " + weightStr);
 
             repET.setText("");
             weightET.setText("");

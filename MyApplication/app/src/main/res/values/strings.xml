@@ -33,7 +33,7 @@
     <string name="weight_unit">lbs</string>
     <string name="bmi">BMI</string>
     <string name="metabolic_rates">Metabolic Rates</string>
-    <string name="calorie_note">(calories)</string>
+    <string name="calorie_note">(Calories)</string>
     <string name="sedentary">Sedentary</string>
     <string name="lightly_active">Lightly Active</string>
     <string name="moderately_active">Moderately Active</string>

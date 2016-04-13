@@ -21,7 +21,9 @@ import java.text.SimpleDateFormat;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -98,8 +100,7 @@ public class StartWorkout extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Log.i("Exercise Tapped: ", exerciseList.get(position));
-
+                savedSetsAsStringsList.clear();
                 SharedPreferences.Editor editor = sharedPreference.edit();
                 editor.putString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, exerciseList.get(position));
                 editor.apply();
@@ -231,10 +232,18 @@ public class StartWorkout extends AppCompatActivity {
 
     //user hits preview
     public void onPreviewLoggedWorkoutClick(View view){
-        previewLayout.setVisibility(View.VISIBLE);
-        previewLogLV.setVisibility(View.VISIBLE);
-        startWorkoutLV.setVisibility(View.INVISIBLE);
-        mainButtonsLayout.setVisibility(View.INVISIBLE);
+
+        if(workoutAsListOfSetsList.size() == 0){
+            Toast.makeText(getApplicationContext(),"You currently have no logged sets to preview.",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            populateLogPreview();
+            previewLayout.setVisibility(View.VISIBLE);
+            previewLogLV.setVisibility(View.VISIBLE);
+            startWorkoutLV.setVisibility(View.INVISIBLE);
+            mainButtonsLayout.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     //user hits back button
@@ -243,6 +252,46 @@ public class StartWorkout extends AppCompatActivity {
         previewLogLV.setVisibility(View.INVISIBLE);
         startWorkoutLV.setVisibility(View.VISIBLE);
         mainButtonsLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void populateLogPreview()
+    {
+        Collections.sort(workoutAsListOfSetsList);
+        int counterInt = 1;
+        String tabsStr;
+
+        for (ExerciseSet setSet : workoutAsListOfSetsList)
+        {
+            String exerciseStr = setSet.getExercise();
+            int weightInt = setSet.getWeight();
+            int repsInt = setSet.getReps();
+
+            if(counterInt<10)
+            {
+                tabsStr = "\t\t\t";
+            }
+            else if(counterInt<100)
+            {
+                tabsStr = "\t\t\t\t";
+            }
+            else
+            {
+                tabsStr = "\t\t\t\t\t";
+            }
+
+            //("Set: " + setNum + "     Reps: " + repsStr + "     Weight: " + weightStr);
+            String setAsString;
+
+            setAsString = counterInt + ".\t" + "Exercise: " + exerciseStr + "\n" + tabsStr + "Reps: " + repsInt
+                         + "    Weight: " + weightInt;
+
+            savedSetsAsStringsList.add(setAsString);
+            counterInt++;
+        }
+
+        adapterForPreview = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, savedSetsAsStringsList);
+        previewLogLV.setAdapter(adapterForPreview);
+
     }
 
 
