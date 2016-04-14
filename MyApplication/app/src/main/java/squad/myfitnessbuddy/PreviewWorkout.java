@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PreviewWorkout extends AppCompatActivity {
+public class   PreviewWorkout extends AppCompatActivity {
 
     //database for system
     SQLiteDatabase database;

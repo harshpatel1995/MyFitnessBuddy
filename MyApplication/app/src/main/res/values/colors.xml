@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#FF311440</color>
-    <color name="colorPrimaryDark">#FF261030</color>
-    <color name="colorAccent">#FF370060</color>
+    <color name="colorPrimary">#311440</color>
+    <color name="colorPrimaryDark">#261030</color>
+    <color name="colorAccent">#370060</color>
     <color name="colorBackground">#FFFAFAFA</color>
     <color name="colorForeground">#FF000000</color>
     <color name="navigationBarColor">#FF000000</color>
-    <color name="statusBarColor">#FF261030</color>
+    <color name="statusBarColor">#261030</color>
     <color name="textColorPrimary">#FFFFFFFF</color>
     <color name="textColorPrimaryInverse">#FFFFFFFF</color>
     <color name="textColorSecondary">#FFFFFFFF</color>
@@ -19,10 +19,10 @@
     <color name="buttonBarShader">#e4e4e4</color>
 
     <color name="buttonPressed">#d4d4d4</color>
-    <color name="buttonBarSnackPressed">#FF370060</color>
+    <color name="buttonBarSnackPressed">#370060</color>
     <color name="buttonBarShaderPressed">#1a0a21</color>
 
-    <color name="textHeading">#FF311440</color>
+    <color name="textHeading">#311440</color>
     <color name="regularText">#FF000000</color>
 
     <!--
