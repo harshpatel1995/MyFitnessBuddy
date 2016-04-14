@@ -213,15 +213,23 @@ public class StartWorkout extends AppCompatActivity {
     //saves the workout from the button click
     public void onSaveWorkoutClick(View view){
 
-        //add workout to database
-        addWorkoutToDatabase(workoutAsListOfSetsList);
+        if (workoutAsListOfSetsList.size() != 0) {
+            //add workout to database
+            addWorkoutToDatabase(workoutAsListOfSetsList);
 
-        //clear list of sets so it can be repopulated the next time
-        workoutAsListOfSetsList.clear();
+            //clear list of sets so it can be repopulated the next time
+            workoutAsListOfSetsList.clear();
 
-        //go back to home page (user profile)
-        Intent userProfile = new Intent(getApplicationContext(), UserProfile.class);
-        startActivity(userProfile);
+            Toast.makeText(getApplicationContext(), "Workout has been successfully logged!", Toast.LENGTH_SHORT).show();
+            finish();
+            //go back to home page (user profile)
+            Intent userProfile = new Intent(getApplicationContext(), UserProfile.class);
+            userProfile.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(userProfile);
+        }
+        else{ Toast.makeText(getApplicationContext(), "Please add some sets to your workout.", Toast.LENGTH_SHORT).show();
+
+        }
 
     }
 
@@ -287,6 +295,8 @@ public class StartWorkout extends AppCompatActivity {
 
     //user hits back button
     public void onPreviewLoggedWorkoutBackClick(View view){
+       savedSetsAsStringsList.clear();
+
         previewLayout.setVisibility(View.INVISIBLE);
         previewLogLV.setVisibility(View.INVISIBLE);
         startWorkoutLV.setVisibility(View.VISIBLE);
