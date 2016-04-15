@@ -144,7 +144,6 @@ public class StartWorkout extends AppCompatActivity {
 
     }
 
-
     public void deleteOnClick(View view){
 
         workoutAsListOfSetsList.remove(listPostionToDeleteFromLogInt);
