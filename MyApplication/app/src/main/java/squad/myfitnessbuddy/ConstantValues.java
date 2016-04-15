@@ -11,7 +11,7 @@ public class ConstantValues {
 
     public static final String cFETCH_LOGS_ALL = "SELECT * FROM logs";
     public static final String cFETCH_LOGS_LAST_7DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-7 day'))";
-    public static final String cFETCH_LOGS_LAST_15DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-15 day'))";
+    public static final String cFETCH_LOGS_LAST_14DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-14 day'))";
     public static final String cFETCH_LOGS_LAST_1MONTH = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-1 month'))";
     public static final String cFETCH_LOGS_LAST_3MONTHS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-3 month'))";
 
@@ -33,7 +33,5 @@ public class ConstantValues {
     public static final String cSP_STARTED_WORKOUT = "Started Workout";
     public static final String cSP_IS_PREVIEW_FOR_PREDEFINED = "Preview For Predefined Workout";
     public static final String cSP_CURRENT_EXERCISE_TO_LOG = "Current Exercise To Log";
-
-
 
 }

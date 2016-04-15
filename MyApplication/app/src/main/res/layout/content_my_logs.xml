@@ -18,8 +18,7 @@
         android:id="@+id/timeSpinner"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="0dp" />
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
         android:id="@+id/filterBySpinner"
         android:layout_below="@+id/timeSpinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="2dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
         android:id="@+id/filterOptionsSpinnner"
         android:layout_below="@+id/filterBySpinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="2dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -45,13 +44,14 @@
         android:background="@color/buttonBarColor"
         android:layout_below="@+id/filterOptionsSpinnner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:onClick="onQueryClick" />
+        android:onClick="onQueryClick"
+        android:minHeight="30dp"
+        android:layout_marginTop="2dp" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="115dp"
         android:layout_marginBottom="50dp"
         android:divider="@android:color/transparent"
         android:id="@+id/listview"

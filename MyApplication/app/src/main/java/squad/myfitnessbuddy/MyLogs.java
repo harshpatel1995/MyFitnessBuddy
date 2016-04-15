@@ -1,15 +1,11 @@
 package squad.myfitnessbuddy;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -39,7 +33,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     SQLiteDatabase exerciseDB;
     Spinner timeSpinner, filterBySpinner, filterOptionsSpinner;
     TreeSet<String> exerciseSet, workoutSet, bodypartSet;
-    String[] timeOptions = new String[] {"7 Days", "15 Days", "1 Month", "3 Months", "All Logs"};
+    String[] timeOptions = new String[] {"Past Week", "Past 2 Weeks", "Past Month", "Past 3 Months", "All Logs"};
     String[] filterByOptions = new String[] {"", "Exercise", "Workout", "Body Part"};
 
     @Override
@@ -127,7 +121,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
             case 0:
                 return ConstantValues.cFETCH_LOGS_LAST_7DAYS;
             case 1:
-                return ConstantValues.cFETCH_LOGS_LAST_15DAYS;
+                return ConstantValues.cFETCH_LOGS_LAST_14DAYS;
             case 2:
                 return ConstantValues.cFETCH_LOGS_LAST_1MONTH;
             case 3:
