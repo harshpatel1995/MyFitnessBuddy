@@ -26,6 +26,7 @@ public class CreateWorkout extends AppCompatActivity {
 
     //listView control that displays exercises on screen
    ListView exerciseLV;
+    
 
     //database
     SQLiteDatabase database;
@@ -36,11 +37,12 @@ public class CreateWorkout extends AppCompatActivity {
         setContentView(R.layout.create_workout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
 
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Create Workout");
+        actionBar.setTitle("Custom Workout");
         //gets intent of page that just called this one
         Intent intent = getIntent();
         try {

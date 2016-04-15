@@ -23,13 +23,14 @@ import java.util.ArrayList;
 
 public class SavedWorkouts extends MenuButtonBar {
     SharedPreferences sharedPreference;
-    LinearLayout createWorkoutPopup, deleteWorkoutPopup, menuButtons;
+    LinearLayout createWorkoutPopup, deleteWorkoutPopup, menuButtons, mainButtonBar, mainSnacks, mainShaders;
+    public ListView savedWorkOutsLV;
+    public Button addWorkoutButtonBT;
 
     //database for system
     SQLiteDatabase database;
     //listview control that displays exercises on screen
-    public ListView savedWorkOutsLV;
-    public Button addWorkoutButtonBT;
+
 
     //This will let you choose between create or predefined, for now just goes to create page
     public void addWorkoutOnClick(View view) {
@@ -37,6 +38,9 @@ public class SavedWorkouts extends MenuButtonBar {
         menuButtons.setVisibility(View.INVISIBLE);
         savedWorkOutsLV.setVisibility(View.INVISIBLE);
         addWorkoutButtonBT.setVisibility(View.INVISIBLE);
+        mainButtonBar.setVisibility(View.INVISIBLE);
+        mainSnacks.setVisibility(View.INVISIBLE);
+        mainShaders.setVisibility(View.INVISIBLE);
     }
 
     public void customizedWorkoutButton (View view){
@@ -54,6 +58,9 @@ public class SavedWorkouts extends MenuButtonBar {
         menuButtons.setVisibility(View.VISIBLE);
         savedWorkOutsLV.setVisibility(View.VISIBLE);
         addWorkoutButtonBT.setVisibility(View.VISIBLE);
+        mainButtonBar.setVisibility(View.VISIBLE);
+        mainSnacks.setVisibility(View.VISIBLE);
+        mainShaders.setVisibility(View.VISIBLE);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +108,9 @@ public class SavedWorkouts extends MenuButtonBar {
         createWorkoutPopup = (LinearLayout) findViewById(R.id.createWorkoutLayout);
         deleteWorkoutPopup = (LinearLayout) findViewById(R.id.savedWorkoutDeleteWorkoutLinearLayout);
         menuButtons        = (LinearLayout) findViewById(R.id.savedWorkoutStartMenuLinearLayout);
+        mainButtonBar      = (LinearLayout) findViewById(R.id.buttonBarMenu);
+        mainSnacks         = (LinearLayout) findViewById(R.id.buttonBarSnacks);
+        mainShaders         = (LinearLayout) findViewById(R.id.buttonBarShaders);
 
         savedWorkOutsLV = (ListView) findViewById(R.id.savedWorkoutsLV);
         //populate list of exercises
@@ -156,6 +166,10 @@ public class SavedWorkouts extends MenuButtonBar {
             deleteWorkoutPopup.setVisibility(View.VISIBLE);
             menuButtons.setVisibility(View.INVISIBLE);
             savedWorkOutsLV.setEnabled(false);
+            mainButtonBar.setVisibility(View.INVISIBLE);
+            mainSnacks.setVisibility(View.INVISIBLE);
+            mainShaders.setVisibility(View.INVISIBLE);
+            addWorkoutButtonBT.setVisibility(View.INVISIBLE);
         }
         else{
             Toast.makeText(getApplicationContext(),"Please select a workout to delete.",Toast.LENGTH_SHORT).show();
@@ -167,6 +181,10 @@ public class SavedWorkouts extends MenuButtonBar {
         deleteWorkoutPopup.setVisibility(View.INVISIBLE);
         menuButtons.setVisibility(View.VISIBLE);
         savedWorkOutsLV.setEnabled(true);
+        mainButtonBar.setVisibility(View.VISIBLE);
+        mainSnacks.setVisibility(View.VISIBLE);
+        mainShaders.setVisibility(View.VISIBLE);
+        addWorkoutButtonBT.setVisibility(View.VISIBLE);
     }
 
     public void deleteWorkout(View view){
@@ -178,6 +196,7 @@ public class SavedWorkouts extends MenuButtonBar {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         finish();
         //reopen the page to see changes
