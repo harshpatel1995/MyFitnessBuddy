@@ -33,7 +33,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     SQLiteDatabase exerciseDB;
     Spinner timeSpinner, filterBySpinner, filterOptionsSpinner;
     TreeSet<String> exerciseSet, workoutSet, bodypartSet;
-    String[] timeOptions = new String[] {"Past Week", "Past 2 Weeks", "Past Month", "Past 3 Months", "All Logs"};
+    String[] timeOptions = new String[] {"Week", "2 Weeks", "Month", "3 Months", "All Logs"};
     String[] filterByOptions = new String[] {"", "Exercise", "Workout", "Body Part"};
 
     @Override
