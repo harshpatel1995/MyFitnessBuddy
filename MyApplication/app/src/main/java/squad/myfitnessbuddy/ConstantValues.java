@@ -9,7 +9,7 @@ public class ConstantValues {
     public static final String cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL =
             "CREATE TABLE IF NOT EXISTS logs (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, workout TEXT NOT NULL, exercise TEXT NOT NULL, reps INTEGER CHECK(reps>0), weight INTEGER CHECK(weight>0))";
 
-    public static final String cFETCH_LOGS_ALL = "SELECT * FROM logs";
+    public static final String cFETCH_LOGS_ALL = "SELECT * FROM logs WHERE 1=1";
     public static final String cFETCH_LOGS_LAST_7DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-7 day'))";
     public static final String cFETCH_LOGS_LAST_14DAYS = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-14 day'))";
     public static final String cFETCH_LOGS_LAST_1MONTH = "SELECT * FROM logs WHERE date > (SELECT DATETIME('now', '-1 month'))";

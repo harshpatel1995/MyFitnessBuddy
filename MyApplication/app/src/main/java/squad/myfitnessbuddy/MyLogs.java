@@ -27,7 +27,7 @@ import java.util.TreeSet;
 
 public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedListener {
 
-
+    //Listview that displays the results of the user's queries
     public ListView listView;
 
     SQLiteDatabase exerciseDB;
@@ -146,11 +146,11 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         else {
             switch(filterBySpinner.getSelectedItemPosition()) {
                 case 1:
-                    queryString = timeString() + "AND exercise = '" + filterOptionsSelected + "'";
+                    queryString = timeString() + " AND exercise = '" + filterOptionsSelected + "'";
                     populateLogs(queryString);
                     break;
                 case 2:
-                    queryString = timeString() + "AND workout = '" + filterOptionsSelected + "'";
+                    queryString = timeString() + " AND workout = '" + filterOptionsSelected + "'";
                     populateLogs(queryString);
                     break;
                 case 3:
@@ -397,7 +397,6 @@ class Exercise {
     public int reps;
     public int weight;
     public String date;
-
 
     public Exercise(String workoutName, String exerciseName, int reps, int weight, String date) {
         this.workoutName = workoutName;
