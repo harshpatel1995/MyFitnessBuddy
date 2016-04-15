@@ -68,32 +68,40 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         assert actionBar != null;
         actionBar.setTitle("My Logs");
 
+
         try {
+            //Open the database
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+            //Open the logs table
             exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
+        //Initialize the containers (Tree sets) for all three filters
         exerciseSet = new TreeSet<>();
         workoutSet = new TreeSet<>();
         bodypartSet = new TreeSet<>();
 
+        //Populate the above three containers with the appropriate information
         populateFilters();
 
+        //Initialize the time spinner (1st on the page)
         timeSpinner = (Spinner) findViewById(R.id.timeSpinner);
         ArrayAdapter<CharSequence> timeSpinnerAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, timeOptions);
         timeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         timeSpinner.setAdapter(timeSpinnerAdapter);
         timeSpinner.setOnItemSelectedListener(this);
 
+        //Initialize the filterBy spinner (2nd on the page)
         filterBySpinner = (Spinner) findViewById(R.id.filterBySpinner);
         ArrayAdapter<CharSequence> filterByAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, filterByOptions);
         filterByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         filterBySpinner.setAdapter(filterByAdapter);
         filterBySpinner.setOnItemSelectedListener(this);
 
+        //Intialize the filterOptions spinner (3rd on the page)
         filterOptionsSpinner = (Spinner) findViewById(R.id.filterOptionsSpinnner);
 
     }
@@ -116,6 +124,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         super.onRestart();
     }
 
+    //Looks at the current position of the time spinner and returns the appropriate query string
     public String timeString() {
         switch(timeSpinner.getSelectedItemPosition()) {
             case 0:
@@ -133,60 +142,71 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         }
     }
 
+    //The onClick method for the 'Search' button
     public void onQueryClick(View view) {
 
-        //listView.setAdapter(mAdapter);
-        String queryString;
+        String queryString = "";
+        //Retrieve the current selection (Strings as opposed to indices) in filter 2 and filter 3 respectively
         String filterBySelected = filterBySpinner.getSelectedItem().toString();
         String filterOptionsSelected = filterOptionsSpinner.getSelectedItem().toString();
 
+        //If only the time filter is selected, populate the listview with the query for the appropriate timeframe
         if(filterBySelected.equals("") || filterOptionsSelected.equals("")) {
             populateLogs(timeString());
         }
+
+        //The user wants to query with a particular criteria
         else {
             switch(filterBySpinner.getSelectedItemPosition()) {
+                //The criteria selected by the user is an 'Exercise'. So query the logs table with the selected exercise name.
                 case 1:
                     queryString = timeString() + " AND exercise = '" + filterOptionsSelected + "'";
-                    populateLogs(queryString);
                     break;
+                //The criteria selected by the user is a 'Workout'. So query the logs table with the selected workout name.
                 case 2:
                     queryString = timeString() + " AND workout = '" + filterOptionsSelected + "'";
-                    populateLogs(queryString);
                     break;
+                //The criteria selected by the user is a 'Body Part'. So query the logs table with the selected body part.
                 case 3:
                     queryString = "SELECT * FROM logs LEFT OUTER JOIN exercises ON exercises.name = logs.exercise WHERE exercises.primaryWorked = '" + filterOptionsSelected +  "'";
-                    populateLogs(queryString);
-                    break;
             }
+            //Populate the listview with the appopriate search
+            populateLogs(queryString);
         }
     }
 
+    //Set the 3rd filter (filterOptions) to the appropriate type based on the user's selection for the 2nd filter (filterBy)
+    //For example, if the user selected 'Exercise' in filter 2 (filterBy), populate filter 3 (filterOptions) with a list of exercises.
     protected void setFilterOptions(String[] array) {
         ArrayAdapter<CharSequence> filterOptionsAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, array);
         filterOptionsSpinner.setAdapter(filterOptionsAdapter);
         filterOptionsSpinner.setOnItemSelectedListener(this);
     }
 
+    //The method that actually queries the database with the queryString passed from the search button's onClick method.
     protected void populateLogs(String queryString) {
 
         try {
-            int id;
             String workoutName;
             String dateString;
             String exerciseName;
             int reps;
             int weight;
 
+            //Create an adapter for the listview
             CustomAdapter mAdapter = new CustomAdapter(this);
             this.listView = (ListView) findViewById(R.id.listview);
             listView.setAdapter(mAdapter);
 
+            //Create a query with the queryString passed into the function
             Cursor c = exerciseDB.rawQuery(queryString, null);
 
+            //If no results are found for the query, display an information message
             if(c.getCount() == 0) {
                 mAdapter.addItem("No results found.");
             }
 
+            //1 or more results have been found for the query
             else {
                 int dateColumn = c.getColumnIndex("date");
                 int workoutColumn = c.getColumnIndex("workout");
@@ -194,44 +214,50 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
                 int repsColumn = c.getColumnIndex("reps");
                 int weightColumn = c.getColumnIndex("weight");
 
+                //Holds the exercises with the same workout name so that they can be displayed together
                 ArrayList<Exercise> arrayList = new ArrayList<>();
                 Exercise current, previous = null;
 
+                //Traverse the logs table backwards
                 for (c.moveToLast(); !c.isBeforeFirst(); c.moveToPrevious()) {
 
                     workoutName = c.getString(workoutColumn);
-                    dateString = c.getString(dateColumn);
+                    dateString = formatDate(c.getString(dateColumn));
                     exerciseName = c.getString(exerciseColumn);
                     reps = c.getInt(repsColumn);
                     weight = c.getInt(weightColumn);
-                    Date date = getDate(dateString);
 
-                    DateFormat dateFormat = new SimpleDateFormat("MM-dd-yy");
-                    String dtString = dateFormat.format(date);
-
+                    //This is the first set we have encountered. For all other sets, the else block will be called.
                     if (previous == null) {
-                        current = new Exercise(workoutName, exerciseName, reps, weight, dtString);
+                        current = new Exercise(workoutName, exerciseName, reps, weight, dateString);
                         arrayList.add(current);
                         previous = current;
-                    } else {
-                        current = new Exercise(workoutName, exerciseName, reps, weight, dtString);
+                    }
 
+                    else {
+                        current = new Exercise(workoutName, exerciseName, reps, weight, dateString);
+
+                        //If this set has the same workoutName and Date as the previous one, add it to the collection
                         if (current.workoutName.equals(previous.workoutName) && current.date.equals(previous.date)) {
                             arrayList.add(current);
-                        } else {
+                        }
+                        //This set is part of a different workout or has a different date
+                        else {
+                            //Print out whatever the collection is holding at this point and clear it out
                             printArrayList(arrayList, mAdapter);
                             arrayList.clear();
+                            //Repeat the same procedure starting with this set
                             arrayList.add(current);
                             previous = current;
                         }
                     }
                 }
+                //At the end, if there are sets in the collection, dump those to the listview too
                 if(!arrayList.isEmpty()) {
                     printArrayList(arrayList, mAdapter);
                     arrayList.clear();
                 }
             }
-
             c.close();
         }
         catch(Exception e) {
@@ -239,6 +265,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         }
     }
 
+    //Method that prints each workout's information in the listview
     public void printArrayList(ArrayList<Exercise> arrayList, CustomAdapter mAdapter) {
         mAdapter.addSectionHeaderItem(arrayList.get(0).workoutName + " : " + arrayList.get(0).date);
         for(Exercise e : arrayList) {
@@ -246,6 +273,10 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         }
     }
 
+    //Method to populate the 3 filters based on what's in the database
+    //All exercises are displayed
+    //Only workouts that exist in the logs table are displayed
+    //All bodyparts are displayed
     public void populateFilters() {
 
         try {
@@ -272,15 +303,23 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         catch(Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public Date getDate(String dateString){
-        SimpleDateFormat formattedDateStr = new SimpleDateFormat("yyyy-MM-dd");
-        ParsePosition parsePosition = new ParsePosition(0);
-        return formattedDateStr.parse(dateString, parsePosition);
+    //Convert the date to a format suitable for the listview
+    public String formatDate(String dateString){
+        SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat newFormat = new SimpleDateFormat("yy-MM-dd");
+        String result = "";
+
+        try {
+           result =  newFormat.format(oldFormat.parse(dateString));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
+    //Change the 3rd filter based upon the user's selection of the 2nd filter
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -308,6 +347,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     }
 }
 
+//Adapter necessary for the listview display
 class CustomAdapter extends BaseAdapter {
 
     private static final int TYPE_ITEM = 0;
@@ -390,6 +430,7 @@ class CustomAdapter extends BaseAdapter {
 
 }
 
+//Class exercise that makes collecting the attributes in a collection easier (ArrayList<Exercise>)
 class Exercise {
 
     public String workoutName;
