@@ -41,7 +41,7 @@ public class CreateWorkout extends AppCompatActivity {
         //Customize the Actionbar color to 'Black' and text to 'Setup Page'
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Custom Workout");
+        actionBar.setTitle("Customized Workout");
         //gets intent of page that just called this one
         Intent intent = getIntent();
         try {
