@@ -111,10 +111,9 @@ public class   PreviewWorkout extends AppCompatActivity {
                     }
 
                     //adapter to get list into ListView
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, exerciseList);
                     exercisesLV.setAdapter(adapter);
-
-
+                    exercisesLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
                 }
             else{
