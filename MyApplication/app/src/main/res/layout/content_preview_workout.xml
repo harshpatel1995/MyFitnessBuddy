@@ -29,7 +29,6 @@
         android:text="@string/workout_name"
         android:id="@+id/previewWorkoutNameTV"
         android:textSize="20sp"
-        android:textColor="@color/regularText"
         android:layout_marginBottom="20dp" />
 
     <LinearLayout

@@ -22,13 +22,14 @@
     <LinearLayout
         android:id="@+id/lineGraphLayout"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/exerciseNameTV345"
         android:layout_centerHorizontal="true">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>
 
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/lineGraphLayout"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true">
 
         <Button
@@ -48,6 +50,8 @@
             android:text="@string/back_button"
             android:background="@color/buttonBarColor"
             android:id="@+id/previewWorkoutBackButton"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp"
             android:onClick="onBackButtonClicked" />
 
     </LinearLayout>
