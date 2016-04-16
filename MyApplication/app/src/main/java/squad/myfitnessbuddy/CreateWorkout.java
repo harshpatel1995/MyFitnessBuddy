@@ -134,7 +134,7 @@ public class CreateWorkout extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Name cannot cannot special characters.", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "This exercise already exists.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "This workout name already exists.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -173,7 +173,7 @@ public class CreateWorkout extends AppCompatActivity {
     //checks if exercise is already in the database
 public boolean workoutAlreadyInDataBase(String workoutNameStrToCheck) {
     //counts number of entries in database with same name
-    Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE name = '" + workoutNameStrToCheck + "'", null);
+    Cursor mCount= database.rawQuery("SELECT count(*) FROM savedWorkouts WHERE upper(name) = '" + workoutNameStrToCheck.toUpperCase() + "'", null);
     mCount.moveToFirst();
     int count= mCount.getInt(0);
     mCount.close();

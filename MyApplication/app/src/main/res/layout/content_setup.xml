@@ -140,6 +140,7 @@
                 android:nextFocusDown="@+id/userHeight"
                 android:layout_marginTop="5dp"
                 android:typeface="sans"
+                 android:maxLength="3"
                 android:gravity="center"/>
 
              <TextView
@@ -159,6 +160,7 @@
                 android:padding="10dp"
                 android:typeface="sans"
                 android:hint="@string/height_type"
+                android:maxLength="2"
                 android:gravity="center"/>
 
              <TextView
@@ -229,6 +231,7 @@
                 android:textColor="@android:color/black"
                 android:typeface="sans"
                 android:gravity="center"
+                android:maxLength="3"
                 android:hint="@string/weight_type" />
 
             <TextView

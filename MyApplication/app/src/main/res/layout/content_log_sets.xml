@@ -37,6 +37,7 @@
             android:textSize="15dp"
             android:ems="10"
             android:id="@+id/repET"
+            android:maxLength="3"
             android:hint="@string/repetitions" />
 
         <EditText
@@ -47,6 +48,7 @@
             android:ems="10"
             android:imeOptions="actionDone"
             android:id="@+id/weightET"
+            android:maxLength="3"
             android:hint="@string/weight" />
 
     </LinearLayout>
