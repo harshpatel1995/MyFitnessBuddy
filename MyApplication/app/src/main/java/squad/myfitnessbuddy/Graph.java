@@ -29,7 +29,7 @@ public class Graph extends MenuButtonBar {
     SQLiteDatabase exerciseDB;
 
     ArrayList<Entry> entries = new ArrayList<>();
-    ArrayList<String> horizontalLabel = new ArrayList<String>();
+    ArrayList<String> horizontalLabel = new ArrayList<>();
 
     //go back a page
     public void onBackButtonClicked (View view){
@@ -46,7 +46,7 @@ public class Graph extends MenuButtonBar {
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Max Rep Statistics");
+        actionBar.setTitle("Max Weight Statistics");
 
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
@@ -75,12 +75,12 @@ public class Graph extends MenuButtonBar {
 
         populateGraph(exerciseNameTV.getText().toString());
 
-        LineDataSet line = new LineDataSet(entries, "Max Rep");
+        LineDataSet line = new LineDataSet(entries, "Max Weight");
 
         LineData data = new LineData(horizontalLabel, line);
         chart.setData(data); // set the data and list of lables into chart
 
-        chart.setDescription("Max Rep Per Workout");  // set the description
+        chart.setDescription("Max Weight Per Workout");  // set the description
         chart.setDrawBorders(true);
         chart.setBorderColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
@@ -161,19 +161,19 @@ public class Graph extends MenuButtonBar {
             Cursor c = exerciseDB.rawQuery(queryString, null);
 
             if(c.getCount() == 0) {
-                Toast.makeText(getApplicationContext(),"No logs found for this exercise.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"No logs found for this exercise.",Toast.LENGTH_LONG).show();
             }
             else {
                 int dateColumn = c.getColumnIndex("date");
                 int weightsColumn = c.getColumnIndex("weight");
 
-                c.moveToNext();
+                c.moveToFirst();
 
                 int count = 0;
                 int maxWeight = c.getInt(weightsColumn);
                 String sameDateString = c.getString(dateColumn);
 
-                while(!c.equals(null) && c.moveToNext()){
+                while(c !=null && c.moveToNext()){
                     dateString = c.getString(dateColumn);
                     weight = c.getInt(weightsColumn);
 
@@ -184,15 +184,16 @@ public class Graph extends MenuButtonBar {
                         continue;
                     }
 
-                    horizontalLabel.add(sameDateString);
+                    horizontalLabel.add(getMMDDYYYFromYYYMMDD(sameDateString));
                     entries.add(new Entry(maxWeight, count));
                     count++;
 
                     sameDateString = dateString;
+
                     maxWeight = weight;
                 }
 
-                horizontalLabel.add(sameDateString);
+                horizontalLabel.add(getMMDDYYYFromYYYMMDD(sameDateString));
                 entries.add(new Entry(maxWeight, count));
             }
 
@@ -202,5 +203,12 @@ public class Graph extends MenuButtonBar {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getMMDDYYYFromYYYMMDD (String strYYYYMMDD){
+        String[] formattedDateArray = strYYYYMMDD.split("-");
+
+        return formattedDateArray[1] + "-" + formattedDateArray[2] + "-"
+                + formattedDateArray[0];
     }
 }

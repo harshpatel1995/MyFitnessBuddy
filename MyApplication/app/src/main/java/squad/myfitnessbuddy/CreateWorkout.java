@@ -118,10 +118,11 @@ public class CreateWorkout extends AppCompatActivity {
                 boolean isAcceptableNameBln = true;
                 boolean isOriginalName = true;
 
+
                 if (containsSpecialCharacter(workoutNameStr)){
                     isAcceptableNameBln = false;
                 }
-                if(workoutAlreadyInDataBase(workoutNameStr)){
+                else if(workoutAlreadyInDataBase(workoutNameStr)){
                     isOriginalName = false;
                 }
                 if(isAcceptableNameBln && isOriginalName) {
@@ -131,7 +132,7 @@ public class CreateWorkout extends AppCompatActivity {
                 }
                 else{
                     if(!isAcceptableNameBln) {
-                        Toast.makeText(getApplicationContext(), "Name cannot cannot special characters.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Name cannot contain special characters.", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "This workout name already exists.", Toast.LENGTH_SHORT).show();
@@ -148,7 +149,9 @@ public class CreateWorkout extends AppCompatActivity {
     //checks if there are any special character in string
     //not good for SQL
     public boolean containsSpecialCharacter(String string) {
-        return (string == null) ? false : !string.matches("[A-Za-z0-9 ]*");
+
+            return (string == null) ? false : !string.matches("[A-Za-z0-9]*");
+
     }
 
     //Saves the workout in the database

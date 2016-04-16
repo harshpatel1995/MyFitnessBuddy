@@ -66,7 +66,7 @@ public class Setup extends AppCompatActivity {
         weight = Float.parseFloat(weightET.getText().toString());
 
         //Checks whether a valid weight has been selected
-        if (weight < 70) {
+        if (weight < 70 || weight > 600) {
             Toast.makeText(getApplicationContext(), "You must select a valid weight!", Toast.LENGTH_SHORT).show();
             return;
         }
