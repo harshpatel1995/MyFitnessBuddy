@@ -2,13 +2,14 @@ package squad.myfitnessbuddy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.MarkerView;
@@ -19,15 +20,17 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 public class Graph extends MenuButtonBar {
 
     SharedPreferences sharedPreference;
     TextView exerciseNameTV;
+    SQLiteDatabase exerciseDB;
+
+    ArrayList<Entry> entries = new ArrayList<>();
+    ArrayList<String> horizontalLabel = new ArrayList<String>();
+
     //go back a page
     public void onBackButtonClicked (View view){
         finish();
@@ -44,6 +47,14 @@ public class Graph extends MenuButtonBar {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Max Rep Statistics");
+
+        try {
+            exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
+            exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exerciseNameTV = (TextView) findViewById(R.id.exerciseNameTV);
@@ -62,23 +73,9 @@ public class Graph extends MenuButtonBar {
         YAxis yAxisRight = chart.getAxisRight();
         Legend legend = chart.getLegend();
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(180f, 0));
-        entries.add(new Entry(225f, 1));
-        entries.add(new Entry(135f, 2));
-        entries.add(new Entry(185f, 3));
-        entries.add(new Entry(200f, 4));
-        entries.add(new Entry(135f, 5));
+        populateGraph(exerciseNameTV.getText().toString());
 
         LineDataSet line = new LineDataSet(entries, "Max Rep");
-
-        ArrayList<String> horizontalLabel = new ArrayList<String>();
-        horizontalLabel.add("Jan");
-        horizontalLabel.add("Feb");
-        horizontalLabel.add("Mar");
-        horizontalLabel.add("Apr");
-        horizontalLabel.add("May");
-        horizontalLabel.add("Jun");
 
         LineData data = new LineData(horizontalLabel, line);
         chart.setData(data); // set the data and list of lables into chart
@@ -112,8 +109,6 @@ public class Graph extends MenuButtonBar {
 
     @Override
     protected void onRestart() {
-
-        SQLiteDatabase exerciseDB;
 
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
@@ -151,6 +146,61 @@ public class Graph extends MenuButtonBar {
         public int getYOffset(float ypos) {
             // this will center the marker-view vertically
             return -(getHeight() / 2);
+        }
+    }
+
+    protected void populateGraph(String queryString){
+
+
+        try {
+
+            String dateString;
+            int weight;
+
+            queryString = ConstantValues.cFETCH_LOGS_ALL + " AND exercise = '" + queryString + "'";
+            Cursor c = exerciseDB.rawQuery(queryString, null);
+
+            if(c.getCount() == 0) {
+                Toast.makeText(getApplicationContext(),"No logs found for this exercise.",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                int dateColumn = c.getColumnIndex("date");
+                int weightsColumn = c.getColumnIndex("weight");
+
+                c.moveToNext();
+
+                int count = 0;
+                int maxWeight = c.getInt(weightsColumn);
+                String sameDateString = c.getString(dateColumn);
+
+                while(!c.equals(null) && c.moveToNext()){
+                    dateString = c.getString(dateColumn);
+                    weight = c.getInt(weightsColumn);
+
+                    if(dateString.equals(sameDateString)) {
+                        if (weight > maxWeight) {
+                            maxWeight = weight;
+                        }
+                        continue;
+                    }
+
+                    horizontalLabel.add(sameDateString);
+                    entries.add(new Entry(maxWeight, count));
+                    count++;
+
+                    sameDateString = dateString;
+                    maxWeight = weight;
+                }
+
+                horizontalLabel.add(sameDateString);
+                entries.add(new Entry(maxWeight, count));
+            }
+
+            c.close();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

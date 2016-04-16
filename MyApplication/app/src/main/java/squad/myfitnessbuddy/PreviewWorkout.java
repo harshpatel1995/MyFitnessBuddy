@@ -49,7 +49,6 @@ public class   PreviewWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exercisesLV = (ListView) findViewById(R.id.previewWorkoutExerciseLV);
         workoutNameTV = (TextView) findViewById(R.id.previewWorkoutNameTV);
