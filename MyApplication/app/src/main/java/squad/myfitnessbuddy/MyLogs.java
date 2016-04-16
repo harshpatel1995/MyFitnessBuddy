@@ -307,7 +307,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     //Convert the date to a format suitable for the listview
     public String formatDate(String dateString){
         SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat newFormat = new SimpleDateFormat("yy-MM-dd");
+        SimpleDateFormat newFormat = new SimpleDateFormat("MM-dd-yy");
         String result = "";
 
         try {

@@ -184,7 +184,7 @@ public class Graph extends MenuButtonBar {
                         continue;
                     }
 
-                    horizontalLabel.add(getMMDDYYYFromYYYMMDD(sameDateString));
+                    horizontalLabel.add(getMMDDYYFromYYYMMDD(sameDateString));
                     entries.add(new Entry(maxWeight, count));
                     count++;
 
@@ -193,7 +193,7 @@ public class Graph extends MenuButtonBar {
                     maxWeight = weight;
                 }
 
-                horizontalLabel.add(getMMDDYYYFromYYYMMDD(sameDateString));
+                horizontalLabel.add(getMMDDYYFromYYYMMDD(sameDateString));
                 entries.add(new Entry(maxWeight, count));
             }
 
@@ -205,10 +205,10 @@ public class Graph extends MenuButtonBar {
         }
     }
 
-    public String getMMDDYYYFromYYYMMDD (String strYYYYMMDD){
+    public String getMMDDYYFromYYYMMDD(String strYYYYMMDD){
         String[] formattedDateArray = strYYYYMMDD.split("-");
 
         return formattedDateArray[1] + "-" + formattedDateArray[2] + "-"
-                + formattedDateArray[0];
+                + formattedDateArray[0].substring(2);
     }
 }
