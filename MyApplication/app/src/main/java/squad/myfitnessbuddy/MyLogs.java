@@ -430,6 +430,7 @@ class CustomAdapter extends BaseAdapter {
 }
 
 //Class exercise that makes collecting the attributes in a collection easier (ArrayList<Exercise>)
+//done separate to include date
 class Exercise {
 
     public String workoutName;
