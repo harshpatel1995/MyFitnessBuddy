@@ -53,6 +53,8 @@ public class Setup extends AppCompatActivity {
             return;
         }
 
+
+
         if (maleRB.isChecked()) gender = "Male";
         else gender = "Female";
 
@@ -62,6 +64,23 @@ public class Setup extends AppCompatActivity {
         age = Integer.parseInt(ageET.getText().toString());
         height = Float.parseFloat(heightET.getText().toString());
         weight = Float.parseFloat(weightET.getText().toString());
+
+        //Checks whether a valid weight has been selected
+        if (weight < 70 || weight > 600) {
+            Toast.makeText(getApplicationContext(), "You must select a valid weight!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //Checks whether a valid age has been selected
+        if (age < 10 || age > 130) {
+            Toast.makeText(getApplicationContext(), "You must select a valid age!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Checks whether a valid height has been selected
+        if (height < 36 || height > 86) {
+            Toast.makeText(getApplicationContext(), "You must select a valid height!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //Call the functions to calculate BMI and Metabolic Rates
         bmi = calculateBMI(height, weight);
@@ -217,7 +236,7 @@ public class Setup extends AppCompatActivity {
         startActivity(profile);
     }
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_setup, menu);
@@ -237,5 +256,5 @@ public class Setup extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

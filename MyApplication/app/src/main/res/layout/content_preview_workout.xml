@@ -20,7 +20,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:choiceMode="none"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -28,18 +29,37 @@
         android:text="@string/workout_name"
         android:id="@+id/previewWorkoutNameTV"
         android:textSize="20sp"
-        android:textColor="@color/regularText"
         android:layout_marginBottom="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/back_button"
-        android:background="@color/buttonBarColor"
-        android:id="@+id/previewWorkoutBackButton"
-        android:paddingLeft="45dp"
-        android:paddingRight="45dp"
-        android:onClick="onBackButtonClicked"
+        android:orientation="horizontal"
         android:layout_below="@+id/previewWorkoutExerciseLV"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:weightSum="2"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back_button"
+            android:background="@color/buttonBarColor"
+            android:id="@+id/previewWorkoutBackButton"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:onClick="onBackButtonClicked" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_stats"
+            android:background="@color/buttonBarColor"
+            android:id="@+id/viewStatsButton"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:onClick="onViewStatsClicked" />
+
+    </LinearLayout>
+
 </RelativeLayout>

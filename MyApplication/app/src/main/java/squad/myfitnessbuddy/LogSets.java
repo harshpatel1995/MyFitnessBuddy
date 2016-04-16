@@ -38,37 +38,60 @@ public class LogSets extends AppCompatActivity {
         String[] errorMessagesArr = {
                 "Reps cannot be empty!",
                 "Weight cannot be empty!",
-                "Reps and Weight cannot be empty!"
+                "Reps and Weight cannot be empty!",
+                "Reps are not valid!",
+                "Weight is not valid!",
+                "Reps and Weight are not valid!"
         };
+
 
         String repsStr = repET.getText().toString();
         String weightStr = weightET.getText().toString();
-        String spaceBeforeRep;
+        String spaceBeforeRep, spaceBeforeWeight;
 
         if ((!repsStr.equals("")) && (!weightStr.equals(""))) {
-
-            setNum++;
             int repsInt = Integer.parseInt(repsStr);
             int weightInt = Integer.parseInt(weightStr);
 
-            //to keep alignment of text
-            if(setNum < 10){
-                spaceBeforeRep = "     ";
+            if((repsInt > 0 && repsInt < 1000) && (weightInt > 0 && weightInt < 1000)) {
+                setNum++;
+
+                //to keep alignment of text
+                if (setNum < 10) {
+                    spaceBeforeRep = "     ";
+                } else if (setNum < 100) {
+                    spaceBeforeRep = "   ";
+                } else {
+                    spaceBeforeRep = " ";
+                }
+
+                //to keep alignment of text
+                if (repsInt < 10) {
+                    spaceBeforeWeight = "     ";
+                } else if (repsInt < 100) {
+                    spaceBeforeWeight = "   ";
+                } else {
+                    spaceBeforeWeight = " ";
+                }
+
+                ExerciseSet setObj = new ExerciseSet(workoutNameStr, exerciseNameStr, repsInt, weightInt);
+                setsForCurrentExerciseList.add(setObj);
+
+                strArr.add("Set: " + setNum + spaceBeforeRep + "Reps: " + repsStr + spaceBeforeWeight + "Weight: " + weightStr);
+
+                repET.setText("");
+                weightET.setText("");
             }
-            else if (setNum < 100){
-                spaceBeforeRep = "   ";
+            else if ((repsInt < 0 || repsInt > 1000) && (weightInt < 0 || weightInt > 1000)){
+                Toast.makeText(getApplicationContext(), errorMessagesArr[5], Toast.LENGTH_SHORT).show();
             }
-            else{
-                spaceBeforeRep = " ";
+            else if ((repsInt < 0 || repsInt > 1000) ){
+                Toast.makeText(getApplicationContext(), errorMessagesArr[3], Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), errorMessagesArr[4], Toast.LENGTH_SHORT).show();
             }
 
-            ExerciseSet setObj = new ExerciseSet(workoutNameStr, exerciseNameStr, repsInt, weightInt);
-            setsForCurrentExerciseList.add(setObj);
-
-            strArr.add("Set: " + setNum + spaceBeforeRep + "Reps: " + repsStr + "     Weight: " + weightStr);
-
-            repET.setText("");
-            weightET.setText("");
 
         } else if ((repsStr + weightStr).equals("")) {
             Toast.makeText(getApplicationContext(), errorMessagesArr[2], Toast.LENGTH_SHORT).show();

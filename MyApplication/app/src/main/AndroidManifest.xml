@@ -14,6 +14,7 @@
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme"
             android:noHistory="true"
             >
@@ -27,39 +28,52 @@
             android:name=".Setup"
             android:label="Setup"
             android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".CreateWorkout"
             android:label="@string/title_activity_create_workout"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".PredefinedWorkouts"
             android:label="@string/title_activity_predefined_workouts"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".SavedWorkouts"
             android:label="@string/title_activity_saved_workouts"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".MyLogs"
             android:label="@string/title_activity_my_logs"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         >
         <activity
             android:name=".PreviewWorkout"
             android:label="@string/title_activity_preview_workout"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".StartWorkout"
             android:label="@string/title_activity_start_workout"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar" />
         <activity
             android:name=".LogSets"
             android:label="@string/title_activity_log_sets"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
+        <activity
+            android:name=".Graph"
+            android:label="graphs"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
     </application>
 

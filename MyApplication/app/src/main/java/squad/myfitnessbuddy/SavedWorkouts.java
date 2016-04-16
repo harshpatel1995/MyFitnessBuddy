@@ -32,8 +32,23 @@ public class SavedWorkouts extends MenuButtonBar {
     //listview control that displays exercises on screen
 
 
-    //This will let you choose between create or predefined, for now just goes to create page
-    public void addWorkoutOnClick(View view) {
+    @Override
+    public void onBackPressed() {
+        if(createWorkoutPopup.getVisibility() == View.VISIBLE) {
+            setAddWorkoutMenuInvisible();
+        }
+        else if (deleteWorkoutPopup.getVisibility() == View.VISIBLE){
+            setDeletePopupInvisible();
+        }
+
+        else{
+            super.onBackPressed();
+        }
+
+    }
+
+    public void setAddWorkoutMenuVisible()
+    {
         createWorkoutPopup.setVisibility(View.VISIBLE);
         menuButtons.setVisibility(View.INVISIBLE);
         savedWorkOutsLV.setVisibility(View.INVISIBLE);
@@ -41,6 +56,22 @@ public class SavedWorkouts extends MenuButtonBar {
         mainButtonBar.setVisibility(View.INVISIBLE);
         mainSnacks.setVisibility(View.INVISIBLE);
         mainShaders.setVisibility(View.INVISIBLE);
+    }
+
+    public void setAddWorkoutMenuInvisible()
+    {
+        createWorkoutPopup.setVisibility(View.INVISIBLE);
+        menuButtons.setVisibility(View.VISIBLE);
+        savedWorkOutsLV.setVisibility(View.VISIBLE);
+        addWorkoutButtonBT.setVisibility(View.VISIBLE);
+        mainButtonBar.setVisibility(View.VISIBLE);
+        mainSnacks.setVisibility(View.VISIBLE);
+        mainShaders.setVisibility(View.VISIBLE);
+    }
+
+    //This will let you choose between create or predefined, for now just goes to create page
+    public void addWorkoutOnClick(View view) {
+        setAddWorkoutMenuVisible();
     }
 
     public void customizedWorkoutButton (View view){
@@ -54,13 +85,7 @@ public class SavedWorkouts extends MenuButtonBar {
     }
 
     public void backOnClick(View view) {
-        createWorkoutPopup.setVisibility(View.INVISIBLE);
-        menuButtons.setVisibility(View.VISIBLE);
-        savedWorkOutsLV.setVisibility(View.VISIBLE);
-        addWorkoutButtonBT.setVisibility(View.VISIBLE);
-        mainButtonBar.setVisibility(View.VISIBLE);
-        mainSnacks.setVisibility(View.VISIBLE);
-        mainShaders.setVisibility(View.VISIBLE);
+        setAddWorkoutMenuInvisible();
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +203,11 @@ public class SavedWorkouts extends MenuButtonBar {
 
     public void doNotDeleteWorkout(View view){
 
+        setDeletePopupInvisible();
+    }
+
+    public void setDeletePopupInvisible()
+    {
         deleteWorkoutPopup.setVisibility(View.INVISIBLE);
         menuButtons.setVisibility(View.VISIBLE);
         savedWorkOutsLV.setEnabled(true);

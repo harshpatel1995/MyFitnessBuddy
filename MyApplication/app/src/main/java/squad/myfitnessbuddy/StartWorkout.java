@@ -132,6 +132,18 @@ public class StartWorkout extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(deleteLayout.getVisibility() == View.VISIBLE) {
+            setDeleteOptionsInvisible();
+        }
+
+        else{
+            super.onBackPressed();
+        }
+
+    }
+
     public void deleteOnClick(View view){
 
         workoutAsListOfSetsList.remove(listPostionToDeleteFromLogInt);
@@ -144,10 +156,15 @@ public class StartWorkout extends AppCompatActivity {
         previewLogLV.setEnabled(true);
     }
 
-    public void backFromDelete(View view){
+    public void setDeleteOptionsInvisible()
+    {
         deleteLayout.setVisibility(View.INVISIBLE);
         previewBackButton.setVisibility(View.VISIBLE);
         previewLogLV.setEnabled(true);
+    }
+
+    public void backFromDelete(View view){
+        setDeleteOptionsInvisible();
     }
 
     public void populateExercisesListView(){

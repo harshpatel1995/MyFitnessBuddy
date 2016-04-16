@@ -1,6 +1,7 @@
 package squad.myfitnessbuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,10 +9,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,7 +49,6 @@ public class   PreviewWorkout extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exercisesLV = (ListView) findViewById(R.id.previewWorkoutExerciseLV);
         workoutNameTV = (TextView) findViewById(R.id.previewWorkoutNameTV);
@@ -58,6 +60,29 @@ public class   PreviewWorkout extends AppCompatActivity {
     //go back a page
     public void onBackButtonClicked (View view){
         finish();
+    }
+
+    //go to max rep stats page
+    public void onViewStatsClicked (View view){
+
+        String selectedExerciseName = getCheckedItemName(exercisesLV);
+
+        if (!selectedExerciseName.equals("")) {
+
+            SharedPreferences.Editor editor = sharedPreference.edit();
+
+            //Use the editor to store the name of the current workout to preview in the SharedPreference
+            editor.putString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, selectedExerciseName);
+            editor.apply();
+
+            //go to graph/statistics page
+            Intent graph = new Intent(this, Graph.class);
+            startActivity(graph);
+        }
+        else{
+            //if nothing selected, display error message
+            Toast.makeText(getApplicationContext(),"Please select an exercise to view stats.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     //populates the listview on the page
@@ -104,10 +129,9 @@ public class   PreviewWorkout extends AppCompatActivity {
                     }
 
                     //adapter to get list into ListView
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseList);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, exerciseList);
                     exercisesLV.setAdapter(adapter);
-
-
+                    exercisesLV.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
                 }
             else{
@@ -119,6 +143,25 @@ public class   PreviewWorkout extends AppCompatActivity {
             Log.i("Error", "Database is null.");
         }
 
+    }
+
+    //returns the name of the item that is checked in the list.
+    //returns empty string if it noting is checked
+    public String getCheckedItemName(ListView listView)
+    {
+        String selectedItem = "";
+
+        SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
+
+        //iterate through list
+        for(int counter = 0; counter < listView.getCount(); counter++){
+            //if something is checked get name of item
+            if (sparseBooleanArray.get(counter)){
+                selectedItem = listView.getItemAtPosition(counter).toString();
+                break;
+            }
+        }
+        return selectedItem;
     }
 
 }
