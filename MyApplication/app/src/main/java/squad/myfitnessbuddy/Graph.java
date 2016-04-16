@@ -1,6 +1,7 @@
 package squad.myfitnessbuddy;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -18,11 +19,15 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Graph extends MenuButtonBar {
 
+    SharedPreferences sharedPreference;
+    TextView exerciseNameTV;
     //go back a page
     public void onBackButtonClicked (View view){
         finish();
@@ -39,6 +44,10 @@ public class Graph extends MenuButtonBar {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Max Rep Statistics");
+
+        sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        exerciseNameTV = (TextView) findViewById(R.id.exerciseNameTV);
+        exerciseNameTV.setText(sharedPreference.getString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, ""));
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
@@ -115,6 +124,7 @@ public class Graph extends MenuButtonBar {
         }
         super.onRestart();
     }
+
     public class CustomMarkerView extends MarkerView {
 
         private TextView maxRepTV;
