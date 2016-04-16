@@ -23,7 +23,7 @@
     <color name="buttonBarShaderPressed">#1a0a21</color>
 
     <color name="textHeading">#311440</color>
-    <color name="regularText">#FF000000</color>
+    <color name="regularText">#000000</color>
 
     <!--
     Original Colors

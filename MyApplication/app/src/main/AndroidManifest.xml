@@ -71,6 +71,10 @@
             android:label="@string/title_activity_log_sets"
             android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
+        <activity
+            android:name=".Graph"
+            android:label="graphs"
+            android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -82,6 +82,7 @@
             android:layout_alignStart="@+id/linearLayout2"
             android:layout_weight="1"
             android:layout_marginRight="5dp"
+            android:background="@color/buttonBarColor"
             android:layout_gravity="center_vertical" />
 
         <Button
@@ -95,6 +96,7 @@
             android:onClick="backOrCancelOnClick"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
+            android:background="@color/buttonBarColor"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 

@@ -21,13 +21,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:textAlignment="center"
-        android:background="@color/buttonBarColor"
+        style="?android:borderlessButtonStyle"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="300dp"
         android:id="@+id/savedWorkoutsLV"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/addWorkoutButton"

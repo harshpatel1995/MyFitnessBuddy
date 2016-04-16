@@ -1,6 +1,7 @@
 package squad.myfitnessbuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -58,6 +59,12 @@ public class   PreviewWorkout extends AppCompatActivity {
     //go back a page
     public void onBackButtonClicked (View view){
         finish();
+    }
+
+    //go to max rep stats page
+    public void onViewStatsClicked (View view){
+        Intent graph = new Intent(this, Graph.class);
+        startActivity(graph);
     }
 
     //populates the listview on the page

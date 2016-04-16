@@ -68,7 +68,6 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         assert actionBar != null;
         actionBar.setTitle("My Logs");
 
-
         try {
             //Open the database
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
