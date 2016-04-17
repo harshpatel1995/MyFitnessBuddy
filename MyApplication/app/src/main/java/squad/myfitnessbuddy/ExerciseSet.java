@@ -79,8 +79,8 @@ public class ExerciseSet implements Comparable<ExerciseSet>
         return dateStr;
     }
 
-    public void setDateStr(String dateStr) {
-        this.dateStr = dateStr;
+    public void setDate(String date) {
+        dateStr = date;
     }
 
     public String getWorkoutName() {

@@ -30,7 +30,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     SQLiteDatabase exerciseDB;
     Spinner timeSpinner, filterBySpinner, filterOptionsSpinner;
     TreeSet<String> exerciseSet, workoutSet, bodypartSet;
-    String[] timeOptions = new String[] {"Past Week", "Past 2 Weeks", "Past Month", "Past 3 Months", "All Logs"};
+    String[] timeOptions = new String[] {"Week", "2 Weeks", "Month", "3 Months", "All Logs"};
     String[] filterByOptions = new String[] {"", "Exercise", "Workout", "Body Part"};
 
     @Override
@@ -350,8 +350,8 @@ class CustomAdapter extends BaseAdapter {
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
 
-    private ArrayList<String> mData = new ArrayList<String>();
-    private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
+    private ArrayList<String> mData = new ArrayList<>();
+    private TreeSet<Integer> sectionHeader = new TreeSet<>();
 
     private LayoutInflater mInflater;
 
