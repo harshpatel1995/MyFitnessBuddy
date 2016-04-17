@@ -150,7 +150,7 @@ public class CreateWorkout extends AppCompatActivity {
     //not good for SQL
     public boolean containsSpecialCharacter(String string) {
 
-            return (string == null) ? false : !string.matches("[A-Za-z0-9]*");
+            return (string == null) ? false : !string.matches("[A-Za-z0-9 ]*");
 
     }
 
