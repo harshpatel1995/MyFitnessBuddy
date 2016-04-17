@@ -18,11 +18,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.TreeSet;
 
 public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedListener {
@@ -33,7 +30,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     SQLiteDatabase exerciseDB;
     Spinner timeSpinner, filterBySpinner, filterOptionsSpinner;
     TreeSet<String> exerciseSet, workoutSet, bodypartSet;
-    String[] timeOptions = new String[] {"Week", "2 Weeks", "Month", "3 Months", "All Logs"};
+    String[] timeOptions = new String[] {"Past Week", "Past 2 Weeks", "Past Month", "Past 3 Months", "All Logs"};
     String[] filterByOptions = new String[] {"", "Exercise", "Workout", "Body Part"};
 
     @Override
@@ -67,6 +64,7 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("My Logs");
+
 
         try {
             //Open the database
@@ -214,8 +212,8 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
                 int weightColumn = c.getColumnIndex("weight");
 
                 //Holds the exercises with the same workout name so that they can be displayed together
-                ArrayList<Exercise> arrayList = new ArrayList<>();
-                Exercise current, previous = null;
+                ArrayList<ExerciseSet> arrayList = new ArrayList<>();
+                ExerciseSet current, previous = null;
 
                 //Traverse the logs table backwards
                 for (c.moveToLast(); !c.isBeforeFirst(); c.moveToPrevious()) {
@@ -228,16 +226,16 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
 
                     //This is the first set we have encountered. For all other sets, the else block will be called.
                     if (previous == null) {
-                        current = new Exercise(workoutName, exerciseName, reps, weight, dateString);
+                        current = new ExerciseSet(workoutName, exerciseName, dateString, reps, weight);
                         arrayList.add(current);
                         previous = current;
                     }
 
                     else {
-                        current = new Exercise(workoutName, exerciseName, reps, weight, dateString);
+                        current = new ExerciseSet (workoutName, exerciseName, dateString, reps, weight);
 
                         //If this set has the same workoutName and Date as the previous one, add it to the collection
-                        if (current.workoutName.equals(previous.workoutName) && current.date.equals(previous.date)) {
+                        if (current.getWorkoutName().equals(previous.getWorkoutName()) && current.getDate().equals(previous.getDate())) {
                             arrayList.add(current);
                         }
                         //This set is part of a different workout or has a different date
@@ -265,10 +263,10 @@ public class MyLogs extends MenuButtonBar implements AdapterView.OnItemSelectedL
     }
 
     //Method that prints each workout's information in the listview
-    public void printArrayList(ArrayList<Exercise> arrayList, CustomAdapter mAdapter) {
-        mAdapter.addSectionHeaderItem(arrayList.get(0).workoutName + " : " + arrayList.get(0).date);
-        for(Exercise e : arrayList) {
-            mAdapter.addItem(e.exerciseName + "   " + e.reps + " x " + e.weight + " lbs");
+    public void printArrayList(ArrayList<ExerciseSet> arrayList, CustomAdapter mAdapter) {
+        mAdapter.addSectionHeaderItem(arrayList.get(0).getWorkoutName() + " : " + arrayList.get(0).getDate());
+        for(ExerciseSet e : arrayList) {
+            mAdapter.addItem(e.getExercise() + "   " + e.getReps() + " x " + e.getWeight() + " lbs");
         }
     }
 
@@ -429,22 +427,5 @@ class CustomAdapter extends BaseAdapter {
 
 }
 
-//Class exercise that makes collecting the attributes in a collection easier (ArrayList<Exercise>)
-//done separate to include date
-class Exercise {
 
-    public String workoutName;
-    public String exerciseName;
-    public int reps;
-    public int weight;
-    public String date;
-
-    public Exercise(String workoutName, String exerciseName, int reps, int weight, String date) {
-        this.workoutName = workoutName;
-        this.exerciseName = exerciseName;
-        this.reps = reps;
-        this.weight = weight;
-        this.date = date;
-    }
-}
 

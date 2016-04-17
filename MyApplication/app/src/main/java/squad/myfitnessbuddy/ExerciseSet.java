@@ -4,18 +4,21 @@ package squad.myfitnessbuddy;
 public class ExerciseSet implements Comparable<ExerciseSet>
 {
 
-    private String workoutNameStr, exerciseStr;
+    private String workoutNameStr, exerciseStr, dateStr;
     private int repsInt, weightInt;
 
+    public ExerciseSet(String workoutName, String exercise, int reps, int weight) {
+        this(workoutName, exercise, "", reps, weight);
+    }
 
-    public ExerciseSet(String workoutName, String exercise, int reps, int weight)
+    public ExerciseSet(String workoutName, String exercise, String date, int reps, int weight)
     {
         workoutNameStr = workoutName;
         exerciseStr = exercise;
+        dateStr = date;
         repsInt = reps;
         weightInt = weight;
     }
-
 
     @Override
     public int compareTo(ExerciseSet setObj)
@@ -68,11 +71,16 @@ public class ExerciseSet implements Comparable<ExerciseSet>
                          return 0;
                      }
                 }
-
              }
-
         }
+    }
 
+    public String getDate() {
+        return dateStr;
+    }
+
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
     }
 
     public String getWorkoutName() {
@@ -82,7 +90,6 @@ public class ExerciseSet implements Comparable<ExerciseSet>
     public void setWorkoutName(String workoutName) {
         workoutNameStr = workoutName;
     }
-
 
     public String getExercise() {
         return exerciseStr;
@@ -107,8 +114,5 @@ public class ExerciseSet implements Comparable<ExerciseSet>
     public void setWeight(int weight) {
         weightInt = weight;
     }
-
-
-
 
 }
