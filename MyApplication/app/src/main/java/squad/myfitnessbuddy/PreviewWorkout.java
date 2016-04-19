@@ -162,7 +162,7 @@ public class   PreviewWorkout extends AppCompatActivity {
         }
         else{
             //if nothing selected, display error message
-            Toast.makeText(getApplicationContext(),"Please select an exercise to view description.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Please select an exercise to view the description of.",Toast.LENGTH_SHORT).show();
         }
     }
 

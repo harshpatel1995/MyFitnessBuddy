@@ -111,7 +111,7 @@ public class ExerciseDescription extends MenuButtonBar {
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_shoulder_shrugs));
                 descriptionTV.setText(R.string.dumbbell_shoulder_shrugs);
                 break;
-            case "Dumbell Fly":
+            case "Dumbbell Fly":
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_fly));
                 descriptionTV.setText(R.string.dumbbell_fly);
                 break;
