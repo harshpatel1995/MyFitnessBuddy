@@ -167,8 +167,10 @@ public class ExerciseDescription extends MenuButtonBar {
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.weighted_tricep_dip));
                 descriptionTV.setText(R.string.weighted_tricep_dip);
                 break;
-
             default:
+                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
+                descriptionTV.setText(R.string.test);
+                break;
 
         }
         anim.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
