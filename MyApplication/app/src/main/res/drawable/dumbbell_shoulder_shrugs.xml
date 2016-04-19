@@ -1,0 +1,4 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/arnoldPress" android:oneshot="false">
+    <item android:drawable="@drawable/dumbbellshouldershrugs1" android:duration="250" />
+    <item android:drawable="@drawable/dumbbellshouldershrugs2" android:duration="250" />
+</animation-list>

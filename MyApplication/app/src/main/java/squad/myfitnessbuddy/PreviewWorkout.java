@@ -144,6 +144,27 @@ public class   PreviewWorkout extends AppCompatActivity {
         }
 
     }
+    public void onDescriptionClicked (View view){
+
+        String getExerciseName = getCheckedItemName(exercisesLV);
+
+        if (!getExerciseName.equals("")) {
+
+            SharedPreferences.Editor editor = sharedPreference.edit();
+
+            //Use the editor to store the name of the current workout to preview in the SharedPreference
+            editor.putString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, getExerciseName);
+            editor.apply();
+
+            //go to graph/statistics page
+            Intent exerciseDescription = new Intent(this, ExerciseDescription.class);
+            startActivity(exerciseDescription);
+        }
+        else{
+            //if nothing selected, display error message
+            Toast.makeText(getApplicationContext(),"Please select an exercise to view description.",Toast.LENGTH_LONG).show();
+        }
+    }
 
     //returns the name of the item that is checked in the list.
     //returns empty string if it noting is checked

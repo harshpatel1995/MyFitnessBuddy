@@ -73,7 +73,11 @@
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
         <activity
             android:name=".Graph"
-            android:label="graphs"
+            android:label="Graphs"
+            android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
+        <activity
+            android:name=".ExerciseDescription"
+            android:label="Exercise Description"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
     </application>
 

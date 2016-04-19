@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/barbellBackSquat" android:oneshot="false">
+    <item android:drawable="@drawable/dumbbellfrontraise1" android:duration="250" />
+    <item android:drawable="@drawable/dumbbellfrontraise2" android:duration="250" />
+    <item android:drawable="@drawable/dumbbellfrontraise1" android:duration="250" />
+    <item android:drawable="@drawable/dumbbellfrontraise3" android:duration="250" />
+</animation-list>
