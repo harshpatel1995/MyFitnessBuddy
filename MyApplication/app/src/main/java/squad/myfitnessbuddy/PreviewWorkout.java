@@ -35,7 +35,6 @@ public class   PreviewWorkout extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
 
-
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Preview Workout");
@@ -158,6 +157,7 @@ public class   PreviewWorkout extends AppCompatActivity {
 
             //go to graph/statistics page
             Intent exerciseDescription = new Intent(this, ExerciseDescription.class);
+            exerciseDescription.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(exerciseDescription);
         }
         else{

@@ -2,7 +2,6 @@ package squad.myfitnessbuddy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,16 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageView;
 import android.graphics.drawable.AnimationDrawable;
 
 public class ExerciseDescription extends MenuButtonBar {
     SharedPreferences sharedPreference;
     TextView exerciseNameTV,descriptionTV;
-    SQLiteDatabase exerciseDB;
+   // SQLiteDatabase exerciseDB;
     ImageView anim;
-    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -32,6 +29,7 @@ public class ExerciseDescription extends MenuButtonBar {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Exercise Description");
+/*
 
         try {
             exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
@@ -40,13 +38,13 @@ public class ExerciseDescription extends MenuButtonBar {
         catch (Exception e){
             e.printStackTrace();
         }
+*/
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exerciseNameTV =(TextView) findViewById(R.id.exerciseNameTV);
         exerciseNameTV.setText(sharedPreference.getString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, ""));
 
-
-       checkForDescription(exerciseNameTV.getText().toString());
+       checkForDescription(exerciseNameTV.getText().toString().trim());
     }
 
     public void onBackButtonClicked (View view){
@@ -55,8 +53,9 @@ public class ExerciseDescription extends MenuButtonBar {
 
     protected void checkForDescription(String exercise) {
         descriptionTV = (TextView)findViewById(R.id.descriptions);
-        descriptionTV.setMovementMethod(new ScrollingMovementMethod());
         anim = (ImageView)findViewById(R.id.workoutGraphic);
+
+        descriptionTV.setMovementMethod(new ScrollingMovementMethod());
 
         switch(exercise) {
             case"Arnold Press":

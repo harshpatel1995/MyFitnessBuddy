@@ -27,6 +27,7 @@
             android:layout_height="180dp"
             android:layout_below="@id/exerciseNameTV"
             />
+
     <TextView
         android:id="@+id/descriptions"
         android:layout_width="match_parent"
@@ -47,11 +48,5 @@
             android:onClick="onBackButtonClicked"
             android:layout_below="@id/descriptions"
             android:layout_centerHorizontal="true"/>
-
-
-
-
-
-
 
 </RelativeLayout>
