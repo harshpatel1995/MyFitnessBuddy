@@ -30,8 +30,8 @@
     <TextView
         android:id="@+id/descriptions"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:maxLines="5"
+        android:layout_height="160dp"
+        android:maxLines="9"
         android:layout_below="@id/workoutGraphic"
         android:scrollbars="vertical"
         />
