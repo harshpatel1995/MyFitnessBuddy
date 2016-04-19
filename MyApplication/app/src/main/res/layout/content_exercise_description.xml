@@ -47,6 +47,7 @@
         android:maxLines="9"
         android:layout_below="@id/imageDescriptionLayout"
         android:scrollbars="vertical"
+        android:textColor="@color/regularText"
         />
 
     <Button
