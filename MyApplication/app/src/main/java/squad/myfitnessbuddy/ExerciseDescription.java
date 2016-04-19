@@ -15,7 +15,6 @@ import android.graphics.drawable.AnimationDrawable;
 public class ExerciseDescription extends MenuButtonBar {
     SharedPreferences sharedPreference;
     TextView exerciseNameTV,descriptionTV;
-   // SQLiteDatabase exerciseDB;
     ImageView anim;
 
     @Override
@@ -29,16 +28,6 @@ public class ExerciseDescription extends MenuButtonBar {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("Exercise Description");
-/*
-
-        try {
-            exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
-            exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-*/
 
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exerciseNameTV =(TextView) findViewById(R.id.exerciseNameTV);
@@ -181,7 +170,6 @@ public class ExerciseDescription extends MenuButtonBar {
 
             default:
 
-
         }
         anim.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
@@ -190,7 +178,7 @@ public class ExerciseDescription extends MenuButtonBar {
                 animationDrawable.start();
             }
             @Override
-            public void onViewDetachedFromWindow(View v) {
+            public void onViewDetachedFromWindow(View view) {
             }
         });
 
