@@ -18,25 +18,39 @@
         android:layout_height="wrap_content"
         android:text="@string/exercise_name"
         android:textSize="@dimen/primary_text_size"
-        android:layout_marginBottom="20dp"/>
+    />
 
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/imageDescriptionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_below="@id/exerciseNameTV"
+        >
+
+        <ImageView
+            android:layout_centerInParent="true"
             android:id="@+id/workoutGraphic"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_below="@id/exerciseNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="3"
+            android:scaleY="3"
             />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/descriptions"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:maxLines="9"
-        android:layout_below="@id/workoutGraphic"
+        android:layout_below="@id/imageDescriptionLayout"
         android:scrollbars="vertical"
+        android:textColor="@color/regularText"
         />
 
     <Button
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back_button"
@@ -47,11 +61,5 @@
             android:onClick="onBackButtonClicked"
             android:layout_below="@id/descriptions"
             android:layout_centerHorizontal="true"/>
-
-
-
-
-
-
 
 </RelativeLayout>

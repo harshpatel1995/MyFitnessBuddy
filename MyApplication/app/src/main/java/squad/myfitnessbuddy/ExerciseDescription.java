@@ -2,7 +2,6 @@ package squad.myfitnessbuddy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,16 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageView;
 import android.graphics.drawable.AnimationDrawable;
 
 public class ExerciseDescription extends MenuButtonBar {
     SharedPreferences sharedPreference;
     TextView exerciseNameTV,descriptionTV;
-    SQLiteDatabase exerciseDB;
     ImageView anim;
-    AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -33,20 +29,11 @@ public class ExerciseDescription extends MenuButtonBar {
         assert actionBar != null;
         actionBar.setTitle("Exercise Description");
 
-        try {
-            exerciseDB = this.openOrCreateDatabase("mfbDatabase.db", MODE_PRIVATE, null);
-            exerciseDB.execSQL(ConstantValues.cCREATE_OR_OPEN_WORKOUT_LOGS_DATABASE_SQL);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
         sharedPreference = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         exerciseNameTV =(TextView) findViewById(R.id.exerciseNameTV);
         exerciseNameTV.setText(sharedPreference.getString(ConstantValues.cSP_CURRENT_EXERCISE_TO_LOG, ""));
 
-
-       checkForDescription(exerciseNameTV.getText().toString());
+       checkForDescription(exerciseNameTV.getText().toString().trim());
     }
 
     public void onBackButtonClicked (View view){
@@ -55,8 +42,9 @@ public class ExerciseDescription extends MenuButtonBar {
 
     protected void checkForDescription(String exercise) {
         descriptionTV = (TextView)findViewById(R.id.descriptions);
-        descriptionTV.setMovementMethod(new ScrollingMovementMethod());
         anim = (ImageView)findViewById(R.id.workoutGraphic);
+
+        descriptionTV.setMovementMethod(new ScrollingMovementMethod());
 
         switch(exercise) {
             case"Arnold Press":
@@ -107,11 +95,21 @@ public class ExerciseDescription extends MenuButtonBar {
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
                 descriptionTV.setText(R.string.dumbbell_lateral_raise);
                 break;
+            //To be deleted later
+            case "Dumbbell Lateral  Raise":
+                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
+                descriptionTV.setText(R.string.dumbbell_lateral_raise);
+                break;
             case "Dumbbell Shoulder Shrugs":
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_shoulder_shrugs));
                 descriptionTV.setText(R.string.dumbbell_shoulder_shrugs);
                 break;
+            //To be deleted later
             case "Dumbbell Fly":
+                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_fly));
+                descriptionTV.setText(R.string.dumbbell_fly);
+                break;
+            case "Dumbell Fly":
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_fly));
                 descriptionTV.setText(R.string.dumbbell_fly);
                 break;
@@ -179,9 +177,10 @@ public class ExerciseDescription extends MenuButtonBar {
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.weighted_tricep_dip));
                 descriptionTV.setText(R.string.weighted_tricep_dip);
                 break;
-
             default:
-
+                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
+                descriptionTV.setText(R.string.test);
+                break;
 
         }
         anim.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -191,7 +190,7 @@ public class ExerciseDescription extends MenuButtonBar {
                 animationDrawable.start();
             }
             @Override
-            public void onViewDetachedFromWindow(View v) {
+            public void onViewDetachedFromWindow(View view) {
             }
         });
 
