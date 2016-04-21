@@ -95,21 +95,11 @@ public class ExerciseDescription extends MenuButtonBar {
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
                 descriptionTV.setText(R.string.dumbbell_lateral_raise);
                 break;
-            //To be deleted later
-            case "Dumbbell Lateral  Raise":
-                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_lateral_raise));
-                descriptionTV.setText(R.string.dumbbell_lateral_raise);
-                break;
             case "Dumbbell Shoulder Shrugs":
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_shoulder_shrugs));
                 descriptionTV.setText(R.string.dumbbell_shoulder_shrugs);
                 break;
-            //To be deleted later
             case "Dumbbell Fly":
-                anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_fly));
-                descriptionTV.setText(R.string.dumbbell_fly);
-                break;
-            case "Dumbell Fly":
                 anim.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dumbbell_fly));
                 descriptionTV.setText(R.string.dumbbell_fly);
                 break;
