@@ -74,10 +74,12 @@
         <activity
             android:name=".Graph"
             android:label="Graphs"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
         <activity
             android:name=".ExerciseDescription"
             android:label="Exercise Description"
+            android:screenOrientation="portrait"
             android:theme="@style/MyFitnessBuddyTheme.NoActionBar"/>
     </application>
 
