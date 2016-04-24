@@ -1,5 +1,6 @@
 # My Fitness Buddy (MFB)
 
-A COP 4331 Project for Christopher Hollander
+A COP 4331 Project for Christopher Hollander.
 
-Goal: Design an Android application that allows gym-goers to create, log and track their workouts.
+Designed an Android application that allows gym-goers to create, log and track their workouts.
+
