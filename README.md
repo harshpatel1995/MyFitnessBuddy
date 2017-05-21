@@ -7,7 +7,7 @@ Android application that allows gym-goers to create, log and track their workout
 ![Alt text](/MyApplication/Images/SplashScreen.png?raw=true "Splash Screen with Logo")
 
 ## Setup Page
-![Alt text](/MyApplication/Images/Setup.png?raw=true "User Setup Page")
+![Image](/MyApplication/Images/Setup.png?raw=true "User Setup Page")
 
 ## Profile Page
 ![Alt text](/MyApplication/Images/Profile.png?raw=true "User Profile Page")
