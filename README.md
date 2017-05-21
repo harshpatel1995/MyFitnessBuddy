@@ -1,8 +1,10 @@
 # My Fitness Buddy (MFB)
 
+
 Android application that allows gym-goers to create, log and track their workouts with a focus on robustness and providing a clean user interface.
 
 ## Splash Screen with Logo
+<img src="/MyApplication/Images/SplashScreen.png" alt="Drawing" style="width:200px;"/>
 ![Alt text](/MyApplication/Images/SplashScreen.png?raw=true "Splash Screen with Logo")
 
 ## Setup Page
